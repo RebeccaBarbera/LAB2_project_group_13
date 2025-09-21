@@ -7,7 +7,7 @@ The first step is to retreive both positive and negative dataset for evaluation.
 
 #### Common criteria for protein selection:
 ##### Positive dataset:
--signal peptide evidence 
+- signal peptide evidence 
 - knowledge of Signal Peptide (SP) cleavage site
 - SP length > 13
 ##### Negative dataset:
