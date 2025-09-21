@@ -51,4 +51,4 @@ To ensure these proteins lacked signal peptides, proteins were chosen from exper
 3. The Eukaryotic kingdom (Metazoa, Fungi, Plants, Other)
 4. The protein length
 5. The position of the signal peptide cleavage site
-
+#### The custom 
