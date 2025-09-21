@@ -4,6 +4,12 @@ from requests.adapters import HTTPAdapter, Retry
 import json
 import re
 
+url = "https://rest.uniprot.org/uniprotkb/search?compressed=true&format=fasta&query=%28%28fragment%3Afalse%29+AND+%28taxonomy_id%3A2759%29+AND+%28length%3A%5B40+TO+*%5D%29+AND+%28reviewed%3Atrue%29+AND+%28existence%3A1%29+AND+%28ft_signal_exp%3A*%29%29&size=500"
+
+response = requests.get(url)
+
+#print(response.headers)
+
 
 retries = Retry(total=5, backoff_factor=0.25, status_forcelist=[500, 502, 503, 504])
 session = requests.Session()
