@@ -34,5 +34,14 @@ To ensure these proteins lacked signal peptides, proteins were chosen from exper
 ##### Results from both positive and negative datasets where retrieved in JSON format. 
 
 ### 2. Data processing pipeline
-
+#### the next step is to filter the positive dataset to meet the following criteria:
+- No fragments
+- Select only eukaryotic proteins
+- Filter-out sequences shorter than 40 residues
+- Filter-out unreviewed proteins
+- Select on protein with experimental SP evidence
+- Filter out proteins with SP shorter than 14 residues
+- Protein existence: evidence at protein level
+- Existence of the cleavage site
+#### To filter the positive dataset the file named `positive_set.py` was used 
 
