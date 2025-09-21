@@ -5,8 +5,18 @@ The aim of this project is to evaluate and compare different computational metho
 ### 1. Data cllection
 The first step is to retreive both positive and negative dataset for evaluation.
 
-##### Common criteria for protein selection:
-- Positive dataset:
-- 
-
+#### Common criteria for protein selection:
+##### Positive dataset:
+-signal peptide evidence 
+- knowledge of Signal Peptide (SP) cleavage site
+- SP length > 13
+##### Negative dataset:
+- absence of SP sequence
+- experimental evidence for non SP-related compartments 
+##### Both positive and negative datasets:
+- protein length
+- protein evidence
+- protein annotation status
+- protein superkingdom
+- Fragments
 
