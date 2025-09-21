@@ -11,7 +11,7 @@ The aim of this project is to evaluate and compare different computational metho
 
 ### 1. Data collection
 The first step is to retreive both positive and negative dataset for evaluation.
-##### database used: `https://www.uniprot.org`
+- database used: `https://www.uniprot.org`
 
 #### Common criteria for protein selection:
 ##### Both positive and negative datasets:
