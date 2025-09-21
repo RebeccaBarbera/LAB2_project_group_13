@@ -1,6 +1,13 @@
 # LAB2_project_group_13
+
 ## Signal peptide prediction
 The aim of this project is to evaluate and compare different computational methods for detecting signal peptides as well as addressing the subproblem of subcellular localisation and protein function prediction. 
+
+## Software and tools needed
+- Python 3 → main programming language for data processing.
+- Biopython (Bio.SeqIO) → for handling FASTA input/output.
+- Requests → for making HTTP requests to UniProt REST API.
+- GitHub / Git → for version control and collaboration
 
 ### 1. Data cllection
 The first step is to retreive both positive and negative dataset for evaluation.
@@ -26,5 +33,6 @@ To ensure these proteins lacked signal peptides, proteins were chosen from exper
 - negative_url = `"https://rest.uniprot.org/uniprotkb/search?format=json&query=%28%28fragment:false%29 AND (reviewed:true) AND (existence:1) AND (length:[40 TO ]) AND (taxonomy_id:2759) NOT (ft_signal:) AND ((cc_scl_term_exp:SL-0091) OR (cc_scl_term_exp:SL-0191) OR (cc_scl_term_exp:SL-0173) OR (cc_scl_term_exp:SL-0209) OR (cc_scl_term_exp:SL-0204) OR (cc_scl_term_exp:SL-0039))%29&size=500"`
 ##### Results from both positive and negative datasets where retrieved in JSON format. 
 
-### 2. Data filtering 
+### 2. Data processing pipeline
+
 
