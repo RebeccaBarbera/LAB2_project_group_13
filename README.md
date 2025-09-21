@@ -4,10 +4,10 @@
 The aim of this project is to evaluate and compare different computational methods for detecting signal peptides as well as addressing the subproblem of subcellular localisation and protein function prediction. 
 
 ## Software and tools needed
-- Python 3 → main programming language for data processing.
-- Biopython (Bio.SeqIO) → for handling FASTA input/output.
-- Requests → for making HTTP requests to UniProt REST API.
-- GitHub / Git → for version control and collaboration
+- `Python 3` → main programming language for data processing.
+- `Biopython (Bio.SeqIO)` → for handling FASTA input/output.
+- `Requests` → for making HTTP requests to UniProt REST API.
+- `GitHub` / `Git` → for version control and collaboration
 
 ### 1. Data cllection
 The first step is to retreive both positive and negative dataset for evaluation.
