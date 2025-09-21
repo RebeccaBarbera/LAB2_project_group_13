@@ -9,8 +9,9 @@ The aim of this project is to evaluate and compare different computational metho
 - `Requests` → for making HTTP requests to UniProt REST API.
 - `GitHub` / `Git` → for version control and collaboration
 
-### 1. Data cllection
+### 1. Data collection
 The first step is to retreive both positive and negative dataset for evaluation.
+##### database used: `https://www.uniprot.org`
 
 #### Common criteria for protein selection:
 ##### Both positive and negative datasets:
@@ -43,5 +44,11 @@ To ensure these proteins lacked signal peptides, proteins were chosen from exper
 - Filter out proteins with SP shorter than 14 residues
 - Protein existence: evidence at protein level
 - Existence of the cleavage site
-#### To filter the positive dataset the file named `positive_set.py` was used 
+##### To filter the positive dataset the custom python scrypt named `positive_set.py` was used.
+##### The output file is the `positive_filtered.tsv` file with the following information:
+1. The protein UniProt accession number
+2. The organism's name
+3. The Eukaryotic kingdom (Metazoa, Fungi, Plants, Other)
+4. The protein length
+5. The position of the signal peptide cleavage site
 
