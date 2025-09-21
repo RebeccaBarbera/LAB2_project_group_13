@@ -4,7 +4,6 @@ from requests.adapters import HTTPAdapter, Retry
 import json
 import re
 
-
 retries = Retry(total=5, backoff_factor=0.25, status_forcelist=[500, 502, 503, 504])
 session = requests.Session()
 session.mount("https://", HTTPAdapter(max_retries=retries))
@@ -56,11 +55,9 @@ def filter_entry(entry):
     return False
 
 batch_size = 500
-url = "https://rest.uniprot.org/uniprotkb/search?format=json&query=%28%28fragment%3Afalse%29+AND+%28taxonomy_id%3A2759%29+AND+%28length%3A%5B40+TO+*%5D%29+AND+%28reviewed%3Atrue%29+AND+%28existence%3A1%29+AND+%28ft_signal_exp%3A*%29%29&size=500"
-
-
+url = "https://rest.uniprot.org/uniprotkb/search?format=json&query=%28%28fragment%3Afalse%29+AND+%28reviewed%3Atrue%29+AND+%28existence%3A1%29+AND+%28length%3A%5B40+TO+*+%5D%29+AND+%28taxonomy_id%3A2759%29+NOT+%28ft_signal%3A*%29+AND+%28%28cc_scl_term_exp%3ASL-0091%29+OR+%28cc_scl_term_exp%3ASL-0191%29+OR+%28cc_scl_term_exp%3ASL-0173%29+OR+%28cc_scl_term_exp%3ASL-0209%29+OR+%28cc_scl_term_exp%3ASL-0204%29+OR+%28cc_scl_term_exp%3ASL-0039%29%29%29&size=500"
 # We set the name of the output file, we want TSV output
-output_file = "sp-filt-pos.tsv"
+output_file = "filtered_negative.tsv"
 
 # We define a function to better control the TSV format in output.
 # In particular, we run the API call requiring JSON format and build our own TSV file
