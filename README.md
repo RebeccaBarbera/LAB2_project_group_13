@@ -5,8 +5,8 @@ The aim of this project is to evaluate and compare different computational metho
 ### 1. Data cllection
 The first step is to retreive both positive and negative dataset for evaluation.
 
-  ##### Common criteria for protein selection:
-  Positive dataset:
-  - 
+##### Common criteria for protein selection:
+- Positive dataset:
+- 
 
 
