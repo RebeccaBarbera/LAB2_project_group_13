@@ -9,12 +9,14 @@ The aim of this project is to evaluate and compare different computational metho
 - [Data filtering pipeline](#2-data-filtering-pipeline)
   - [Output files for data collection](#output-files)
 - [Data pre-processing](#data-pre-processing)
+   - [Clustering](#clustering)
 
-## Software and tools needed
+## Software, pakcages and tools needed
 - `Python 3` → main programming language for data processing.
 - `Biopython (Bio.SeqIO)` → for handling FASTA input/output.
 - `Requests` → for making HTTP requests to UniProt REST API.
-- `GitHub` / `Git` → for version control and collaboration
+- `GitHub` / `Git` → for version control and collaboration.
+- `MMSeqs2` → software suite used for clustering.
 
 ## 1. Data collection
 The first step is to retrieve both positive and negative dataset for evaluation.
@@ -68,14 +70,14 @@ To ensure these proteins lacked signal peptides, proteins were chosen from exper
 - `negative_set.tsv`
 - `negative_set.fasta`
 ##### The `positive_set.tsv` and `negative_set.tsv` files contain the following information:
-For the `positive_set.tsv`:
+**For the `positive_set.tsv`:**
 1. The protein UniProt accession number
 2. The organism's name
 3. The Eukaryotic kingdom (Metazoa, Fungi, Plants, Other)
 4. The protein length
 5. The position of the signal peptide cleavage site
 
-For the `negative_set.tsv`:
+**For the `negative_set.tsv`:**
 1. The protein UniProt accession
 2. The organism name
 3. The Eukaryotic kingdom (Metazoa, Fungi, Plants, Other)
@@ -90,9 +92,9 @@ For the `negative_set.tsv`:
 
 ## 3. Data pre-processing
 - The first step of data pre-processing consists in using clustering methods to remove non-reduntant sequences from the dataset.
-- Next clustered data will be further split into teo datasets:
-  - the `training set`: used to train the methods, optimize model hyperparameters and perform
+- Next clustered data will be further split into teo sets:
+  - the **`training set`**: used to train the methods, optimize model hyperparameters and perform
 cross-validation experiments
-  - the `benchmark set`:  used to test the generalization performance of the different models
-  ### Clustering
-  
+  - the **`benchmark set`** (also known as the holdout set):  used to test the generalization performance of the different models
+### Clustering
+Clustering is executed with a software suite called `MMseq2`
