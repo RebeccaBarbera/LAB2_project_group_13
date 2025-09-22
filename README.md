@@ -97,4 +97,5 @@ To ensure these proteins lacked signal peptides, proteins were chosen from exper
 cross-validation experiments
   - the **`benchmark set`** (also known as the holdout set):  used to test the generalization performance of the different models
 ### Clustering
-Clustering is executed with a software suite called `MMseq2`
+Clustering is executed with a software suite called `MMseq2. 
+
