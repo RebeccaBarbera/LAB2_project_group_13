@@ -1,4 +1,5 @@
 # LAB2_project_group_13
+#### Rebecca Barbera, Aniello Di Vaio, Nina Talajic, Domenico Zianni
 
 ## Signal peptide prediction
 The aim of this project is to evaluate and compare different computational methods for detecting signal peptides as well as addressing the subproblem of subcellular localisation and protein function prediction. 
@@ -44,7 +45,7 @@ To ensure these proteins lacked signal peptides, proteins were chosen from exper
 - Filter out proteins with SP shorter than 14 residues
 - Protein existence: evidence at protein level
 - Existence of the cleavage site
-##### To filter the positive dataset the custom python scrypt named `positive_set.py` was used.
+##### To filter the positive dataset the custom python scrypt named `data-gathering.py` was used.
 ##### The output file is the `positive_filtered.tsv` file with the following information:
 1. The protein UniProt accession number
 2. The organism's name
