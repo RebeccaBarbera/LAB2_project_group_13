@@ -54,8 +54,9 @@ To ensure these proteins lacked signal peptides, proteins were chosen from exper
 - Filter-out sequences shorter than 40 residues
 - Filter-out sequences having SP (any evidence)
 - Select only proteins experimentally verified to be localized into: cytosol, nucleus, mitochondrion, plastid, peroxisome, cell membrane.
+###### *Please note that the negative dataset was directly retrieved from UniProt using the query criteria, without the need for further filtering of the JSON response. The script is used only to extract the required fields and to format the results into TSV and FASTA files.
 
-##### To filter both dataset the custom python scrypt named `data-gathering.py` was used.
+#### To filter both dataset the custom python scrypt named `data-gathering.py` was used.
 ##### The output files are the following :
 - `positive_set.tsv`
 - `positive_set.fasta`
@@ -68,6 +69,7 @@ For the `positive_set.tsv`:
 3. The Eukaryotic kingdom (Metazoa, Fungi, Plants, Other)
 4. The protein length
 5. The position of the signal peptide cleavage site
+
 For the `negative_set.tsv`:
 1. The protein UniProt accession
 2. The organism name
@@ -76,4 +78,4 @@ For the `negative_set.tsv`:
 5. Whether the protein has a transmembrane helix starting in the first 90 residues
 (true or false)
 ##### both `positive_set.fasta` and `negative_set.fasta` are in standard FASTA format, where each entry begins with > followed by the UniProt accession and the following line contains the full amino acid sequence.
-###### *Please note that the negative dataset was directly retrieved from UniProt using the query criteria, without the need for further filtering of the JSON response. The script is used only to extract the required fields and to format the results into TSV and FASTA files.
+
