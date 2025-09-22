@@ -52,7 +52,7 @@ To ensure these proteins lacked signal peptides, proteins were chosen from exper
 - Filter out proteins with SP shorter than 14 residues
 - Protein existence: evidence at protein level
 - Existence of the cleavage site
-##### Negative dataset:[**](#neg-note)
+##### Negative dataset:
 - No fragments
 - Filter-out unreviewed proteins
 - Protein existence: evidence at protein level
@@ -61,7 +61,7 @@ To ensure these proteins lacked signal peptides, proteins were chosen from exper
 - Filter-out sequences having SP (any evidence)
 - Select only proteins experimentally verified to be localized into: cytosol, nucleus, mitochondrion, plastid, peroxisome, cell membrane.
 
-#### To filter both dataset the custom python script named `data-gathering.py` was used.
+### To filter both dataset the custom python script named `data-gathering.py` was used [**](#neg-note).
 ##### Output files:
 - `positive_set.tsv`
 - `positive_set.fasta`
