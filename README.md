@@ -61,7 +61,7 @@ To ensure these proteins lacked signal peptides, proteins were chosen from exper
 - Filter-out sequences having SP (any evidence)
 - Select only proteins experimentally verified to be localized into: cytosol, nucleus, mitochondrion, plastid, peroxisome, cell membrane.
 
-### To filter both dataset the custom python script named `data-gathering.py` was used [**](#neg-note).
+### To filter both dataset the custom python script named `data-gathering.py` was used.[**](#neg-note)
 ##### Output files:
 - `positive_set.tsv`
 - `positive_set.fasta`
