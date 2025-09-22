@@ -4,7 +4,11 @@
 ## Signal peptide prediction
 The aim of this project is to evaluate and compare different computational methods for detecting signal peptides as well as addressing the subproblem of subcellular localisation and protein function prediction. 
 ## Table of Contents
-Software and tools needed [Link Text](#Software and tools needed).
+- Software and tools needed [Link Text](#software-and-tools-needed)
+- Data collection [Link Text](#data-collection)
+- Data filtering pipeline [Link Text](#software-filtering-pipeline)
+- Output files for data collection [Link Text](#output-files)
+
 
 ## Software and tools needed
 - `Python 3` → main programming language for data processing.
@@ -58,7 +62,7 @@ To ensure these proteins lacked signal peptides, proteins were chosen from exper
 - Select only proteins experimentally verified to be localized into: cytosol, nucleus, mitochondrion, plastid, peroxisome, cell membrane.
 
 #### To filter both dataset the custom python scrypt named `data-gathering.py` was used.
-##### The output files are the following :
+##### Output files:
 - `positive_set.tsv`
 - `positive_set.fasta`
 - `negative_set.tsv`
