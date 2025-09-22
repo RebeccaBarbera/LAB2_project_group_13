@@ -3,6 +3,8 @@
 
 ## Signal peptide prediction
 The aim of this project is to evaluate and compare different computational methods for detecting signal peptides as well as addressing the subproblem of subcellular localisation and protein function prediction. 
+## Table of Contents
+Software and tools needed [Link Text](#Software and tools needed).
 
 ## Software and tools needed
 - `Python 3` → main programming language for data processing.
@@ -10,7 +12,7 @@ The aim of this project is to evaluate and compare different computational metho
 - `Requests` → for making HTTP requests to UniProt REST API.
 - `GitHub` / `Git` → for version control and collaboration
 
-### 1. Data collection
+## 1. Data collection
 The first step is to retreive both positive and negative dataset for evaluation.
 - database used: `https://www.uniprot.org`
 
@@ -35,7 +37,7 @@ To ensure these proteins lacked signal peptides, proteins were chosen from exper
 - negative_url = `"https://rest.uniprot.org/uniprotkb/search?format=json&query=%28%28fragment:false%29 AND (reviewed:true) AND (existence:1) AND (length:[40 TO ]) AND (taxonomy_id:2759) NOT (ft_signal:) AND ((cc_scl_term_exp:SL-0091) OR (cc_scl_term_exp:SL-0191) OR (cc_scl_term_exp:SL-0173) OR (cc_scl_term_exp:SL-0209) OR (cc_scl_term_exp:SL-0204) OR (cc_scl_term_exp:SL-0039))%29&size=500"`
 ##### Results from both positive and negative datasets where retrieved in JSON format. 
 
-### 2. Data preprocessing pipeline
+### 2. Data filtering pipeline
 #### The next step is to filter the dataset to meet the following criteria:
 ##### Positive dataset: 
 - No fragments
@@ -78,5 +80,7 @@ For the `negative_set.tsv`:
 (true or false)\
 ###### *Please note that the negative dataset was directly retrieved from UniProt using the query criteria, without the need for further filtering of the JSON response. The script is used only to extract the required fields and to format the results into TSV and FASTA files.
 
-##### both `positive_set.fasta` and `negative_set.fasta` are in standard FASTA format, where each entry begins with > followed by the UniProt accession and the following line contains the full amino acid sequence.
+##### Both `positive_set.fasta` and `negative_set.fasta` are in standard FASTA format, where each entry begins with > followed by the UniProt accession and the following line contains the full amino acid sequence.
+
+## Data pre-processing
 
