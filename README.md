@@ -94,5 +94,5 @@ For the `negative_set.tsv`:
   - the `training set`: used to train the methods, optimize model hyperparameters and perform
 cross-validation experiments
   - the `benchmark set`:  used to test the generalization performance of the different models
-  ### CLustering
+  ### Clustering
   
