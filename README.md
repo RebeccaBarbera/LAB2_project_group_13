@@ -89,4 +89,8 @@ For the `negative_set.tsv`:
 ##### Both `positive_set.fasta` and `negative_set.fasta` are in standard FASTA format, where each entry begins with '>' followed by the UniProt accession and the following line contains the full amino acid sequence.
 
 ## 3. Data pre-processing
-
+- The first step of data pre-processing consists in using clustering methods to remove non-reduntant sequences from the dataset.
+- Next clustered data will be further split into teo datasets:
+  - the `training set`: used to train the methods, optimize model hyperparameters and perform
+cross-validation experiments
+  - the `benchmark set`:  used to test the generalization performance of the different models
