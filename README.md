@@ -35,8 +35,9 @@ To ensure these proteins lacked signal peptides, proteins were chosen from exper
 - negative_url = `"https://rest.uniprot.org/uniprotkb/search?format=json&query=%28%28fragment:false%29 AND (reviewed:true) AND (existence:1) AND (length:[40 TO ]) AND (taxonomy_id:2759) NOT (ft_signal:) AND ((cc_scl_term_exp:SL-0091) OR (cc_scl_term_exp:SL-0191) OR (cc_scl_term_exp:SL-0173) OR (cc_scl_term_exp:SL-0209) OR (cc_scl_term_exp:SL-0204) OR (cc_scl_term_exp:SL-0039))%29&size=500"`
 ##### Results from both positive and negative datasets where retrieved in JSON format. 
 
-### 2. Data processing pipeline
-#### the next step is to filter the positive dataset to meet the following criteria:
+### 2. Data preprocessing pipeline
+#### The next step is to filter the dataset to meet the following criteria:
+##### Positive dataset: 
 - No fragments
 - Select only eukaryotic proteins
 - Filter-out sequences shorter than 40 residues
@@ -45,11 +46,34 @@ To ensure these proteins lacked signal peptides, proteins were chosen from exper
 - Filter out proteins with SP shorter than 14 residues
 - Protein existence: evidence at protein level
 - Existence of the cleavage site
-##### To filter the positive dataset the custom python scrypt named `data-gathering.py` was used.
-##### The output file is the `positive_filtered.tsv` file with the following information:
+##### Negative dataset*:
+- No fragments
+- Filter-out unreviewed proteins
+- Protein existence: evidence at protein level
+- Select only eukaryotic proteins
+- Filter-out sequences shorter than 40 residues
+- Filter-out sequences having SP (any evidence)
+- Select only proteins experimentally verified to be localized into: cytosol, nucleus, mitochondrion, plastid, peroxisome, cell membrane.
+
+##### To filter both dataset the custom python scrypt named `data-gathering.py` was used.
+##### The output files are the following :
+- `positive_set.tsv`
+- `positive_set.fasta`
+- `negative_set.tsv`
+- `negative_set.fasta`
+##### The `positive_set.tsv` and `negative_set.tsv` files contain the following information:
+For the `positive_set.tsv`:
 1. The protein UniProt accession number
 2. The organism's name
 3. The Eukaryotic kingdom (Metazoa, Fungi, Plants, Other)
 4. The protein length
 5. The position of the signal peptide cleavage site
-#### The custom 
+For the `negative_set.tsv`:
+1. The protein UniProt accession
+2. The organism name
+3. The Eukaryotic kingdom (Metazoa, Fungi, Plants, Other)
+4. The protein length
+5. Whether the protein has a transmembrane helix starting in the first 90 residues
+(true or false)
+##### both `positive_set.fasta` and `negative_set.fasta` are in standard FASTA format, where each entry begins with > followed by the UniProt accession and the following line contains the full amino acid sequence.
+###### *Please note that the negative dataset was directly retrieved from UniProt using the query criteria, without the need for further filtering of the JSON response. The script is used only to extract the required fields and to format the results into TSV and FASTA files.
