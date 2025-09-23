@@ -1,0 +1,1 @@
+UniprotAccession	Organism	Kingdom	ProteinLength	TMHelixFirst90
