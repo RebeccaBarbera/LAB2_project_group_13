@@ -90,6 +90,12 @@ To ensure these proteins lacked signal peptides, proteins were chosen from exper
 
 ##### Both `positive_set.fasta` and `negative_set.fasta` are in standard FASTA format, where each entry begins with '>' followed by the UniProt accession and the following line contains the full amino acid sequence.
 
+Final output Table 
+Dataset	Total	Metazoa	Fungi	Viridiplantae	Other	N-terminal transmembrane helix
+Positive	2932	2420	165	311	36	-2477
+Negative	20615	12419	3727	4111	358	2477<img width="456" height="49" alt="image" src="https://github.com/user-attachments/assets/ba0e51f7-77a8-4802-97e6-f7b4d0607e43" />
+
+
 ## 3. Data pre-processing
 - The first step of data pre-processing consists in using clustering methods to remove non-reduntant sequences from the dataset.
 - Next clustered data will be further split into teo sets:
