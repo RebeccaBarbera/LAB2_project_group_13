@@ -97,5 +97,6 @@ To ensure these proteins lacked signal peptides, proteins were chosen from exper
 cross-validation experiments
   - the **`benchmark set`** (also known as the holdout set):  used to test the generalization performance of the different models
 ### Clustering
-Clustering is executed with a software suite called `MMseq2. 
-
+- Clustering is executed with a software suite called `**MMseq2**` - supports 3 different algorithms: **set-cover clustering** - produces more compact clusters (not gonna use it of course), and then the **greedy incremental algorithm**- produce less dense clusters with long range homologies, the **connected component clustering** we can find distant related homologs `(this is the algorithm we are using)`. 
+- family abundance changes in both the positive and negative datasets, to avoid bias in the benchamrking and testing set we solve it with identifying groups of both datasets and select only one representative from each family group through clustering fro creating a non reduntant dataset.
+- we try to mantain a ratio of the same number of positives and negatives becuase otherwise it creates an imbalance that is constant between different splits
