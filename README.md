@@ -11,11 +11,11 @@ The aim of this project is to evaluate and compare different computational metho
   - [Dataset summary table](#dataset-summary)
 - [Data pre-processing](#data-pre-processing)
    - [Clustering](#clustering)
-   - [Filtering into a TSV file](#filtering_into_a_TSV_file)
-   - [Data summary table](#data_summary_table)
-   - [Data split](#data_split)
-     - [Data split overall results](#Data_split_overall_results)
-  - [Five-fold Cross validation](#five_fold_cross_validation)
+   - [Filtering into a TSV file](#filtering-into-a-TSV-file)
+   - [Data summary table](#data-summary-table)
+   - [Data split](#data-split)
+     - [Data split overall results](#Data-split-overall-results)
+  - [Five-fold Cross validation](#five-fold-cross-validation)
 
 ## Software, pakcages and tools needed
 - `Python 3` → main programming language for data processing.
@@ -215,8 +215,7 @@ This step is to randomly split the training set into 5 different subsets, preser
 - gsplit -n l/5 train_ids_shuffled.txt fold_
 - gsplit -n l/5 bench_ids_shuffled.txt fold_bench_
 
-#### output files:
-
+### Output files:
 **Training set:**
 - `fold_aa`
 - `fold_ab`
