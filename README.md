@@ -125,12 +125,12 @@ These commands take all sequences in *_set.fasta, compare them to each other and
 **Please note**: Prior to clustering, we converted the FASTA files from DOS to Unix format using **`dos2unix`**. This step was necessary because the original files contained trailing spaces at the end of sequences due to Windows formatting.
 
 **Output files:**
-Positive dataset:
+**Positive dataset:**(N=x)
 - `pos_cluster-results_all_seqs.fasta`
 - `pos_cluster-results_cluster.tsv`
 - **`pos_cluster-results_rep_seq.fasta`**
 
-Negative dataset:
+**Negative dataset**(N=x):
 - `neg_cluster-results_all_seqs.fasta`
 - `neg_cluster-results_cluster.tsv`
 - **`neg_cluster-results_rep_seq.fasta`**
