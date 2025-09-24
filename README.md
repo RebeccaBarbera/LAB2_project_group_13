@@ -147,5 +147,12 @@ For the negative dataset:
 - `head -n 1 negative_set.tsv > neg_info.tsv`
 - `grep -F -f pnegative_ids.txt positive_set.tsv >> neg_info.tsv`
 
+### Data summary table
+| Dataset  | Total | Metazoa | Fungi | Viridiplantae | Other | N-terminal TM helix |
+|----------|-------|---------|-------|---------------|-------|----------------------|
+| Positive |  1092 |    866 |   95 |           103 |    28 | -                    |
+| Negative | 8934 |   4697 |  2475 |          1594 |   168 | 900                 |
+
+
 
 
