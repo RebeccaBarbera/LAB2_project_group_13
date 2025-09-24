@@ -182,15 +182,15 @@ Split into training / benchmarking ID lists
 - `tail -n +$((neg_train_lines+1)) neg_shuffled_ids.txt > neg_benchmark_ids.txt`
 
 Extract FASTA sequences with Python script
-`python3 get_seq.py pos_train_ids.txt pos_cluster-results_rep_seq.fasta pos_train.fasta`
-`python3 get_seq.py pos_benchmark_ids.txt pos_cluster-results_rep_seq.fasta pos_benchmark.fasta`
+- `python3 get_seq.py pos_train_ids.txt pos_cluster-results_rep_seq.fasta pos_train.fasta`
+- `python3 get_seq.py pos_benchmark_ids.txt pos_cluster-results_rep_seq.fasta pos_benchmark.fasta`
 
-`python3 get_seq.py neg_train_ids.txt neg_cluster-results_rep_seq.fasta neg_train.fasta`
-`python3 get_seq.py neg_benchmark_ids.txt neg_cluster-results_rep_seq.fasta neg_benchmark.fasta`
+- `python3 get_seq.py neg_train_ids.txt neg_cluster-results_rep_seq.fasta neg_train.fasta`
+- `python3 get_seq.py neg_benchmark_ids.txt neg_cluster-results_rep_seq.fasta neg_benchmark.fasta`
 
 Merge positives + negatives
-`cat pos_train.fasta neg_train.fasta > train.fasta`
-`cat pos_benchmark.fasta neg_benchmark.fasta > benchmark.fasta`
+- `cat pos_train.fasta neg_train.fasta > train.fasta`
+- `cat pos_benchmark.fasta neg_benchmark.fasta > benchmark.fasta`
 
 
 
