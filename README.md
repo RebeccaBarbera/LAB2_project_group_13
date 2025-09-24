@@ -12,6 +12,8 @@ The aim of this project is to evaluate and compare different computational metho
 - [Data pre-processing](#data-pre-processing)
    - [Clustering](#clustering)
    - [Filtering into a TSV file](#filtering_into_a_TSV_file)
+   - [Data summary table](#data_summary_table)
+   - [Data split](#data_split)
 
 ## Software, pakcages and tools needed
 - `Python 3` → main programming language for data processing.
