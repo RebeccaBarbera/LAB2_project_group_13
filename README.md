@@ -105,23 +105,27 @@ To ensure these proteins lacked signal peptides, proteins were chosen from exper
 cross-validation experiments
   - the **`benchmark set`** (also known as the holdout set):  used to test the generalization performance of the different models
 ### Clustering
-Clustering is executed with a software suite called `MMseq2'. 
+Clustering is executed with a software suite called **`MMseq2`**.
+MMSeq2 is the fastest method available for clustering, due to its implementation of three distinct clustering modes:_ Greedy set cover, Greedy incremental, and Connected-component clustering._
 
-The following commands have been used to cluster both positive and negative datasets into 2 different clustered sets:
+**The following commands have been used to cluster both positive and negative datasets into 2 different clustered sets:**
+
 For the positive datase:
 - `mmseqs easy-cluster positive_set.fasta pos_cluster-results tmp_pos --min-seq-id 0.3 -c 0.4 --cov-mode 0 --cluster-mode 1`
+
 For the negative dataset 
 - `mmseqs easy-cluster negative_set.fasta neg_cluster-results tmp_neg --min-seq-id 0.3 -c 0.4 --cov-mode 0 --cluster-mode 1`
 
-These commands take all sequences in *_set.fasta, compares them to each other, and groups them into clusters of similar sequences (≥30% identity, ≥40% coverage). They save the results in *_cluster-results, and use tmp_* as a temporary working directory for the program.
+These commands take all sequences in *_set.fasta, compare them to each other and group them into clusters of similar sequences with ≥30% identity and ≥40% coverage. They save the results in *_cluster-results, and use _tmp_*_ as a temporary working directory for the program.
 
-**Please note**: Prior to clustering, we converted the FASTA files from DOS to Unix format using **`dos2unix`**. This step was necessary because the original files contained trailing spaces at the end of sequences, introduced by Windows formatting.
+**Please note**: Prior to clustering, we converted the FASTA files from DOS to Unix format using **`dos2unix`**. This step was necessary because the original files contained trailing spaces at the end of sequences due to Windows formatting.
 
 **Output files:**
 Positive dataset:
 - `pos_cluster-results_all_seqs.fasta`
 - `pos_cluster-results_cluster.tsv`
 - **`pos_cluster-results_rep_seq.fasta`**
+
 Negative dataset:
 - `neg_cluster-results_all_seqs.fasta`
 - `neg_cluster-results_cluster.tsv`
