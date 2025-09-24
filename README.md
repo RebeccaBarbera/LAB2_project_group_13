@@ -135,6 +135,7 @@ Negative dataset:
 
 ### Filtering into a TSV file
 Both `pos_cluster-results_rep_seq.fasta` and `neg_cluster-results_rep_seq.fasta` were used to retrieve **representative sequences from both clusters** and extract sequence infomration (Kingdom, protein length, etc) from the original tsv file obtained from both the original `positive_set.tsv and `negative_set.tsv`. 
+
 To obtain the desired results **bash shell scripting was used accordingly:**
 
 For the positive dataset:
@@ -152,6 +153,9 @@ For the negative dataset:
 |----------|-------|---------|-------|---------------|-------|----------------------|
 | Positive |  1092 |    866 |   95 |           103 |    28 | -                    |
 | Negative | 8934 |   4697 |  2475 |          1594 |   168 | 900                 |
+
+### Data split
+The next step is to split the data into a 80/20 ratio, where **80%** belongs to the **training set** and the remaining **20%** belongs to the **benchmarking set**. This step is crucial for ensuring unbiased results and that the model learns generalizable patterns. 
 
 
 
