@@ -8,6 +8,7 @@ The aim of this project is to evaluate and compare different computational metho
 - [Data collection](#1-data-collection)
 - [Data filtering pipeline](#2-data-filtering-pipeline)
   - [Output files for data collection](#output-files)
+  - [Dataset_summary_table](#dataset-summary)
 - [Data pre-processing](#data-pre-processing)
    - [Clustering](#clustering)
 
