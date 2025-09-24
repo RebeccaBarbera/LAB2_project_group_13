@@ -159,6 +159,38 @@ For the negative dataset:
 ### Data split
 The next step is to split the data into a 80/20 ratio, where **80%** belongs to the **training set** and the remaining **20%** belongs to the **benchmarking set**. This step is crucial for ensuring unbiased results and that the model learns generalizable patterns. 
 
+Extract IDs from the representative Fasta files created by the 
+- `grep "^>" pos_cluster-results_rep_seq.fasta | sed 's/^>//' > pos_ids.txt`
+- `grep "^>" neg_cluster-results_rep_seq.fasta | sed 's/^>//' > neg_ids.txt`
+
+Shuffle IDs 
+- `sort -R pos_ids.txt > pos_shuffled_ids.txt`
+- `sort -R neg_ids.txt > neg_shuffled_ids.txt`
+
+Calculate 80% split sizes
+- `pos_total=$(wc -l < pos_shuffled_ids.txt)`
+- `pos_train_lines=$(( pos_total * 80 / 100 ))`
+
+- `neg_total=$(wc -l < neg_shuffled_ids.txt)`
+- `neg_train_lines=$(( neg_total * 80 / 100 ))`
+
+Split into training / benchmarking ID lists
+- `head -n $pos_train_lines pos_shuffled_ids.txt > pos_train_ids.txt`
+- `tail -n +$((pos_train_lines+1)) pos_shuffled_ids.txt > pos_benchmark_ids.txt`
+
+- `head -n $neg_train_lines neg_shuffled_ids.txt > neg_train_ids.txt`
+- `tail -n +$((neg_train_lines+1)) neg_shuffled_ids.txt > neg_benchmark_ids.txt`
+
+Extract FASTA sequences with Python script
+`python3 get_seq.py pos_train_ids.txt pos_cluster-results_rep_seq.fasta pos_train.fasta`
+`python3 get_seq.py pos_benchmark_ids.txt pos_cluster-results_rep_seq.fasta pos_benchmark.fasta`
+
+`python3 get_seq.py neg_train_ids.txt neg_cluster-results_rep_seq.fasta neg_train.fasta`
+`python3 get_seq.py neg_benchmark_ids.txt neg_cluster-results_rep_seq.fasta neg_benchmark.fasta`
+
+Merge positives + negatives
+`cat pos_train.fasta neg_train.fasta > train.fasta`
+`cat pos_benchmark.fasta neg_benchmark.fasta > benchmark.fasta`
 
 
 
