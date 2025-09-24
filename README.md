@@ -14,6 +14,8 @@ The aim of this project is to evaluate and compare different computational metho
    - [Filtering into a TSV file](#filtering_into_a_TSV_file)
    - [Data summary table](#data_summary_table)
    - [Data split](#data_split)
+     - [Data split overall results](#Data_split_overall_results)
+  - [Five fold Cross validation](#five_fold_cross_validation)
 
 ## Software, pakcages and tools needed
 - `Python 3` → main programming language for data processing.
@@ -191,6 +193,13 @@ Extract FASTA sequences with Python script
 Merge positives + negatives
 - `cat pos_train.fasta neg_train.fasta > train.fasta`
 - `cat pos_benchmark.fasta neg_benchmark.fasta > benchmark.fasta`
+#### Data split overall results
+| Set       | Positive | Negative | Total |
+|-----------|----------|----------|-------|
+| Training  | 873      | 7147     | 8020  |
+| Benchmark | 219      | 1787     | 2006  |
+
+### Five fold Cross Validation 
 
 
 
