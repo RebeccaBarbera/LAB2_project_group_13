@@ -8,9 +8,10 @@ The aim of this project is to evaluate and compare different computational metho
 - [Data collection](#1-data-collection)
 - [Data filtering pipeline](#2-data-filtering-pipeline)
   - [Output files for data collection](#output-files)
-  - [Dataset_summary_table](#dataset-summary)
+  - [Dataset summary table](#dataset-summary)
 - [Data pre-processing](#data-pre-processing)
    - [Clustering](#clustering)
+   - [Filtering into a TSV file](#filtering_into_a_TSV_file)
 
 ## Software, pakcages and tools needed
 - `Python 3` → main programming language for data processing.
@@ -131,5 +132,20 @@ Negative dataset:
 - `neg_cluster-results_all_seqs.fasta`
 - `neg_cluster-results_cluster.tsv`
 - **`neg_cluster-results_rep_seq.fasta`**
+
+### Filtering into a TSV file
+Both `pos_cluster-results_rep_seq.fasta` and `neg_cluster-results_rep_seq.fasta` were used to retrieve **representative sequences from both clusters** and extract sequence infomration (Kingdom, protein length, etc) from the original tsv file obtained from both the original `positive_set.tsv and `negative_set.tsv`. 
+To obtain the desired results **bash shell scripting was used accordingly:**
+
+For the positive dataset:
+- `grep "^>" pos_cluster-results_rep_seq.fasta | sed 's/^>//; s/[[:space:]]*$//' > positive_ids.txt`
+- `head -n 1 positive_set.tsv > positive_info.tsv`
+- `grep -F -f positive_ids.txt positive_set.tsv >> positive_info.tsv`
+
+For the negative dataset:
+- `grep "^>" neg_cluster-results_rep_seq.fasta | sed 's/^>//; s/[[:space:]]*$//' > negative_ids.txt`
+- `head -n 1 negative_set.tsv > neg_info.tsv`
+- `grep -F -f pnegative_ids.txt positive_set.tsv >> neg_info.tsv`
+
 
 
