@@ -152,7 +152,7 @@ For the negative dataset:
 - `head -n 1 negative_set.tsv > neg_info.tsv`
 - `grep -F -f pnegative_ids.txt positive_set.tsv >> neg_info.tsv`
 
-### Data summary table
+## Data summary table
 | Dataset  | Total | Metazoa | Fungi | Viridiplantae | Other | N-terminal TM helix |
 |----------|-------|---------|-------|---------------|-------|----------------------|
 | Positive |  1092 |    866 |   95 |           103 |    28 | -                    |
@@ -194,7 +194,7 @@ The next step is to split the data into a 80/20 ratio, where **80%** belongs to 
 - `cat pos_train.fasta neg_train.fasta > train.fasta`
 - `cat pos_benchmark.fasta neg_benchmark.fasta > benchmark.fasta`
 
-#### Data split overall results
+## Data split overall results
 | Set       | Positive | Negative | Total |
 |-----------|----------|----------|-------|
 | Training  | 873      | 7147     | 8020  |
