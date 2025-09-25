@@ -231,4 +231,12 @@ This step is to randomly split the training set into 5 different subsets, preser
 - `fold_bench_ae`
 
 ### Final TSV
+The final TSV contained was organised in the following columns; the UniprotAccession code, Organism name ,Kingdom, Protein length, Signal Peptide Position, Positive/Negative set , and Fold Set.
+The script used to generate the tsv file, `fold_tsv.ipynb` was written using pandas.
 
+## 4.Data Analysis 
+### Distribution of Protein Lenghts
+Protein length distributions were visualized in R Studio using density plots for the positive and negative sequences in both the training and benchmark sets. To avoid distortion from a small number of very long sequences, the density plots were constructed on a logarithmic scale. The following R script was used for plotting. 
+
+### Distrubution of SP lenghts
+### 
