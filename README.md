@@ -247,4 +247,14 @@ The distribution of SP lengths were also visualized in R Studio using density pl
 
 ![SP Position](data_analysis/SPPosition.png)
 
+## Comparative Amino Acid Composition
+Amino acid composition of Signal Peptides (SPs) were compared against the background distribution of amino acids in SwissProt (data from [Expasy](https://web.expasy.org/docs/relnotes/relstat.html)). To do this a python script was created with the following packages:
+
+- `Pandas`
+- `Biopython`
+- `Seaborn`
+- `Counter`
+
+Extraction of all SP sequences, calculation of their amino acid frequencies, and plotting them against the SwissProt distribution were performed. The comparison is shown in the barplot below:
+
 
