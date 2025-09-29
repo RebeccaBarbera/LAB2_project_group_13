@@ -238,14 +238,10 @@ The script used to generate the tsv file, `fold_tsv.ipynb` was written using pan
 ### Distribution of Protein Lengths
 Protein length distributions were visualized in R Studio using density plots for the positive and negative sequences in both the training and benchmark sets. To avoid distortion from a small number of very long sequences, the density plots were constructed on a logarithmic scale. 
 
-![Protein length distribution](data_analysis/Density_plot.png)
-
-
 
 ### Distrubution of SP position
 The distribution of SP lengths were also visualized in R Studio using density plots for the positive sequences in both the training and benchmark sets. For each set, we plotted the distribution of SP lengths using density plots. The median SP length was calculated and displayed on the graph for both sets.
 
-![SP Position](data_analysis/SPPosition.png)
 
 ## Comparative Amino Acid Composition
 Amino acid composition of Signal Peptides (SPs) were compared against the background distribution of amino acids in SwissProt (data from [Expasy](https://web.expasy.org/docs/relnotes/relstat.html)). To do this a python script was created with the following packages:
@@ -255,16 +251,18 @@ Amino acid composition of Signal Peptides (SPs) were compared against the backgr
 - `Seaborn`
 - `Counter`
 
-Extraction of all SP sequences, calculation of their amino acid frequencies, and plotting them against the SwissProt distribution were performed. The comparison is shown in the barplot below:
+Extraction of all SP sequences, calculation of their amino acid frequencies, and plotting them against the SwissProt distribution were performed.
 
 ## Taxonomic Classification
 Taxonomic classification of the proteins was performed at both the kingdom and organism levels. The relative abundances of taxa in each dataset were visualized using pie charts.
 
+
+## Table of context
 | Analysis                          | Visualization |
 |-----------------------------------|---------------|
-| Distribution of Protein Lengths    | [View Image](data_analysis/Density_plot.png) |
-| Distribution of SP Position        | [View Image](data_analysis/SPPosition.png) |
-| Comparative Amino Acid Composition | [View Image](data_analysis/AA_comp.png) |
-| Taxonomic Classification           | [View Benchmark](data_analysis/Kingdom_dist_bench.png) / [View Training](data_analysis/Kingdom_dist_train.png) |
+| Distribution of Protein Lengths    | [View Protein Lengths distribution](data_analysis/Density_plot.png) |
+| Distribution of SP Position        | [View SPP distribution](data_analysis/SPPosition.png) |
+| Comparative Amino Acid Composition | [View AA Composition](data_analysis/AA_comp.png) |
+| Taxonomic Classification           | [View Benchmark Classification](data_analysis/Kingdom_dist_bench.png) / [View Training Classification](data_analysis/Kingdom_dist_train.png) |
 
 
