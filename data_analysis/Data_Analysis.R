@@ -37,10 +37,11 @@ ggplot(df, aes(x=SPPosition, fill=label)) +
   geom_density(alpha=0.5) +
   geom_vline(data = medians, aes(xintercept = median_SP), 
              color = "black", linetype = "dashed", size = 0.5) +
-  labs(title="Signal Peptide Position Distribution", x="SP_
-       Position", y="Density", fill="Label") +
+  labs(title="Signal Peptide Position Distribution", x="SP_Position", y="Density") +
   theme_minimal() +
   facet_wrap(~Set) +
   scale_x_log10() +
-  scale_fill_manual(values = c("positive" = "red"))
+  scale_fill_manual(values = c("positive" = "red")) +
+  theme(legend.position = "none")
+
 
