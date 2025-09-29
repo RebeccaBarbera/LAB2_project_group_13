@@ -259,3 +259,11 @@ Extraction of all SP sequences, calculation of their amino acid frequencies, and
 
 ## Taxonomic Classification
 Taxonomic classification of the proteins was performed at both the kingdom and organism levels. The relative abundances of taxa in each dataset were visualized using pie charts.
+
+| Analysis                          | Visualization |
+|-----------------------------------|---------------|
+| Distribution of Protein Lengths   | ![Protein length distribution](data_analysis/Density_plot.png) |
+| Distribution of SP Position       | ![SP Position](data_analysis/SPPosition.png) |
+| Comparative Amino Acid Composition| ![Comparative AA Comp](data_analysis/AA_comp.png) |
+| Taxonomic Classification          | ![Kingdom benchmark classification](data_analysis/Kingdom_dist_bench.png) ![Kingdom training classification](data_analysis/Kingdom_dist_train.png) |
+
