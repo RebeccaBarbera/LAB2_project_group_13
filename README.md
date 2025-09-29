@@ -237,6 +237,7 @@ The script used to generate the tsv file, `fold_tsv.ipynb` was written using pan
 ## 4.Data Analysis 
 ### Distribution of Protein Lenghts
 Protein length distributions were visualized in R Studio using density plots for the positive and negative sequences in both the training and benchmark sets. To avoid distortion from a small number of very long sequences, the density plots were constructed on a logarithmic scale. The following R script was used for plotting. 
+![Protein length distribution](data_analysis/Density_plot.png)
 
 ### Distrubution of SP lenghts
 ### 
