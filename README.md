@@ -262,8 +262,9 @@ Taxonomic classification of the proteins was performed at both the kingdom and o
 
 | Analysis                          | Visualization |
 |-----------------------------------|---------------|
-| Distribution of Protein Lengths   | ![Protein length distribution](data_analysis/Density_plot.png) |
-| Distribution of SP Position       | ![SP Position](data_analysis/SPPosition.png) |
-| Comparative Amino Acid Composition| ![Comparative AA Comp](data_analysis/AA_comp.png) |
-| Taxonomic Classification          | ![Kingdom benchmark classification](data_analysis/Kingdom_dist_bench.png) ![Kingdom training classification](data_analysis/Kingdom_dist_train.png) |
+| Distribution of Protein Lengths    | [View Image](data_analysis/Density_plot.png) |
+| Distribution of SP Position        | [View Image](data_analysis/SPPosition.png) |
+| Comparative Amino Acid Composition | [View Image](data_analysis/AA_comp.png) |
+| Taxonomic Classification           | [View Benchmark](data_analysis/Kingdom_dist_bench.png) / [View Training](data_analysis/Kingdom_dist_train.png) |
+
 
