@@ -297,5 +297,5 @@ This Python script uses the following tools and libraries:
 | fold_ad |  126 | 1380 |   51 |   48 |
 | fold_ae |  142 | 1352 |   70 |   35 |
 
-(!) these are the final Heatmap and Precision Recall Curve we retrieved 
+[Heatmap](vonHejine_model/pswm_heatmap.png) and [Presicion Recall Curve](vonHejine_model/prc.png) were retrieved. 
 
