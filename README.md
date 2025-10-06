@@ -270,7 +270,7 @@ This Python script uses the following tools and libraries:
 - `Matplotlib` → Plotting, figure customization, and saving images  
 
  
- | *Fold* | *Training Folds* | *Validation Fold* | *Testing Fold* | * Motifs* | *Optimal Threshold* | *F1* | *Precision* | *Recall* | *MCC* |
+ | *Fold* | *Training Folds* | *Validation Fold* | *Testing Fold* | *Motifs* | *Optimal Threshold* | *F1* | *Precision* | *Recall* | *MCC* |
 | :------- | :----------------- | :------------------ | :--------------- | -----------: | --------------------: | -----: | ------------: | ---------: | ------: |
 | 1        | ac, ad, ae         | ab                  | aa               |          531 |                 6.437 |  0.691 |         0.693 |      0.689 |   0.653 |
 | 2        | aa, ad, ae         | ac                  | ab               |          528 |                 6.020 |  0.707 |         0.645 |      0.782 |   0.674 |
