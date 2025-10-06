@@ -239,10 +239,10 @@ The distribution of SP lengths were also visualized in R Studio using density pl
 ## Comparative Amino Acid Composition
 Amino acid composition of Signal Peptides (SPs) were compared against the background distribution of amino acids in SwissProt (data from [Expasy](https://web.expasy.org/docs/relnotes/relstat.html)). To do this a python script was created with the following packages:
 
-- `Pandas`
-- `Biopython`
-- `Seaborn`
-- `Counter`
+- `Pandas` → DataFrame creation and manipulation for tabular or matrix data
+- `Seaborn` → Heatmap visualization of matrices
+- `Biopython` → Biological sequence analysis, FASTA parsing, and data handling for bioinformatics  
+- `Counter` → Counting and summarizing occurrences of amino acids or sequence elements
 
 Extraction of all SP sequences, calculation of their amino acid frequencies, and plotting them against the SwissProt distribution were performed.
 
@@ -268,8 +268,6 @@ This Python script uses the following tools and libraries:
 - `NumPy` → Mathematical operations, array handling, logarithms, statistics, interpolation, and integration  
 - `SeqIO` *(from Biopython)* → FASTA parsing and sequence extraction  
 - `Matplotlib` → Plotting, figure customization, and saving images  
-- `Pandas` → DataFrame creation and manipulation for tabular or matrix data  
-- `Seaborn` → Heatmap visualization of matrices
 
  
  | *Fold* | *Training Folds* | *Validation Fold* | *Testing Fold* | * Motifs* | *Optimal Threshold* | *F1* | *Precision* | *Recall* | *MCC* |
