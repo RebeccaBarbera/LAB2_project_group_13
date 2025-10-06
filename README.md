@@ -259,9 +259,9 @@ Taxonomic classification of the proteins was performed at both the kingdom and o
 | Taxonomic Classification           | [View Benchmark Classification](data_analysis/Kingdom_dist_bench.png) / [View Training Classification](data_analysis/Kingdom_dist_train.png) |
 
 ## The von Heijne Method
-the main idea is to use use a ***Position-Speciﬁc Weight Matrix (PSWM)*** in order to model amino acid distribution around known cleavage sites. The retrieved scores were first stored in a ***Position-Specific Probability Matrix (PSPM)*** and then a background model (Swiss-Prot database) was used as a reference amino acid distribution to compare our motifs against.
+The main idea is to use use a ***Position-Speciﬁc Weight Matrix (PSWM)*** in order to model amino acid distribution around known cleavage sites. The retrieved scores were first stored in a ***Position-Specific Probability Matrix (PSPM)*** and then a background model (Swiss-Prot database) was used as a reference amino acid distribution to compare our motifs against.
 
-Detection of SP, coparison with Swiss-Prot and evaluation of the model were performed using the script <inserire_script.ipynb>
+Detection of SP, coparison with Swiss-Prot and evaluation of the model were performed using the script | vonHejine | [Open Notebook](vonHejine_model/vonHejine.ipynb) |
 This is a python script using the following tools/libraries:
  -numpy --> Math, arrays, log, stats, interpolation, integration 
  -seqIO (from Biopython) --> FASTA parsing, sequence extraction 
