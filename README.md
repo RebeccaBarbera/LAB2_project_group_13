@@ -223,13 +223,6 @@ This step is to randomly split the training set into 5 different subsets, preser
 - `fold_ad`
 - `fold_ae`
 
-**Benchmark set:**
-- `fold_bench_aa`
-- `fold_bench_ab`
-- `fold_bench_ac`
-- `fold_bench_ad`
-- `fold_bench_ae`
-
 ### Final TSV
 The final TSV contained was organised in the following columns; the UniprotAccession code, Organism name ,Kingdom, Protein length, Signal Peptide Position, Positive/Negative set , and Fold Set.
 The script used to generate the tsv file, `fold_tsv.ipynb` was written using pandas.
@@ -265,4 +258,15 @@ Taxonomic classification of the proteins was performed at both the kingdom and o
 | Comparative Amino Acid Composition | [View AA Composition](data_analysis/AA_comparison.png) |
 | Taxonomic Classification           | [View Benchmark Classification](data_analysis/Kingdom_dist_bench.png) / [View Training Classification](data_analysis/Kingdom_dist_train.png) |
 
+## The von Heijne Method
+the main idea is to use use a ***Position-Speciﬁc Weight Matrix (PSWM)*** in order to model amino acid distribution around known cleavage sites. The retrieved scores were first stored in a ***Position-Specific Probability Matrix (PSPM)*** and then a background model (Swiss-Prot database) was used as a reference amino acid distribution to compare our motifs against.
 
+Detection of SP, coparison with Swiss-Prot and evaluation of the model were performed using the script <inserire_script.ipynb>
+This is a python script using the following tools/libraries:
+ -numpy --> 
+ -seqIO --> 
+ -mathplotlib -->
+ -pandas --> 
+ -seaborn --> 
+ 
+ 
