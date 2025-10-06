@@ -263,10 +263,36 @@ the main idea is to use use a ***Position-Speciﬁc Weight Matrix (PSWM)*** in o
 
 Detection of SP, coparison with Swiss-Prot and evaluation of the model were performed using the script <inserire_script.ipynb>
 This is a python script using the following tools/libraries:
- -numpy --> 
- -seqIO --> 
- -mathplotlib -->
- -pandas --> 
- -seaborn --> 
+ -numpy --> Math, arrays, log, stats, interpolation, integration 
+ -seqIO (from Biopython) --> FASTA parsing, sequence extraction 
+ -mathplotlib --> Plotting, figure customization, saving images
+ -pandas --> DataFrames, tabular data, matrix construction/manipulation
+ -seaborn --> Heatmap visualization of matrices
  
+ | *Fold* | *Training Folds* | *Validation Fold* | *Testing Fold* | * Motifs* | *Optimal Threshold* | *F1* | *Precision* | *Recall* | *MCC* |
+| :------- | :----------------- | :------------------ | :--------------- | -----------: | --------------------: | -----: | ------------: | ---------: | ------: |
+| 1        | ac, ad, ae         | ab                  | aa               |          531 |                 6.437 |  0.691 |         0.693 |      0.689 |   0.653 |
+| 2        | aa, ad, ae         | ac                  | ab               |          528 |                 6.020 |  0.707 |         0.645 |      0.782 |   0.674 |
+| 3        | aa, ab, ae         | ad                  | ac               |          519 |                 6.212 |  0.722 |         0.716 |      0.728 |   0.686 |
+| 4        | aa, ab, ac         | ae                  | ad               |          522 |                 6.303 |  0.718 |         0.712 |      0.724 |   0.683 |
+| 5        | ab, ac, ad         | aa                  | ae               |          519 |                 5.735 |  0.730 |         0.670 |      0.802 |   0.697 |
  
+ |       *Metric*      | *Mean ± SE* |
+| :-------------------: | :-----------: |
+|      *F1 Score*     | 0.714 ± 0.006 |
+|     *Precision*     | 0.687 ± 0.012 |
+|       *Recall*      | 0.745 ± 0.018 |
+|        *MCC*        | 0.679 ± 0.007 |
+| *Average Threshold* | 6.141 ± 0.121 |
+
+### Confusion Matrices per Fold ###
+| Fold    |   TP |   TN |   FP |   FN |
+|:--------|-----:|-----:|-----:|-----:|
+| fold_aa |  122 | 1375 |   54 |   55 |
+| fold_ab |  129 | 1370 |   71 |   36 |
+| fold_ac |  131 | 1372 |   52 |   49 |
+| fold_ad |  126 | 1380 |   51 |   48 |
+| fold_ae |  142 | 1352 |   70 |   35 |
+
+(!) these are the final Heatmap and Precision Recall Curve we retrieved 
+
