@@ -263,12 +263,14 @@ The main idea is to use use a ***Position-Speciﬁc Weight Matrix (PSWM)*** in o
 
 Detection of SP, coparison with Swiss-Prot and evaluation of the model were performed using the script [vonHejine.ipynb](vonHejine_model/vonHejine.ipynb)
 
-This is a python script using the following tools/libraries:
- -![numpy] --> Math, arrays, log, stats, interpolation, integration 
- -![seqIO] (from Biopython) --> FASTA parsing, sequence extraction 
- -![mathplotlib] --> Plotting, figure customization, saving images
- -pandas --> DataFrames, tabular data, matrix construction/manipulation
- -seaborn --> Heatmap visualization of matrices
+This Python script uses the following tools and libraries:
+
+- `NumPy` → Mathematical operations, array handling, logarithms, statistics, interpolation, and integration  
+- `SeqIO` *(from Biopython)* → FASTA parsing and sequence extraction  
+- `Matplotlib` → Plotting, figure customization, and saving images  
+- `Pandas` → DataFrame creation and manipulation for tabular or matrix data  
+- `Seaborn` → Heatmap visualization of matrices
+
  
  | *Fold* | *Training Folds* | *Validation Fold* | *Testing Fold* | * Motifs* | *Optimal Threshold* | *F1* | *Precision* | *Recall* | *MCC* |
 | :------- | :----------------- | :------------------ | :--------------- | -----------: | --------------------: | -----: | ------------: | ---------: | ------: |
