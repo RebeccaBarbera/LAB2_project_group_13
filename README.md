@@ -312,3 +312,12 @@ Building Support Vector Machine (SVM) models to enable a cross-model comparison 
 - **Refractivity** (2 features: max and mean) using the Jones D.D. scale (k=40).
   
 The model's performance is evaluated using a 5-fold cross-validation scheme, utilizing pre-defined fold splits. Within each CV fold, the training data (3 folds) is further split to create a validation set (1 fold). A feature selection pipeline is then executed using **Random Forest** Classifier, trained on the training subset to rank all 31 features by their Gini importance. The optimal number of features (**k**) is determined by plotting SVM accuracy against the number of top-k features used, with performance evaluated on the validation set. A final **Grid Search** for the SVM hyperparameters (C and gamma) is performed using only this optimal k feature subset, again using the validation set for scoring.
+### Results per Fold ###
+| Fold    |   Random Forest|   Accuracy |   FP |   FN |
+|:--------|-----:|-----:|-----:|-----:|
+| fold_1 |  [RF_Gini_fold1](SVM/RF_Gini_fold1.png)| [Accuracy_fold1](SVM/acc_vs_features_fold1.png) |   54 |   55 |
+| fold_2 |  [RF_Gini_fold2](SVM/RF_Gini_fold2.png) |  [Accuracy_fold2](SVM/acc_vs_features_fold2.png) |   71 |   36 |
+| fold_3 |  [RF_Gini_fold3](SVM/RF_Gini_fold3.png) |  [Accuracy_fold3](SVM/acc_vs_features_fold3.png) |   52 |   49 |
+| fold_4 |  [RF_Gini_fold5](SVM/RF_Gini_fold4.png) |  [Accuracy_fold4](SVM/acc_vs_features_fold4.png) |   51 |   48 |
+| fold_5 |  [RF_Gini_fold5](SVM/RF_Gini_fold5.png) |  [Accuracy_fold5](SVM/acc_vs_features_fold5.png) |   70 |   35 |
+
