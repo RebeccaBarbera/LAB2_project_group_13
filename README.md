@@ -303,4 +303,10 @@ This Python script uses the following tools and libraries:
 [Heatmap](vonHejine_model/pswm_heatmap.png) and [Presicion Recall Curve](vonHejine_model/prc.png) were retrieved. 
 
 ## Support Vector Machine
-
+Building Support Vector Machine (SVM) models to enable a cross-model comparison between the Von Heijne method and machine learning–based prediction approaches. Extracting a comprehensive set of 31 physicochemical features from the N-terminal region of each protein sequence. These features include:
+- **Amino Acid Composition** (20 features) computed over the first 22 residues (k=22).
+- **Hydrophobicity** (3 features: max, mean, and std dev) based on the Kyte-Doolittle scale (k=40).
+- **Secondary Structure** (3 features: helix, turn, and sheet fractions) predicted by ProteinAnalysis (k=40).
+- **Charge Features** (2 features: Isoelectric Point and net charge at pH 7.0) (k=40).
+- **Transmembrane Tendency** (2 features: max and mean) using the Zhao & London scale (k=40).
+- **Refractivity** (2 features: max and mean) using the Jones D.D. scale (k=40).
