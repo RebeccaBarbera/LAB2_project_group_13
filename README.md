@@ -16,6 +16,7 @@ The aim of this project is to evaluate and compare different computational metho
    - [Data split](#data-split)
      - [Data split overall results](#Data-split-overall-results)
   - [Five-fold Cross validation](#five-fold-cross-validation)
+  - [Data Analysis](#data-analysis)
 
 ## Software, pakcages and tools needed
 - `Python 3` → main programming language for data processing.
