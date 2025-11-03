@@ -321,3 +321,5 @@ The model's performance is evaluated using a 5-fold cross-validation scheme, uti
 | fold_4 |  [RF_Gini_fold5](7_SVM/RF_Gini_fold4.png) |  [Accuracy_fold4](7_SVM/acc_vs_features_fold4.png) |   [CM_fold4](7_SVM/confusion_matrix_fold4_all.png) |   [CM_Top_fold4](7_SVM/confusion_matrix_fold1_Top24.png) |
 | fold_5 |  [RF_Gini_fold5](7_SVM/RF_Gini_fold5.png) |  [Accuracy_fold5](7_SVM/acc_vs_features_fold5.png) |   [CM_fold5](7_SVM/confusion_matrix_fold5_all.png) |   [CM_Top_fold5](7_SVM/confusion_matrix_fold1_Top24.png) |
 
+The MCC results for the cross-validation folds are shown in [MCC_per_fold](7_SVM/MCC_per_fold.png). 
+
