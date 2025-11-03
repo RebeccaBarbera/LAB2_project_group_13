@@ -16,7 +16,7 @@ The aim of this project is to evaluate and compare different computational metho
    - [Data split](#data-split)
      - [Data split overall results](#Data-split-overall-results)
   - [Five-fold Cross validation](#five-fold-cross-validation)
-  - [Data Analysis](#4-Data-Analysis)
+  - [Data Analysis](#4-data-Analysis)
 
 ## Software, pakcages and tools needed
 - `Python 3` → main programming language for data processing.
@@ -228,7 +228,7 @@ This step is to randomly split the training set into 5 different subsets, preser
 The final TSV contained was organised in the following columns; the UniprotAccession code, Organism name ,Kingdom, Protein length, Signal Peptide Position, Positive/Negative set , and Fold Set.
 The script used to generate the tsv file, `fold_tsv.ipynb` was written using pandas.
 
-## 4.Data Analysis 
+## 4. Data Analysis 
 ### Distribution of Protein Lengths
 Protein length distributions were visualized in R Studio using density plots for the positive and negative sequences in both the training and benchmark sets. To avoid distortion from a small number of very long sequences, the density plots were constructed on a logarithmic scale. 
 
