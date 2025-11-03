@@ -18,6 +18,9 @@ The aim of this project is to evaluate and compare different computational metho
   - [Five-fold Cross validation](#five-fold-cross-validation)
   - [Data Analysis](#4-data-Analysis)
     - [Comparative Amino Acid Composition](#comparative-Amino-Acid-Composition)
+    - [Taxonomic Classification](#taxonimic-classificatio)
+  - [Von Heijen Model](#the-von-Heijne-Method)
+  - [SVM](#support-Vector-Machine)
 
 ## Software, pakcages and tools needed
 - `Python 3` → main programming language for data processing.
@@ -248,7 +251,7 @@ Amino acid composition of Signal Peptides (SPs) were compared against the backgr
 
 Extraction of all SP sequences, calculation of their amino acid frequencies, and plotting them against the SwissProt distribution were performed.
 
-## Taxonomic Classification
+## c
 Taxonomic classification of the proteins was performed at both the kingdom and organism levels. The relative abundances of taxa in each dataset were visualized using pie charts.
 
 
@@ -298,4 +301,6 @@ This Python script uses the following tools and libraries:
 | fold_ae |  142 | 1352 |   70 |   35 |
 
 [Heatmap](vonHejine_model/pswm_heatmap.png) and [Presicion Recall Curve](vonHejine_model/prc.png) were retrieved. 
+
+## Support Vector Machine
 
