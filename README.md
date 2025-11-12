@@ -1,8 +1,48 @@
-# LAB2_project_group_13
-#### Rebecca Barbera, Aniello Di Vaio, Nina Talajic, Domenico Zianni
+# Comparative Analysis of Eukaryotic Signal Peptide Predictors: Integrating the von Heijne PSWM and Support Vector Machines (SVM)
+##### Rebecca Barbera, Aniello Di Vaio, Nina Talajic, Domenico Zianni
+
+---
+## Project Pipeline Overview
+
+```text
+Signal Peptide Prediction
+├── Data Collection
+│   ├── Retrieve positive dataset from UniProt (SP evidence, cleavage site)
+│   ├── Retrieve negative dataset from UniProt (non-secretory compartments)
+│   └── Apply selection criteria: length, review status, taxonomy, evidence
+│
+├── Data Filtering Pipeline
+│   ├── Filter both datasets using custom Python scripts (data-gathering.py)
+│   ├── Remove fragments and unverified entries
+│   ├── Format JSON outputs into TSV and FASTA
+│   └── Generate summary tables
+│
+├── Data Pre-processing
+│   ├── Clustering with MMSeqs2 (30% identity, 40% coverage)
+│   ├── Generate representative sequences (rep_seq.fasta)
+│   ├── Extract info into TSV files using bash scripts
+│   ├── Split data (80/20 → Training / Benchmark)
+│   └── Five-Fold Cross Validation (fold_aa to fold_ae)
+│
+├── Data Analysis
+│   ├── Protein length distribution (density plots)
+│   ├── Signal peptide position analysis
+│   ├── Comparative amino acid composition (vs SwissProt)
+│   └── Taxonomic classification (pie charts)
+│
+├── Modeling
+│   ├── Von Heijne Method → PSWM, PSPM matrices vs Swiss-Prot background
+│   └── SVM → 31 physicochemical features, feature selection, grid search
+│
+└── Performance Evaluation
+    ├── Confusion matrices per fold
+    ├── MCC, F1, Precision, Recall summaries
+    └── Error distribution by taxonomic kingdom (donut plots)
+```
 
 ## Signal peptide prediction
 The aim of this project is to evaluate and compare different computational methods for detecting signal peptides as well as addressing the subproblem of subcellular localisation and protein function prediction. 
+
 ## Table of Contents
 - [Software and tools needed](#software-and-tools-needed)
 - [Data collection](#1-data-collection)
@@ -23,12 +63,22 @@ The aim of this project is to evaluate and compare different computational metho
   - [SVM](#support-Vector-Machine)
   - [Performance-Evaluation](#Performance-Evaluation)
 
-## Software, pakcages and tools needed
-- `Python 3` → main programming language for data processing.
-- `Biopython (Bio.SeqIO)` → for handling FASTA input/output.
-- `Requests` → for making HTTP requests to UniProt REST API.
-- `GitHub` / `Git` → for version control and collaboration.
-- `MMSeqs2` → software suite used for clustering.
+## Software, packages and tools needed
+## Software, packages and tools needed
+- **`Python 3`** → main programming language for data processing.
+- **`Biopython (Bio.SeqIO)`** → for handling FASTA input/output.
+- **`Requests`** → for making HTTP requests to UniProt REST API.
+- **`GitHub`** / **`Git`** → for version control and collaboration.
+- **`MMSeqs2`** → software suite used for clustering sequences.
+- **`NumPy`** → for efficient numerical operations and handling multi-dimensional arrays (e.g., PSWM calculations).
+- **`Pandas`** → for data manipulation, DataFrame management, and analyzing tabular data (TSV files).
+- **`Matplotlib`** → for creating static visualizations such as density plots, heatmaps, and confusion matrices.
+- **`Biopython (Bio.SeqUtils.ProtParam)`** → for extracting physicochemical features (e.g., Isoelectric Point, Molecular Weight, Hydrophobicity) from protein sequences.
+- **`Scikit-learn`** → comprehensive machine learning library used for:
+  - **`RandomForestClassifier`** → for feature selection and determining feature importance.
+  - **`SVC`** → Support Vector Classifier used to build the comparative predictive model.
+  - **`StandardScaler`** → for normalizing dataset features (Z-score normalization) to improve SVM performance.
+  - **`metrics`** → for evaluating model performance (Accuracy, F1-score, MCC, Confusion Matrix).
 
 ## 1. Data collection
 The first step is to retrieve both positive and negative dataset for evaluation.
@@ -75,7 +125,7 @@ To ensure these proteins lacked signal peptides, proteins were chosen from exper
 - Filter-out sequences having SP (any evidence)
 - Select only proteins experimentally verified to be localized into: cytosol, nucleus, mitochondrion, plastid, peroxisome, cell membrane.
 
-### To filter both dataset the custom python script named `data-gathering.py` was used.[**](#neg-note)
+##### To filter both dataset the custom python script named `data-gathering.py` was used.[**](#neg-note)
 ##### Output files:
 - `positive_set.tsv`
 - `positive_set.fasta`
@@ -132,18 +182,18 @@ These commands take all sequences in *_set.fasta, compare them to each other and
 
 **Please note**: Prior to clustering, we converted the FASTA files from DOS to Unix format using **`dos2unix`**. This step was necessary because the original files contained trailing spaces at the end of sequences due to Windows formatting.
 
-**Output files:**
-**Positive dataset:**(N=x)
+##### **Output files:**
+###### **Positive dataset:**(N=x)
 - `pos_cluster-results_all_seqs.fasta`
 - `pos_cluster-results_cluster.tsv`
 - **`pos_cluster-results_rep_seq.fasta`**
 
-**Negative dataset**(N=x):
+###### **Negative dataset**(N=x):
 - `neg_cluster-results_all_seqs.fasta`
 - `neg_cluster-results_cluster.tsv`
 - **`neg_cluster-results_rep_seq.fasta`**
 
-### Filtering into a TSV file
+#### Filtering into a TSV file
 Both `pos_cluster-results_rep_seq.fasta` and `neg_cluster-results_rep_seq.fasta` were used to retrieve **representative sequences from both clusters** and extract sequence infomration (Kingdom, protein length, etc) from the original tsv file obtained from both the original `positive_set.tsv and `negative_set.tsv`. 
 
 To obtain the desired results **bash shell scripting was used accordingly:**
@@ -200,7 +250,7 @@ The next step is to split the data into a 80/20 ratio, where **80%** belongs to 
 - `cat pos_train.fasta neg_train.fasta > train.fasta`
 - `cat pos_benchmark.fasta neg_benchmark.fasta > benchmark.fasta`
 
-### Data split overall results
+#### Data split overall results
 | Set       | Positive | Negative | Total |
 |-----------|----------|----------|-------|
 | Training  | 873      | 7147     | 8020  |
@@ -221,7 +271,7 @@ This step is to randomly split the training set into 5 different subsets, preser
 - gsplit -n l/5 train_ids_shuffled.txt fold_
 - gsplit -n l/5 bench_ids_shuffled.txt fold_bench_
 
-### Output files:
+#### Output files:
 **Training set:**
 - `fold_aa`
 - `fold_ab`
@@ -255,7 +305,7 @@ Extraction of all SP sequences, calculation of their amino acid frequencies, and
 ### Taxonomic classification of the proteins was performed at both the kingdom and organism levels. The relative abundances of taxa in each dataset were visualized using pie charts.
 
 
-## Table of context
+#### Table of context
 | Analysis                          | Visualization |
 |-----------------------------------|---------------|
 | Distribution of Protein Lengths    | [View Protein Lengths distribution](data_analysis/Density_plot.png) |
@@ -337,7 +387,9 @@ The trained PSWM model was evaluated across four taxonomic kingdoms to assess li
 | **Viridiplantae** | 26 | 1537 | 57 | 77 |
 
 ### Error Distribution Plots
-<img src="8_performance_evaluation/VonHeijne/donutFungi.png" width="45%" />
-<img src="8_performance_evaluation/VonHeijne/donutMetazoa.png" width="45%" /> 
-<img src="8_performance_evaluation/VonHeijne/donutOther.png" width="45%" />
-<img src="8_performance_evaluation/VonHeijne/donutViridiplantae.png" width="45%" />
+<p align="center">
+<img src="8_performance_evaluation/VonHeijne/donutFungi.png" width="70%" />
+<img src="8_performance_evaluation/VonHeijne/donutMetazoa.png" width="70%" />
+<img src="8_performance_evaluation/VonHeijne/donutOther.png" width="70%" />
+<img src="8_performance_evaluation/VonHeijne/donutViridiplantae.png" width="70%" />
+</p>
