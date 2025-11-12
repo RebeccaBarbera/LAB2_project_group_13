@@ -64,7 +64,7 @@ The aim of this project is to evaluate and compare different computational metho
   - [Performance-Evaluation](#Performance-Evaluation)
 
 ## Software, packages and tools needed
-## Software, packages and tools needed
+#### Software, packages and tools needed
 - **`Python 3`** → main programming language for data processing.
 - **`Biopython (Bio.SeqIO)`** → for handling FASTA input/output.
 - **`Requests`** → for making HTTP requests to UniProt REST API.
