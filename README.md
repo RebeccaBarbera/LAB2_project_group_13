@@ -85,27 +85,29 @@ The first step is to retrieve both positive and negative dataset for evaluation.
 
 #### Common criteria for protein selection:
 ##### Both positive and negative datasets:
-    - protein length
-    - protein evidence
-    - protein annotation status
-    - protein superkingdom
-    - Fragments
+- protein length
+- protein evidence
+- protein annotation status
+- protein superkingdom
+- Fragments
 ##### Positive dataset:
-    - signal peptide evidence 
-    - knowledge of Signal Peptide (SP) cleavage site
-    - SP length > 13
+- signal peptide evidence 
+- knowledge of Signal Peptide (SP) cleavage site
+- SP length > 13
 The positive dataset was retrieved from UniProt using a query that selected non-fragment, reviewed proteins from Eukaryota (taxonomy ID 2759) with a sequence length of at least 40 amino acids, evidence at protein level, and an experimentally annotated signal peptide
-    - positive_url = `"https://rest.uniprot.org/uniprotkb/search?format=json&query=%28%28fragment:false%29 AND (taxonomy_id:2759) AND (length:[40 TO ]) AND (reviewed:true) AND (existence:1) AND (ft_signal_exp:)%29&size=500"`
+- positive_url:
+  `"https://rest.uniprot.org/uniprotkb/search?format=json&query=%28%28fragment:false%29 AND (taxonomy_id:2759) AND (length:[40 TO ]) AND (reviewed:true) AND (existence:1) AND (ft_signal_exp:)%29&size=500"`
 ##### Negative dataset:
 - absence of SP sequence
 - experimental evidence for non SP-related compartments
-##### The negative dataset was retrieved from UniProt by selecting non-fragment, reviewed proteins from Eukaryota (taxonomy ID 2759) with evidence at the protein level and a minimum sequence length of 40 amino acids. 
+The negative dataset was retrieved from UniProt by selecting non-fragment, reviewed proteins from Eukaryota (taxonomy ID 2759) with evidence at the protein level and a minimum sequence length of 40 amino acids. 
 To ensure these proteins lacked signal peptides, proteins were chosen from experimentally validated subcellular localizations that are not routed through the secretory pathway, including cytoplasm (SL-0091), nucleus (SL-0191), mitochondrion (SL-0173), plastid (SL-0209), chloroplast (SL-0204), and cytoskeleton (SL-0039):
-- negative_url = `"https://rest.uniprot.org/uniprotkb/search?format=json&query=%28%28fragment:false%29 AND (reviewed:true) AND (existence:1) AND (length:[40 TO ]) AND (taxonomy_id:2759) NOT (ft_signal:) AND ((cc_scl_term_exp:SL-0091) OR (cc_scl_term_exp:SL-0191) OR (cc_scl_term_exp:SL-0173) OR (cc_scl_term_exp:SL-0209) OR (cc_scl_term_exp:SL-0204) OR (cc_scl_term_exp:SL-0039))%29&size=500"`
-##### Results from both positive and negative datasets where retrieved in JSON format. 
+- negative_url:
+  `"https://rest.uniprot.org/uniprotkb/search?format=json&query=%28%28fragment:false%29 AND (reviewed:true) AND (existence:1) AND (length:[40 TO ]) AND (taxonomy_id:2759) NOT (ft_signal:) AND ((cc_scl_term_exp:SL-0091) OR (cc_scl_term_exp:SL-0191) OR (cc_scl_term_exp:SL-0173) OR (cc_scl_term_exp:SL-0209) OR (cc_scl_term_exp:SL-0204) OR (cc_scl_term_exp:SL-0039))%29&size=500"`
+Results from both positive and negative datasets where retrieved in JSON format. 
 
-## 2. Data filtering pipeline
-#### The next step is to filter the dataset to meet the following criteria:
+### Data filtering pipeline
+The next step is to filter the dataset to meet the following criteria:
 ##### Positive dataset: 
 - No fragments
 - Select only eukaryotic proteins
@@ -124,21 +126,22 @@ To ensure these proteins lacked signal peptides, proteins were chosen from exper
 - Filter-out sequences having SP (any evidence)
 - Select only proteins experimentally verified to be localized into: cytosol, nucleus, mitochondrion, plastid, peroxisome, cell membrane.
 
-##### To filter both dataset the custom python script named `data-gathering.py` was used.[**](#neg-note)
+To filter both dataset the custom python script named `data-gathering.py` was used.[**](#neg-note)
 ##### Output files:
 - `positive_set.tsv`
 - `positive_set.fasta`
 - `negative_set.tsv`
 - `negative_set.fasta`
-##### The `positive_set.tsv` and `negative_set.tsv` files contain the following information:
-**For the `positive_set.tsv`:**
+
+The `positive_set.tsv` and `negative_set.tsv` files contain the following information:
+**`positive_set.tsv`:**
 1. The protein UniProt accession number
 2. The organism's name
 3. The Eukaryotic kingdom (Metazoa, Fungi, Plants, Other)
 4. The protein length
 5. The position of the signal peptide cleavage site
 
-**For the `negative_set.tsv`:**
+**`negative_set.tsv`:**
 1. The protein UniProt accession
 2. The organism name
 3. The Eukaryotic kingdom (Metazoa, Fungi, Plants, Other)
@@ -149,9 +152,9 @@ To ensure these proteins lacked signal peptides, proteins were chosen from exper
 <a name="neg-note"></a>
 **Please note:** that the negative dataset was directly retrieved from UniProt using the query criteria, without the need for further filtering of the JSON response. The script is used only to extract the required fields and to format the results into TSV and FASTA files.
 
-##### Both `positive_set.fasta` and `negative_set.fasta` are in standard FASTA format, where each entry begins with '>' followed by the UniProt accession and the following line contains the full amino acid sequence.
+###### Both `positive_set.fasta` and `negative_set.fasta` are in standard FASTA format, where each entry begins with '>' followed by the UniProt accession and the following line contains the full amino acid sequence.
 
-## Dataset Summary
+#### Dataset Summary
 
 | Dataset  | Total | Metazoa | Fungi | Viridiplantae | Other | N-terminal TM helix |
 |----------|-------|---------|-------|---------------|-------|----------------------|
@@ -165,11 +168,11 @@ To ensure these proteins lacked signal peptides, proteins were chosen from exper
   - the **`training set`**: used to train the methods, optimize model hyperparameters and perform
 cross-validation experiments
   - the **`benchmark set`** (also known as the holdout set):  used to test the generalization performance of the different models
-### Clustering
+## 2. Data Clustering
 Clustering is executed with a software suite called **`MMseq2`**.
 MMSeq2 is the fastest method available for clustering, due to its implementation of three distinct clustering modes:_ Greedy set cover, Greedy incremental, and Connected-component clustering._
 
-**The following commands have been used to cluster both positive and negative datasets into 2 different clustered sets:**
+###### **The following commands have been used to cluster both positive and negative datasets into 2 different clustered sets:**
 
 For the positive datase:
 - `mmseqs easy-cluster positive_set.fasta pos_cluster-results tmp_pos --min-seq-id 0.3 -c 0.4 --cov-mode 0 --cluster-mode 1`
@@ -193,9 +196,9 @@ These commands take all sequences in *_set.fasta, compare them to each other and
 - **`neg_cluster-results_rep_seq.fasta`**
 
 #### Filtering into a TSV file
-Both `pos_cluster-results_rep_seq.fasta` and `neg_cluster-results_rep_seq.fasta` were used to retrieve **representative sequences from both clusters** and extract sequence infomration (Kingdom, protein length, etc) from the original tsv file obtained from both the original `positive_set.tsv and `negative_set.tsv`. 
+Both `pos_cluster-results_rep_seq.fasta` and `neg_cluster-results_rep_seq.fasta` were used to retrieve **representative sequences from both clusters** and extract sequence information (Kingdom, protein length, etc) from the original tsv file obtained from both the original `positive_set.tsv and `negative_set.tsv`. 
 
-To obtain the desired results **bash shell scripting was used accordingly:**
+To obtain the desired results **bash shell scripting** was used accordingly:
 
 For the positive dataset:
 - `grep "^>" pos_cluster-results_rep_seq.fasta | sed 's/^>//; s/[[:space:]]*$//' > positive_ids.txt`
@@ -207,13 +210,13 @@ For the negative dataset:
 - `head -n 1 negative_set.tsv > neg_info.tsv`
 - `grep -F -f pnegative_ids.txt positive_set.tsv >> neg_info.tsv`
 
-### Data clustering summary table
+#### Data clustering summary table
 | Dataset  | Total | Metazoa | Fungi | Viridiplantae | Other | N-terminal TM helix |
 |----------|-------|---------|-------|---------------|-------|----------------------|
 | Positive |  1092 |    866 |   95 |           103 |    28 | -                    |
 | Negative | 8934 |   4697 |  2475 |          1594 |   168 | 900                 |
 
-### Data split
+## 3. Data spliting
 The next step is to split the data into a 80/20 ratio, where **80%** belongs to the **training set** and the remaining **20%** belongs to the **benchmarking set**. This step is crucial for ensuring unbiased results and that the model learns generalizable patterns. 
 
 **Extract IDs from the representative Fasta files obtained from teh MMSeq run**
