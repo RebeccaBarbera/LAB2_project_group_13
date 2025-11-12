@@ -1,212 +1,343 @@
 # LAB2_project_group_13
 #### Rebecca Barbera, Aniello Di Vaio, Nina Talajic, Domenico Zianni
 
----
+## Signal peptide prediction
+The aim of this project is to evaluate and compare different computational methods for detecting signal peptides as well as addressing the subproblem of subcellular localisation and protein function prediction. 
+## Table of Contents
+- [Software and tools needed](#software-and-tools-needed)
+- [Data collection](#1-data-collection)
+- [Data filtering pipeline](#2-data-filtering-pipeline)
+  - [Output files for data collection](#output-files)
+  - [Dataset summary table](#dataset-summary)
+- [Data pre-processing](#data-pre-processing)
+   - [Clustering](#clustering)
+   - [Filtering into a TSV file](#filtering-into-a-TSV-file)
+   - [Data clustering table](#data-summary-table)
+   - [Data split](#data-split)
+     - [Data split overall results](#Data-split-overall-results)
+  - [Five-fold Cross validation](#five-fold-cross-validation)
+  - [Data Analysis](#4-data-Analysis)
+    - [Comparative Amino Acid Composition](#comparative-Amino-Acid-Composition)
+    - [Taxonomic Classification](#taxonimic-classificatio)
+  - [Von Heijen Model](#the-von-Heijne-Method)
+  - [SVM](#support-Vector-Machine)
+  - [Performance-Evaluation](#Performance-Evaluation)
 
-## 🧭 Project Process Overview
-```
-Project Overview
-|
-|-- Data Collection
-|    |-- Positive Dataset
-|    |-- Negative Dataset
-|
-|-- Data Filtering
-|    |-- Quality Checks
-|    |-- Output Files (.tsv, .fasta)
-|
-|-- Data Pre-processing
-|    |-- Clustering (MMSeqs2)
-|    |-- Data Split (Train / Benchmark)
-|    |-- Cross Validation
-|
-|-- Data Analysis
-|    |-- Amino Acid Composition
-|    |-- Taxonomic Classification
-|
-|-- Modeling
-|    |-- Von Heijne Method
-|    |-- Support Vector Machine (SVM)
-|
-|-- Performance Evaluation
-```
-
----
-
-## 📘 Table of Contents
-- [Software and Tools Needed](#software-and-tools-needed)
-- [Data Collection](#1-data-collection)
-- [Data Filtering Pipeline](#2-data-filtering-pipeline)
-  - [Output Files](#output-files)
-  - [Dataset Summary](#dataset-summary)
-- [Data Pre-processing](#3-data-pre-processing)
-  - [Clustering](#clustering)
-  - [Filtering into TSV](#filtering-into-a-tsv-file)
-  - [Data Clustering Summary Table](#data-clustering-summary-table)
-  - [Data Split](#data-split)
-  - [Cross Validation](#five-fold-cross-validation)
-- [Data Analysis](#4-data-analysis)
-  - [Protein Length Distribution](#distribution-of-protein-lengths)
-  - [SP Position Distribution](#distrubution-of-sp-position)
-  - [Amino Acid Composition](#comparative-amino-acid-composition)
-  - [Taxonomic Classification](#taxonomic-classification)
-- [Von Heijne Model](#the-von-heijne-method)
-- [Support Vector Machine](#support-vector-machine)
-- [Performance Evaluation](#performance-evaluation)
-
----
-
-## 🧩 Software, Packages and Tools Needed
+## Software, pakcages and tools needed
 - `Python 3` → main programming language for data processing.
 - `Biopython (Bio.SeqIO)` → for handling FASTA input/output.
 - `Requests` → for making HTTP requests to UniProt REST API.
 - `GitHub` / `Git` → for version control and collaboration.
 - `MMSeqs2` → software suite used for clustering.
 
----
+## 1. Data collection
+The first step is to retrieve both positive and negative dataset for evaluation.
+- database used: [UniProt](https://www.uniprot.org)
 
-## 1. Data Collection
-The first step is to retrieve both positive and negative datasets for evaluation.
-Database used: [UniProt](https://www.uniprot.org)
-
-#### Common Criteria for Protein Selection
-##### Both Positive and Negative Datasets:
-- Protein length
-- Protein evidence
-- Protein annotation status
-- Protein superkingdom
+#### Common criteria for protein selection:
+##### Both positive and negative datasets:
+- protein length
+- protein evidence
+- protein annotation status
+- protein superkingdom
 - Fragments
-##### Positive Dataset:
-- Signal peptide evidence
-- Knowledge of Signal Peptide (SP) cleavage site
+##### Positive dataset:
+- signal peptide evidence 
+- knowledge of Signal Peptide (SP) cleavage site
 - SP length > 13
+##### The positive dataset was retrieved from UniProt using a query that selected non-fragment, reviewed proteins from Eukaryota (taxonomy ID 2759) with a sequence length of at least 40 amino acids, evidence at protein level, and an experimentally annotated signal peptide
+- positive_url = `"https://rest.uniprot.org/uniprotkb/search?format=json&query=%28%28fragment:false%29 AND (taxonomy_id:2759) AND (length:[40 TO ]) AND (reviewed:true) AND (existence:1) AND (ft_signal_exp:)%29&size=500"`
+##### Negative dataset:
+- absence of SP sequence
+- experimental evidence for non SP-related compartments
+##### The negative dataset was retrieved from UniProt by selecting non-fragment, reviewed proteins from Eukaryota (taxonomy ID 2759) with evidence at the protein level and a minimum sequence length of 40 amino acids. 
+To ensure these proteins lacked signal peptides, proteins were chosen from experimentally validated subcellular localizations that are not routed through the secretory pathway, including cytoplasm (SL-0091), nucleus (SL-0191), mitochondrion (SL-0173), plastid (SL-0209), chloroplast (SL-0204), and cytoskeleton (SL-0039):
+- negative_url = `"https://rest.uniprot.org/uniprotkb/search?format=json&query=%28%28fragment:false%29 AND (reviewed:true) AND (existence:1) AND (length:[40 TO ]) AND (taxonomy_id:2759) NOT (ft_signal:) AND ((cc_scl_term_exp:SL-0091) OR (cc_scl_term_exp:SL-0191) OR (cc_scl_term_exp:SL-0173) OR (cc_scl_term_exp:SL-0209) OR (cc_scl_term_exp:SL-0204) OR (cc_scl_term_exp:SL-0039))%29&size=500"`
+##### Results from both positive and negative datasets where retrieved in JSON format. 
 
-Positive and negative datasets were retrieved using UniProt REST API queries and saved in JSON format.
+## 2. Data filtering pipeline
+#### The next step is to filter the dataset to meet the following criteria:
+##### Positive dataset: 
+- No fragments
+- Select only eukaryotic proteins
+- Filter-out sequences shorter than 40 residues
+- Filter-out unreviewed proteins
+- Select only proteins with experimental SP evidence
+- Filter out proteins with SP shorter than 14 residues
+- Protein existence: evidence at protein level
+- Existence of the cleavage site
+##### Negative dataset:
+- No fragments
+- Filter-out unreviewed proteins
+- Protein existence: evidence at protein level
+- Select only eukaryotic proteins
+- Filter-out sequences shorter than 40 residues
+- Filter-out sequences having SP (any evidence)
+- Select only proteins experimentally verified to be localized into: cytosol, nucleus, mitochondrion, plastid, peroxisome, cell membrane.
 
----
+### To filter both dataset the custom python script named `data-gathering.py` was used.[**](#neg-note)
+##### Output files:
+- `positive_set.tsv`
+- `positive_set.fasta`
+- `negative_set.tsv`
+- `negative_set.fasta`
+##### The `positive_set.tsv` and `negative_set.tsv` files contain the following information:
+**For the `positive_set.tsv`:**
+1. The protein UniProt accession number
+2. The organism's name
+3. The Eukaryotic kingdom (Metazoa, Fungi, Plants, Other)
+4. The protein length
+5. The position of the signal peptide cleavage site
 
-## 2. Data Filtering Pipeline
-The next step filters datasets according to established quality and biological criteria.
+**For the `negative_set.tsv`:**
+1. The protein UniProt accession
+2. The organism name
+3. The Eukaryotic kingdom (Metazoa, Fungi, Plants, Other)
+4. The protein length
+5. Whether the protein has a transmembrane helix starting in the first 90 residues
+(true or false)
 
-**Positive Dataset Filters:**
-- No fragments, Eukaryotic proteins only, ≥ 40 residues, reviewed, experimental SP evidence, SP > 13 residues, protein-level evidence.
+<a name="neg-note"></a>
+**Please note:** that the negative dataset was directly retrieved from UniProt using the query criteria, without the need for further filtering of the JSON response. The script is used only to extract the required fields and to format the results into TSV and FASTA files.
 
-**Negative Dataset Filters:**
-- No fragments, reviewed, protein-level evidence, ≥ 40 residues, experimentally verified localization (non-secretory).
+##### Both `positive_set.fasta` and `negative_set.fasta` are in standard FASTA format, where each entry begins with '>' followed by the UniProt accession and the following line contains the full amino acid sequence.
 
-Output files:
-- `positive_set.tsv`, `negative_set.tsv`, `positive_set.fasta`, `negative_set.fasta`
-
-**Dataset Summary:**
-<p align="center">
+## Dataset Summary
 
 | Dataset  | Total | Metazoa | Fungi | Viridiplantae | Other | N-terminal TM helix |
 |----------|-------|---------|-------|---------------|-------|----------------------|
-| Positive | 2932  | 2420 | 165 | 311 | 36 | - |
-| Negative | 20615 | 12419 | 3727 | 4111 | 358 | 2477 |
+| Positive |  2932 |    2420 |   165 |           311 |    36 | -                    |
+| Negative | 20615 |   12419 |  3727 |          4111 |   358 | 2477                 |
 
-</p>
 
----
+## 3. Data pre-processing
+- The first step of data pre-processing consists in using clustering methods to remove non-reduntant sequences from the dataset.
+- Next clustered data will be further split into teo sets:
+  - the **`training set`**: used to train the methods, optimize model hyperparameters and perform
+cross-validation experiments
+  - the **`benchmark set`** (also known as the holdout set):  used to test the generalization performance of the different models
+### Clustering
+Clustering is executed with a software suite called **`MMseq2`**.
+MMSeq2 is the fastest method available for clustering, due to its implementation of three distinct clustering modes:_ Greedy set cover, Greedy incremental, and Connected-component clustering._
 
-## 3. Data Pre-processing
-Includes clustering with MMSeqs2, dataset splitting (80/20), and five-fold cross-validation.
+**The following commands have been used to cluster both positive and negative datasets into 2 different clustered sets:**
 
-<p align="center">
+For the positive datase:
+- `mmseqs easy-cluster positive_set.fasta pos_cluster-results tmp_pos --min-seq-id 0.3 -c 0.4 --cov-mode 0 --cluster-mode 1`
 
+For the negative dataset 
+- `mmseqs easy-cluster negative_set.fasta neg_cluster-results tmp_neg --min-seq-id 0.3 -c 0.4 --cov-mode 0 --cluster-mode 1`
+
+These commands take all sequences in *_set.fasta, compare them to each other and group them into clusters of similar sequences with ≥30% identity and ≥40% coverage. They save the results in *_cluster-results, and use _tmp_*_ as a temporary working directory for the program.
+
+**Please note**: Prior to clustering, we converted the FASTA files from DOS to Unix format using **`dos2unix`**. This step was necessary because the original files contained trailing spaces at the end of sequences due to Windows formatting.
+
+**Output files:**
+**Positive dataset:**(N=x)
+- `pos_cluster-results_all_seqs.fasta`
+- `pos_cluster-results_cluster.tsv`
+- **`pos_cluster-results_rep_seq.fasta`**
+
+**Negative dataset**(N=x):
+- `neg_cluster-results_all_seqs.fasta`
+- `neg_cluster-results_cluster.tsv`
+- **`neg_cluster-results_rep_seq.fasta`**
+
+### Filtering into a TSV file
+Both `pos_cluster-results_rep_seq.fasta` and `neg_cluster-results_rep_seq.fasta` were used to retrieve **representative sequences from both clusters** and extract sequence infomration (Kingdom, protein length, etc) from the original tsv file obtained from both the original `positive_set.tsv and `negative_set.tsv`. 
+
+To obtain the desired results **bash shell scripting was used accordingly:**
+
+For the positive dataset:
+- `grep "^>" pos_cluster-results_rep_seq.fasta | sed 's/^>//; s/[[:space:]]*$//' > positive_ids.txt`
+- `head -n 1 positive_set.tsv > positive_info.tsv`
+- `grep -F -f positive_ids.txt positive_set.tsv >> positive_info.tsv`
+
+For the negative dataset:
+- `grep "^>" neg_cluster-results_rep_seq.fasta | sed 's/^>//; s/[[:space:]]*$//' > negative_ids.txt`
+- `head -n 1 negative_set.tsv > neg_info.tsv`
+- `grep -F -f pnegative_ids.txt positive_set.tsv >> neg_info.tsv`
+
+### Data clustering summary table
 | Dataset  | Total | Metazoa | Fungi | Viridiplantae | Other | N-terminal TM helix |
 |----------|-------|---------|-------|---------------|-------|----------------------|
-| Positive | 1092  | 866 | 95 | 103 | 28 | - |
-| Negative | 8934 | 4697 | 2475 | 1594 | 168 | 900 |
+| Positive |  1092 |    866 |   95 |           103 |    28 | -                    |
+| Negative | 8934 |   4697 |  2475 |          1594 |   168 | 900                 |
 
-</p>
+### Data split
+The next step is to split the data into a 80/20 ratio, where **80%** belongs to the **training set** and the remaining **20%** belongs to the **benchmarking set**. This step is crucial for ensuring unbiased results and that the model learns generalizable patterns. 
 
-Data split (80/20):
-<p align="center">
+**Extract IDs from the representative Fasta files obtained from teh MMSeq run**
+- `grep "^>" pos_cluster-results_rep_seq.fasta | sed 's/^>//' > pos_ids.txt`
+- `grep "^>" neg_cluster-results_rep_seq.fasta | sed 's/^>//' > neg_ids.txt`
 
+**Shuffle IDs** 
+- `sort -R pos_ids.txt > pos_shuffled_ids.txt`
+- `sort -R neg_ids.txt > neg_shuffled_ids.txt`
+
+**Calculate 80% split sizes**
+- `pos_total=$(wc -l < pos_shuffled_ids.txt)`
+- `pos_train_lines=$(( pos_total * 80 / 100 ))`
+
+- `neg_total=$(wc -l < neg_shuffled_ids.txt)`
+- `neg_train_lines=$(( neg_total * 80 / 100 ))`
+
+**Split into training / benchmarking ID lists**
+- `head -n $pos_train_lines pos_shuffled_ids.txt > pos_train_ids.txt`
+- `tail -n +$((pos_train_lines+1)) pos_shuffled_ids.txt > pos_benchmark_ids.txt`
+
+- `head -n $neg_train_lines neg_shuffled_ids.txt > neg_train_ids.txt`
+- `tail -n +$((neg_train_lines+1)) neg_shuffled_ids.txt > neg_benchmark_ids.txt`
+
+**Extract FASTA sequences with Python script**
+- `python3 get_seq.py pos_train_ids.txt pos_cluster-results_rep_seq.fasta pos_train.fasta`
+- `python3 get_seq.py pos_benchmark_ids.txt pos_cluster-results_rep_seq.fasta pos_benchmark.fasta`
+
+- `python3 get_seq.py neg_train_ids.txt neg_cluster-results_rep_seq.fasta neg_train.fasta`
+- `python3 get_seq.py neg_benchmark_ids.txt neg_cluster-results_rep_seq.fasta neg_benchmark.fasta`
+
+**Merge positives + negatives**
+- `cat pos_train.fasta neg_train.fasta > train.fasta`
+- `cat pos_benchmark.fasta neg_benchmark.fasta > benchmark.fasta`
+
+### Data split overall results
 | Set       | Positive | Negative | Total |
 |-----------|----------|----------|-------|
 | Training  | 873      | 7147     | 8020  |
 | Benchmark | 219      | 1787     | 2006  |
 
-</p>
+### Five-fold Cross Validation 
+This step is to randomly split the training set into 5 different subsets, preserving the overall positive/negative ratio on each subset.
 
----
+**First, we extract the IDs from both the merged training.fasta dataset and benchmark.fasta dataset:**
+- grep "^>" train.fasta| sed 's/^>//' > train_ids.txt
+- grep "^>" benchmark.fasta| sed 's/^>//' > bench_ids.txt
+  
+**Then we randomly shuffle the IDs**
+- sort -R train_ids.txt > train_ids_shuffled.txt
+- sort -R bench_ids.txt > bench_ids_shuffled.txt
 
-## 4. Data Analysis
-- Protein length distributions
-- SP position distributions
-- Comparative amino acid composition
-- Taxonomic classification
+**Lastly we split the dataset into 5 roughly equal folds**
+- gsplit -n l/5 train_ids_shuffled.txt fold_
+- gsplit -n l/5 bench_ids_shuffled.txt fold_bench_
 
-<p align="center">
+### Output files:
+**Training set:**
+- `fold_aa`
+- `fold_ab`
+- `fold_ac`
+- `fold_ad`
+- `fold_ae`
 
+### Final TSV
+The final TSV contained was organised in the following columns; the UniprotAccession code, Organism name ,Kingdom, Protein length, Signal Peptide Position, Positive/Negative set , and Fold Set.
+The script used to generate the tsv file, `fold_tsv.ipynb` was written using pandas.
+
+## 4. Data Analysis 
+### Distribution of Protein Lengths
+Protein length distributions were visualized in R Studio using density plots for the positive and negative sequences in both the training and benchmark sets. To avoid distortion from a small number of very long sequences, the density plots were constructed on a logarithmic scale. 
+
+
+### Distrubution of SP position
+The distribution of SP lengths were also visualized in R Studio using density plots for the positive sequences in both the training and benchmark sets. For each set, we plotted the distribution of SP lengths using density plots. The median SP length was calculated and displayed on the graph for both sets.
+
+
+## Comparative Amino Acid Composition
+Amino acid composition of Signal Peptides (SPs) were compared against the background distribution of amino acids in SwissProt (data from [Expasy](https://web.expasy.org/docs/relnotes/relstat.html)). To do this a python script was created with the following packages:
+
+- `Pandas` → DataFrame creation and manipulation for tabular or matrix data
+- `Seaborn` → Heatmap visualization of matrices
+- `Biopython` → Biological sequence analysis, FASTA parsing, and data handling for bioinformatics  
+- `Counter` → Counting and summarizing occurrences of amino acids or sequence elements
+
+Extraction of all SP sequences, calculation of their amino acid frequencies, and plotting them against the SwissProt distribution were performed.
+
+### Taxonomic classification of the proteins was performed at both the kingdom and organism levels. The relative abundances of taxa in each dataset were visualized using pie charts.
+
+
+## Table of context
 | Analysis                          | Visualization |
 |-----------------------------------|---------------|
-| Distribution of Protein Lengths    | [Protein Lengths](data_analysis/Density_plot.png) |
-| Distribution of SP Position        | [SP Position](data_analysis/SPPosition.png) |
-| Comparative Amino Acid Composition | [AA Composition](data_analysis/AA_comparison.png) |
-| Taxonomic Classification           | [Benchmark](data_analysis/Kingdom_dist_bench.png) / [Training](data_analysis/Kingdom_dist_train.png) |
+| Distribution of Protein Lengths    | [View Protein Lengths distribution](data_analysis/Density_plot.png) |
+| Distribution of SP Position        | [View SPP distribution](data_analysis/SPPosition.png) |
+| Comparative Amino Acid Composition | [View AA Composition](data_analysis/AA_comparison.png) |
+| Taxonomic Classification           | [View Benchmark Classification](data_analysis/Kingdom_dist_bench.png) / [View Training Classification](data_analysis/Kingdom_dist_train.png) |
 
-</p>
+## The von Heijne Method
+The main idea is to use use a ***Position-Speciﬁc Weight Matrix (PSWM)*** in order to model amino acid distribution around known cleavage sites. The retrieved scores were first stored in a ***Position-Specific Probability Matrix (PSPM)*** and then a background model (Swiss-Prot database) was used as a reference amino acid distribution to compare our motifs against.
 
----
+Detection of SP, coparison with Swiss-Prot and evaluation of the model were performed using the script [vonHejine.ipynb](vonHejine_model/vonHejine.ipynb)
 
-## 5. Von Heijne Method
-Modeling SPs using Position-Specific Weight Matrices (PSWM) and Probability Matrices (PSPM) compared with Swiss-Prot.
+This Python script uses the following tools and libraries:
 
-<p align="center">
+- `NumPy` → Mathematical operations, array handling, logarithms, statistics, interpolation, and integration  
+- `SeqIO` *(from Biopython)* → FASTA parsing and sequence extraction  
+- `Matplotlib` → Plotting, figure customization, and saving images  
 
-| Fold | Training Folds | Validation Fold | Testing Fold | Motifs | Optimal Threshold | F1 | Precision | Recall | MCC |
-|------|----------------|----------------|---------------|--------|------------------|----|------------|---------|------|
-| 1 | ac, ad, ae | ab | aa | 531 | 6.437 | 0.691 | 0.693 | 0.689 | 0.653 |
-| 2 | aa, ad, ae | ac | ab | 528 | 6.020 | 0.707 | 0.645 | 0.782 | 0.674 |
-| 3 | aa, ab, ae | ad | ac | 519 | 6.212 | 0.722 | 0.716 | 0.728 | 0.686 |
-| 4 | aa, ab, ac | ae | ad | 522 | 6.303 | 0.718 | 0.712 | 0.724 | 0.683 |
-| 5 | ab, ac, ad | aa | ae | 519 | 5.735 | 0.730 | 0.670 | 0.802 | 0.697 |
+ 
+ | *Fold* | *Training Folds* | *Validation Fold* | *Testing Fold* | *Motifs* | *Optimal Threshold* | *F1* | *Precision* | *Recall* | *MCC* |
+| :------- | :----------------- | :------------------ | :--------------- | -----------: | --------------------: | -----: | ------------: | ---------: | ------: |
+| 1        | ac, ad, ae         | ab                  | aa               |          531 |                 6.437 |  0.691 |         0.693 |      0.689 |   0.653 |
+| 2        | aa, ad, ae         | ac                  | ab               |          528 |                 6.020 |  0.707 |         0.645 |      0.782 |   0.674 |
+| 3        | aa, ab, ae         | ad                  | ac               |          519 |                 6.212 |  0.722 |         0.716 |      0.728 |   0.686 |
+| 4        | aa, ab, ac         | ae                  | ad               |          522 |                 6.303 |  0.718 |         0.712 |      0.724 |   0.683 |
+| 5        | ab, ac, ad         | aa                  | ae               |          519 |                 5.735 |  0.730 |         0.670 |      0.802 |   0.697 |
+ 
+ |       *Metric*      | *Mean ± SE* |
+| :-------------------: | :-----------: |
+|      *F1 Score*     | 0.714 ± 0.006 |
+|     *Precision*     | 0.687 ± 0.012 |
+|       *Recall*      | 0.745 ± 0.018 |
+|        *MCC*        | 0.679 ± 0.007 |
+| *Average Threshold* | 6.141 ± 0.121 |
 
-</p>
+### Confusion Matrices per Fold ###
+| Fold    |   TP |   TN |   FP |   FN |
+|:--------|-----:|-----:|-----:|-----:|
+| fold_aa |  122 | 1375 |   54 |   55 |
+| fold_ab |  129 | 1370 |   71 |   36 |
+| fold_ac |  131 | 1372 |   52 |   49 |
+| fold_ad |  126 | 1380 |   51 |   48 |
+| fold_ae |  142 | 1352 |   70 |   35 |
 
----
+[Heatmap](vonHejine_model/pswm_heatmap.png) and [Presicion Recall Curve](vonHejine_model/prc.png) were retrieved. 
 
-## 6. Support Vector Machine (SVM)
-Comparison between Von Heijne and SVM-based prediction models using 31 physicochemical features.
+## Support Vector Machine
+Building Support Vector Machine (SVM) models to enable a cross-model comparison between the Von Heijne method and machine learning–based prediction approaches. Extracting a comprehensive set of 31 physicochemical features from the N-terminal region of each protein sequence. These features include:
+- **Amino Acid Composition** (20 features) computed over the first 22 residues (k=22).
+- **Hydrophobicity** (3 features: max, mean, and std dev) based on the Kyte-Doolittle scale (k=40).
+- **Secondary Structure** (3 features: helix, turn, and sheet fractions) predicted by ProteinAnalysis (k=40).
+- **Charge Features** (2 features: Isoelectric Point and net charge at pH 7.0) (k=40).
+- **Transmembrane Tendency** (2 features: max and mean) using the Zhao & London scale (k=40).
+- **Refractivity** (2 features: max and mean) using the Jones D.D. scale (k=40).
+  
+The model's performance is evaluated using a 5-fold cross-validation scheme, utilizing pre-defined fold splits. Within each CV fold, the training data (3 folds) is further split to create a validation set (1 fold). A feature selection pipeline is then executed using **Random Forest** Classifier, trained on the training subset to rank all 31 features by their Gini importance. The optimal number of features (**k**) is determined by plotting SVM accuracy against the number of top-k features used, with performance evaluated on the validation set. A final **Grid Search** for the SVM hyperparameters (C and gamma) is performed using only this optimal k feature subset, again using the validation set for scoring.
+### Results per Fold ###
+| Fold    |   Random Forest|   Accuracy |   Confusion Matrix |   Confusion Matrix Top Features |
+|:--------|-----:|-----:|-----:|-----:|
+| fold_1 |  [RF_Gini_fold1](7_SVM/RF_Gini_fold1.png)| [Accuracy_fold1](7_SVM/acc_vs_features_fold1.png) |   [CM_fold1](7_SVM/confusion_matrix_fold1_all.png) |   [CM_Top_fold1](7_SVM/confusion_matrix_fold1_Top22.png) |
+| fold_2 |  [RF_Gini_fold2](7_SVM/RF_Gini_fold2.png) |  [Accuracy_fold2](7_SVM/acc_vs_features_fold2.png) |   [CM_fold2](7_SVM/confusion_matrix_fold2_all.png) |   [CM_Top_fold2](7_SVM/confusion_matrix_fold1_Top19.png) |
+| fold_3 |  [RF_Gini_fold3](7_SVM/RF_Gini_fold3.png) |  [Accuracy_fold3](7_SVM/acc_vs_features_fold3.png) |   [CM_fold3](7_SVM/confusion_matrix_fold3_all.png) |   [CM_Top_fold3](7_SVM/confusion_matrix_fold1_Top29.png) |
+| fold_4 |  [RF_Gini_fold5](7_SVM/RF_Gini_fold4.png) |  [Accuracy_fold4](7_SVM/acc_vs_features_fold4.png) |   [CM_fold4](7_SVM/confusion_matrix_fold4_all.png) |   [CM_Top_fold4](7_SVM/confusion_matrix_fold1_Top24.png) |
+| fold_5 |  [RF_Gini_fold5](7_SVM/RF_Gini_fold5.png) |  [Accuracy_fold5](7_SVM/acc_vs_features_fold5.png) |   [CM_fold5](7_SVM/confusion_matrix_fold5_all.png) |   [CM_Top_fold5](7_SVM/confusion_matrix_fold1_Top24.png) |
 
-<p align="center">
+The MCC results for the cross-validation folds are shown in [MCC_per_fold](7_SVM/mcc_per_fold.png). 
 
-| Fold | Random Forest | Accuracy | Confusion Matrix | CM Top Features |
-|------|---------------|-----------|------------------|-----------------|
-| 1 | [RF_Gini_fold1](7_SVM/RF_Gini_fold1.png) | [Acc_fold1](7_SVM/acc_vs_features_fold1.png) | [CM1](7_SVM/confusion_matrix_fold1_all.png) | [CM_Top1](7_SVM/confusion_matrix_fold1_Top22.png) |
-| 2 | [RF_Gini_fold2](7_SVM/RF_Gini_fold2.png) | [Acc_fold2](7_SVM/acc_vs_features_fold2.png) | [CM2](7_SVM/confusion_matrix_fold2_all.png) | [CM_Top2](7_SVM/confusion_matrix_fold1_Top19.png) |
-| 3 | [RF_Gini_fold3](7_SVM/RF_Gini_fold3.png) | [Acc_fold3](7_SVM/acc_vs_features_fold3.png) | [CM3](7_SVM/confusion_matrix_fold3_all.png) | [CM_Top3](7_SVM/confusion_matrix_fold1_Top29.png) |
-| 4 | [RF_Gini_fold4](7_SVM/RF_Gini_fold4.png) | [Acc_fold4](7_SVM/acc_vs_features_fold4.png) | [CM4](7_SVM/confusion_matrix_fold4_all.png) | [CM_Top4](7_SVM/confusion_matrix_fold1_Top24.png) |
-| 5 | [RF_Gini_fold5](7_SVM/RF_Gini_fold5.png) | [Acc_fold5](7_SVM/acc_vs_features_fold5.png) | [CM5](7_SVM/confusion_matrix_fold5_all.png) | [CM_Top5](7_SVM/confusion_matrix_fold1_Top24.png) |
+## Performance Evaluation
 
-</p>
+The trained PSWM model was evaluated across four taxonomic kingdoms to assess lineage-specific performance. While the model demonstrates high specificity (low False Positive rate) across all groups, it exhibits a significant False Negative rate, particularly within *Metazoa*, indicating a conservative prediction threshold.
 
----
-
-## 7. Performance Evaluation
-The trained PSWM model was evaluated across four taxonomic kingdoms to assess lineage-specific performance.
-
-<p align="center">
+### Confusion Matrix by Kingdom
 
 | Kingdom | TP | TN | FP | FN |
-|----------|----|----|----|----|
-| Fungi | 15 | 2450 | 25 | 80 |
-| Metazoa | 167 | 4545 | 152 | 699 |
-| Other | 3 | 163 | 5 | 25 |
-| Viridiplantae | 26 | 1537 | 57 | 77 |
-
-</p>
+| :--- | :---: | :---: | :---: | :---: |
+| **Fungi** | 15 | 2450 | 25 | 80 |
+| **Metazoa** | 167 | 4545 | 152 | 699 |
+| **Other** | 3 | 163 | 5 | 25 |
+| **Viridiplantae** | 26 | 1537 | 57 | 77 |
 
 ### Error Distribution Plots
-<p align="center">
-<img src="8_performance_evaluation/VonHeijne/donutFungi.png" width="70%" />
-<img src="8_performance_evaluation/VonHeijne/donutMetazoa.png" width="70%" />
-<img src="8_performance_evaluation/VonHeijne/donutOther.png" width="70%" />
-<img src="8_performance_evaluation/VonHeijne/donutViridiplantae.png" width="70%" />
-</p>
-
----
-
+<img src="8_performance_evaluation/VonHeijne/donutFungi.png" width="45%" />
+<img src="8_performance_evaluation/VonHeijne/donutMetazoa.png" width="45%" /> 
+<img src="8_performance_evaluation/VonHeijne/donutOther.png" width="45%" />
+<img src="8_performance_evaluation/VonHeijne/donutViridiplantae.png" width="45%" />
