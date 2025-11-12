@@ -337,13 +337,7 @@ The trained PSWM model was evaluated across four taxonomic kingdoms to assess li
 | **Viridiplantae** | 26 | 1537 | 57 | 77 |
 
 ### Error Distribution Plots
-### Error Distribution Plots
-
-<p float="left">
-  <img src="8_performance_evaluation/VonHeijne/donutFungi.png" width="45%" />
-  <img src="8_performance_evaluation/VonHeijne/donutMetazoa.png" width="45%" /> 
-</p>
-<p float="left">
-  <img src="8_performance_evaluation/VonHeijne/donutOther.png" width="45%" />
-  <img src="8_performance_evaluation/VonHeijne/donutViridiplantae.png" width="45%" />
-</p>
+<img src="8_performance_evaluation/VonHeijne/donutFungi.png" width="45%" />
+<img src="8_performance_evaluation/VonHeijne/donutMetazoa.png" width="45%" /> 
+<img src="8_performance_evaluation/VonHeijne/donutOther.png" width="45%" />
+<img src="8_performance_evaluation/VonHeijne/donutViridiplantae.png" width="45%" />
