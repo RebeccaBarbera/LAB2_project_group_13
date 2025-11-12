@@ -21,6 +21,7 @@ The aim of this project is to evaluate and compare different computational metho
     - [Taxonomic Classification](#taxonimic-classificatio)
   - [Von Heijen Model](#the-von-Heijne-Method)
   - [SVM](#support-Vector-Machine)
+  - [Performance-Evaluation](#Performance-Evaluation)
 
 ## Software, pakcages and tools needed
 - `Python 3` → main programming language for data processing.
@@ -322,3 +323,26 @@ The model's performance is evaluated using a 5-fold cross-validation scheme, uti
 
 The MCC results for the cross-validation folds are shown in [MCC_per_fold](7_SVM/mcc_per_fold.png). 
 
+## Performance Evaluation
+
+The trained PSWM model was evaluated across four taxonomic kingdoms to assess lineage-specific performance. While the model demonstrates high specificity (low False Positive rate) across all groups, it exhibits a significant False Negative rate, particularly within *Metazoa*, indicating a conservative prediction threshold.
+
+### Confusion Matrix by Kingdom
+
+| Kingdom | TP | TN | FP | FN |
+| :--- | :---: | :---: | :---: | :---: |
+| **Fungi** | 15 | 2450 | 25 | 80 |
+| **Metazoa** | 167 | 4545 | 152 | 699 |
+| **Other** | 3 | 163 | 5 | 25 |
+| **Viridiplantae** | 26 | 1537 | 57 | 77 |
+
+### Error Distribution Plots
+
+<p float="left">
+  <img src="donutFungi.png" width="45%" />
+  <img src="donutMetazoa.png" width="45%" /> 
+</p>
+<p float="left">
+  <img src="donutOther.png" width="45%" />
+  <img src="donutViridiplantae.png" width="45%" />
+</p>
