@@ -63,7 +63,9 @@ The aim of this project is to evaluate and compare different computational metho
 ## Software, packages and tools needed
 
 `Python 3` → main programming language for data processing.
+
 `Biopython (Bio.SeqIO)` → for handling FASTA input/output.
+
 `Requests` → for making HTTP requests to UniProt REST API.
 `GitHub` / `Git` → for version control and collaboration.
 `MMSeqs2` → software suite used for clustering sequences.
