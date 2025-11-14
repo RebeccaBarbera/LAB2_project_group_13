@@ -6,7 +6,6 @@ This project was executed and completed by: [Rebecca Barbera](https://github.com
 
 ---
 ## Project Pipeline Overview
-
 graph TD
     A(<b>Data Collection</b><br/>- Retrieve positive/negative datasets (UniProt)<br/>- Apply selection criteria)
     -->
