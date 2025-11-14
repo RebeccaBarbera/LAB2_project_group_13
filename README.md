@@ -48,17 +48,15 @@ The aim of this project is to evaluate and compare different computational metho
 
 ## Table of Contents
 
-| Pipeline & Data | Analysis & Modeling |
-| :--- | :--- |
-| **[Software and tools needed](#software-and-tools-needed)** | **[Data Splitting](#data-splitting)** |
-| **[Data Collection](#data-collection)** | &nbsp;&nbsp;&nbsp;[Data split overall results](#data-split-overall-results) |
-| &nbsp;&nbsp;&nbsp;[Output files for data collection](#output-files-for-data-collection) | &nbsp;&nbsp;&nbsp;[Five-fold Cross Validation](#five-fold-cross-validation) |
-| &nbsp;&nbsp;&nbsp;[Dataset summary table](#dataset-summary-table) | **[Data analysis](#data-analysis)** |
-| **[Data Filtering Pipeline](#data-filtering-pipeline)** | &nbsp;&nbsp;&nbsp;[Comparative Amino Acid Composition](#comparative-amino-acid-composition) |
-| &nbsp;&nbsp;&nbsp;[Clustering](#clustering) | &nbsp;&nbsp;&nbsp;[Taxonomic Classification](#taxonomic-classification) |
-| &nbsp;&nbsp;&nbsp;[Filtering into a TSV file](#filtering-into-a-tsv-file) | **[Von Heijen Model](#von-heijen-model)** |
-| &nbsp;&nbsp;&nbsp;[Data clustering table](#data-clustering-table) | **[Support Vector Machine (SVM)](#support-vector-machine-svm)** |
-| | **[Performance Evaluation](#performance-evaluation)** |
+| **1.** [Software and tools needed](#software-and-tools-needed) | **4.** [Data Splitting](#data-splitting) |
+| **2.** [Data Collection](#data-collection) | &nbsp;&nbsp;&nbsp; `4.1` [Data split overall results](#data-split-overall-results) |
+| &nbsp;&nbsp;&nbsp; `2.1` [Output files for data collection](#output-files-for-data-collection) | &nbsp;&nbsp;&nbsp; `4.2` [Five-fold Cross Validation](#five-fold-cross-validation) |
+| &nbsp;&nbsp;&nbsp; `2.2` [Dataset summary table](#dataset-summary-table) | **5.** [Data analysis](#data-analysis) |
+| **3.** [Data Filtering Pipeline](#data-filtering-pipeline) | &nbsp;&nbsp;&nbsp; `5.1` [Comparative Amino Acid Composition](#comparative-amino-acid-composition) |
+| &nbsp;&nbsp;&nbsp; `3.1` [Clustering](#clustering) | &nbsp;&nbsp;&nbsp; `5.2` [Taxonomic Classification](#taxonomic-classification) |
+| &nbsp;&nbsp;&nbsp; `3.2` [Filtering into a TSV file](#filtering-into-a-tsv-file) | **6.** [Von Heijen Model](#von-heijen-model) |
+| &nbsp;&nbsp;&nbsp; `3.3` [Data clustering table](#data-clustering-table) | **7.** [Support Vector Machine (SVM)](#support-vector-machine-svm) |
+| | **8.** [Performance Evaluation](#performance-evaluation) |
 
 ## Software, packages and tools needed
 `Python 3` → main programming language for data processing.
