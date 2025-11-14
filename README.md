@@ -361,8 +361,8 @@ The trained PSWM model was evaluated across four taxonomic kingdoms to assess li
 
 ### Error Distribution Plots
 <p align="center">
-<img src="8_performance_evaluation/VonHeijne/donutFungi.png" width="70%" />
-<img src="8_performance_evaluation/VonHeijne/donutMetazoa.png" width="70%" />
-<img src="8_performance_evaluation/VonHeijne/donutOther.png" width="70%" />
-<img src="8_performance_evaluation/VonHeijne/donutViridiplantae.png" width="70%" />
+<img src="7_performance_evaluation/VonHeijne/donutFungi.png" width="70%" />
+<img src="7_performance_evaluation/VonHeijne/donutMetazoa.png" width="70%" />
+<img src="7_performance_evaluation/VonHeijne/donutOther.png" width="70%" />
+<img src="7_performance_evaluation/VonHeijne/donutViridiplantae.png" width="70%" />
 </p>
