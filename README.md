@@ -93,7 +93,7 @@ The aim of this project is to evaluate and compare different computational metho
 > `SeqIO` *(from Biopython)* → FASTA parsing and sequence extraction
 
 ## 1. Data collection
-The first step is to retrieve both positive and negative dataset for evaluation. The database used for this purpose is [UniProt](https://www.uniprot.org)
+The first step is to retrieve both positive and negative dataset for evaluation. The database used for this purpose is [UniProt](https://www.uniprot.org).
 
 #### Common criteria for protein selection:
 ##### Both positive and negative datasets:
