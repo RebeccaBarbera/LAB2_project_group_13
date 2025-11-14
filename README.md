@@ -63,7 +63,7 @@ The aim of this project is to evaluate and compare different computational metho
   - [SVM](#support-Vector-Machine)
   - [Performance-Evaluation](#Performance-Evaluation)
 
-#### Software, packages and tools needed
+## Software, packages and tools needed
 - `Python 3` → main programming language for data processing.
 - `Biopython (Bio.SeqIO)` → for handling FASTA input/output.
 - `Requests` → for making HTTP requests to UniProt REST API.
@@ -194,38 +194,38 @@ For the negative dataset:
 ## 3. Data spliting
 The next step is to split the data into a 80/20 ratio, where **80%** belongs to the **training set** and the remaining **20%** belongs to the **benchmarking set**. This step is crucial for ensuring unbiased results and that the model learns generalizable patterns. 
 ```
-#Extract IDs from the representative Fasta files obtained from teh MMSeq run
+# Extract IDs from the representative Fasta files obtained from teh MMSeq run
 grep "^>" pos_cluster-results_rep_seq.fasta | sed 's/^>//' > pos_ids.txt
 grep "^>" neg_cluster-results_rep_seq.fasta | sed 's/^>//' > neg_ids.txt
 
-#Shuffle IDs
+# Shuffle IDs
 sort -R pos_ids.txt > pos_shuffled_ids.txt
 sort -R neg_ids.txt > neg_shuffled_ids.txt
 
-#Calculate 80% split sizes
-##positive
+# Calculate 80% split sizes
+## positive
 pos_total=$(wc -l < pos_shuffled_ids.txt)
 pos_train_lines=$(( pos_total * 80 / 100 ))
 
-##negative
+## negative
 neg_total=$(wc -l < neg_shuffled_ids.txt)
 neg_train_lines=$(( neg_total * 80 / 100 ))
 
-#Split into training / benchmarking ID lists
+# Split into training / benchmarking ID lists
 head -n $pos_train_lines pos_shuffled_ids.txt > pos_train_ids.txt
 tail -n +$((pos_train_lines+1)) pos_shuffled_ids.txt > pos_benchmark_ids.txt
 
 head -n $neg_train_lines neg_shuffled_ids.txt > neg_train_ids.txt
 tail -n +$((neg_train_lines+1)) neg_shuffled_ids.txt > neg_benchmark_ids.txt
 
-#Extract FASTA sequences with Python script
+# Extract FASTA sequences with Python script
 python3 get_seq.py pos_train_ids.txt pos_cluster-results_rep_seq.fasta pos_train.fasta
 python3 get_seq.py pos_benchmark_ids.txt pos_cluster-results_rep_seq.fasta pos_benchmark.fasta
 
 python3 get_seq.py neg_train_ids.txt neg_cluster-results_rep_seq.fasta neg_train.fasta
 python3 get_seq.py neg_benchmark_ids.txt neg_cluster-results_rep_seq.fasta neg_benchmark.fasta
 
-#Merge positives + negatives
+# Merge positives + negatives
 cat pos_train.fasta neg_train.fasta > train.fasta
 cat pos_benchmark.fasta neg_benchmark.fasta > benchmark.fasta
 ```
@@ -238,15 +238,15 @@ cat pos_benchmark.fasta neg_benchmark.fasta > benchmark.fasta
 ### Five-fold Cross Validation 
 This step is to randomly split the training set into 5 different subsets, preserving the overall positive/negative ratio on each subset.
 ```
-#Extract the IDs from both the merged training.fasta dataset and benchmark.fasta dataset:
+# Extract the IDs from both the merged training.fasta dataset and benchmark.fasta dataset:
 grep "^>" train.fasta| sed 's/^>//' > train_ids.txt
 grep "^>" benchmark.fasta| sed 's/^>//' > bench_ids.txt
   
-#Randomly shuffle the IDs
+# Randomly shuffle the IDs
 sort -R train_ids.txt > train_ids_shuffled.txt
 sort -R bench_ids.txt > bench_ids_shuffled.txt
 
-#Split the dataset into 5 roughly equal folds
+# Split the dataset into 5 roughly equal folds
 gsplit -n l/5 train_ids_shuffled.txt fold_
 gsplit -n l/5 bench_ids_shuffled.txt fold_bench_
 ```
@@ -292,22 +292,35 @@ Detection of SP, comparison with Swiss-Prot and evaluation of the model were per
 | 4        | aa, ab, ac         | ae                  | ad               |          522 |                 6.303 |  0.718 |         0.712 |      0.724 |   0.683 |
 | 5        | ab, ac, ad         | aa                  | ae               |          519 |                 5.735 |  0.730 |         0.670 |      0.802 |   0.697 |
  
- |       *Metric*      | *Mean ± SE* |
-| :-------------------: | :-----------: |
-|      *F1 Score*     | 0.714 ± 0.006 |
-|     *Precision*     | 0.687 ± 0.012 |
-|       *Recall*      | 0.745 ± 0.018 |
-|        *MCC*        | 0.679 ± 0.007 |
-| *Average Threshold* | 6.141 ± 0.121 |
+<table>
+<tr>
+<td>
 
-### Confusion Matrices per Fold ###
-| Fold    |   TP |   TN |   FP |   FN |
-|:--------|-----:|-----:|-----:|-----:|
-| fold_aa |  122 | 1375 |   54 |   55 |
-| fold_ab |  129 | 1370 |   71 |   36 |
-| fold_ac |  131 | 1372 |   52 |   49 |
-| fold_ad |  126 | 1380 |   51 |   48 |
-| fold_ae |  142 | 1352 |   70 |   35 |
+<table>
+<tr><th>Metric</th><th>Mean ± SE</th></tr>
+<tr><td>F1 Score</td><td>0.714 ± 0.006</td></tr>
+<tr><td>Precision</td><td>0.687 ± 0.012</td></tr>
+<tr><td>Recall</td><td>0.745 ± 0.018</td></tr>
+<tr><td>MCC</td><td>0.679 ± 0.007</td></tr>
+<tr><td>Average Threshold</td><td>6.141 ± 0.121</td></tr>
+</table>
+
+</td>
+<td>
+
+<table>
+<tr><th>Fold</th><th>TP</th><th>TN</th><th>FP</th><th>FN</th></tr>
+<tr><td>fold_aa</td><td>122</td><td>1375</td><td>54</td><td>55</td></tr>
+<tr><td>fold_ab</td><td>129</td><td>1370</td><td>71</td><td>36</td></tr>
+<tr><td>fold_ac</td><td>131</td><td>1372</td><td>52</td><td>49</td></tr>
+<tr><td>fold_ad</td><td>126</td><td>1380</td><td>51</td><td>48</td></tr>
+<tr><td>fold_ae</td><td>142</td><td>1352</td><td>70</td><td>35</td></tr>
+</table>
+
+</td>
+</tr>
+</table>
+
 
 [Heatmap](vonHejine_model/pswm_heatmap.png) and [Presicion Recall Curve](vonHejine_model/prc.png) were retrieved. 
 
