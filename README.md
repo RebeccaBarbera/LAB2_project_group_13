@@ -323,7 +323,7 @@ Detection of SP, comparison with Swiss-Prot and evaluation of the model were per
 
 [Heatmap](5_vonHejine_model/pswm_heatmap.png) and [Presicion Recall Curve](5_vonHejine_model/prc.png) were retrieved. 
 
-## Support Vector Machine
+## 6. Support Vector Machine
 Building SVM models to enable a cross-model comparison between the Von Heijne method and machine learning–based prediction approaches. Extracting a comprehensive set of 31 physicochemical features from the N-terminal region of each protein sequence.
 - **Amino Acid Composition** (20 features) computed over the first 22 residues (k=22).
 - **Hydrophobicity** (3 features: max, mean, and std dev) based on the Kyte-Doolittle scale (k=40).
@@ -346,7 +346,7 @@ In each fold, 3 subsets are used for training and 1 for validation. A Random For
 
 The MCC results for the cross-validation folds are shown in [MCC_per_fold](6_SVM/mcc_per_fold.png). 
 
-## Performance Evaluation
+## 7. Performance Evaluation
 
 The trained PSWM model was evaluated across four taxonomic kingdoms to assess lineage-specific performance. While the model demonstrates high specificity (low False Positive rate) across all groups, it exhibits a significant False Negative rate, particularly within *Metazoa*, indicating a conservative prediction threshold.
 
