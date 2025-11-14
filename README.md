@@ -5,24 +5,6 @@ This repository gathers all resources and analyses developed within the Laborato
 This project was executed and completed by: [Rebecca Barbera](https://github.com/RebeccaBarbera), [Aniello Di Vaio](https://github.com/aniello-divaio), [Nina Talajic](https://github.com/nicnaaa), and [Domenico Zianni](https://github.com/mingo002).
 
 ---
-## Project Pipeline Overview
-
-## Project Pipeline Overview
-
-```mermaid
-graph TD
-    A("<b>Data Collection</b><br/>- Retrieve positive/negative datasets (UniProt)<br/>- Apply selection criteria")
-    -->
-    B("<b>Data Filtering Pipeline</b><br/>- Filter datasets (data-gathering.py)<br/>- Remove fragments/unverified<br/>- Format to TSV/FASTA")
-    -->
-    C("<b>Data Pre-processing</b><br/>- Clustering (MMSeqs2 30%)<br/>- Generate representative sequences<br/>- Split 80/20 & 5-Fold CV")
-    -->
-    D("<b>Data Analysis</b><br/>- Length distribution (density plots)<br/>- AA composition (vs SwissProt)<br/>- Taxonomic classification")
-    -->
-    E{"<b>Modeling</b><br/>- Von Heijne Method (PSWM/PSPM)<br/>- SVM (31 features, feature selection)"}
-    -->
-    F("<b>Performance Evaluation</b><br/>- Confusion matrices<br/>- MCC, F1, Precision summaries<br/>- Error distribution")
-```
 
 ## Signal peptide prediction
 The aim of this project is to evaluate and compare different computational methods for detecting signal peptides as well as addressing the subproblem of subcellular localisation and protein function prediction. 
