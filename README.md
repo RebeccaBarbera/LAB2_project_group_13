@@ -78,6 +78,8 @@ The aim of this project is to evaluate and compare different computational metho
   - **`SVC`** → Support Vector Classifier used to build the comparative predictive model.
   - **`StandardScaler`** → for normalizing dataset features (Z-score normalization) to improve SVM performance.
   - **`metrics`** → for evaluating model performance (Accuracy, F1-score, MCC, Confusion Matrix).
+-  **`Biopython`** → Biological sequence analysis, FASTA parsing, and data handling for bioinformatics  
+- **`Counter`** → Counting and summarizing occurrences of amino acids or sequence elements
 
 ## 1. Data collection
 The first step is to retrieve both positive and negative dataset for evaluation. The database used for this purpose is [UniProt](https://www.uniprot.org)
@@ -244,8 +246,8 @@ sort -R train_ids.txt > train_ids_shuffled.txt
 sort -R bench_ids.txt > bench_ids_shuffled.txt
 
 #Split the dataset into 5 roughly equal folds
-- gsplit -n l/5 train_ids_shuffled.txt fold_
-- gsplit -n l/5 bench_ids_shuffled.txt fold_bench_
+gsplit -n l/5 train_ids_shuffled.txt fold_
+gsplit -n l/5 bench_ids_shuffled.txt fold_bench_
 ```
 
 ### Final TSV
@@ -253,25 +255,20 @@ The final TSV contained was organised in the following columns; the UniprotAcces
 The script used to generate the tsv file, `fold_tsv.ipynb` was written using pandas.
 
 ## 4. Data Analysis 
-### Distribution of Protein Lengths
+#### Distribution of Protein Lengths
 Protein length distributions were visualized in R Studio using density plots for the positive and negative sequences in both the training and benchmark sets. To avoid distortion from a small number of very long sequences, the density plots were constructed on a logarithmic scale. 
 
 
-### Distrubution of SP position
+#### Distrubution of SP position
 The distribution of SP lengths were also visualized in R Studio using density plots for the positive sequences in both the training and benchmark sets. For each set, we plotted the distribution of SP lengths using density plots. The median SP length was calculated and displayed on the graph for both sets.
 
 
-## Comparative Amino Acid Composition
-Amino acid composition of Signal Peptides (SPs) were compared against the background distribution of amino acids in SwissProt (data from [Expasy](https://web.expasy.org/docs/relnotes/relstat.html)). To do this a python script was created with the following packages:
-
-- `Pandas` → DataFrame creation and manipulation for tabular or matrix data
-- `Seaborn` → Heatmap visualization of matrices
-- `Biopython` → Biological sequence analysis, FASTA parsing, and data handling for bioinformatics  
-- `Counter` → Counting and summarizing occurrences of amino acids or sequence elements
+#### Comparative Amino Acid Composition
+Amino acid composition of Signal Peptides (SPs) were compared against the background distribution of amino acids in SwissProt (data from [Expasy](https://web.expasy.org/docs/relnotes/relstat.html)).
 
 Extraction of all SP sequences, calculation of their amino acid frequencies, and plotting them against the SwissProt distribution were performed.
 
-### Taxonomic classification of the proteins was performed at both the kingdom and organism levels. The relative abundances of taxa in each dataset were visualized using pie charts.
+###### Taxonomic classification of the proteins was performed at both the kingdom and organism levels. The relative abundances of taxa in each dataset were visualized using pie charts.
 
 
 #### Table of context
