@@ -7,19 +7,21 @@ This project was executed and completed by: [Rebecca Barbera](https://github.com
 ---
 ## Project Pipeline Overview
 
+## Project Pipeline Overview
+
 ```mermaid
 graph TD
-    A(<b>Data Collection</b><br/>- Retrieve positive/negative datasets (UniProt)<br/>- Apply selection criteria)
+    A("<b>Data Collection</b><br/>- Retrieve positive/negative datasets (UniProt)<br/>- Apply selection criteria")
     -->
-    B(<b>Data Filtering Pipeline</b><br/>- Filter datasets (data-gathering.py)<br/>- Remove fragments/unverified<br/>- Format to TSV/FASTA)
+    B("<b>Data Filtering Pipeline</b><br/>- Filter datasets (data-gathering.py)<br/>- Remove fragments/unverified<br/>- Format to TSV/FASTA")
     -->
-    C(<b>Data Pre-processing</b><br/>- Clustering (MMSeqs2 30%)<br/>- Generate representative sequences<br/>- Split 80/20 & 5-Fold CV)
+    C("<b>Data Pre-processing</b><br/>- Clustering (MMSeqs2 30%)<br/>- Generate representative sequences<br/>- Split 80/20 & 5-Fold CV")
     -->
-    D(<b>Data Analysis</b><br/>- Length distribution (density plots)<br/>- AA composition (vs SwissProt)<br/>- Taxonomic classification)
+    D("<b>Data Analysis</b><br/>- Length distribution (density plots)<br/>- AA composition (vs SwissProt)<br/>- Taxonomic classification")
     -->
-    E{<b>Modeling</b><br/>- Von Heijne Method (PSWM/PSPM)<br/>- SVM (31 features, feature selection)}
+    E{"<b>Modeling</b><br/>- Von Heijne Method (PSWM/PSPM)<br/>- SVM (31 features, feature selection)"}
     -->
-    F(<b>Performance Evaluation</b><br/>- Confusion matrices<br/>- MCC, F1, Precision summaries<br/>- Error distribution)
+    F("<b>Performance Evaluation</b><br/>- Confusion matrices<br/>- MCC, F1, Precision summaries<br/>- Error distribution")
 ```
 
 ## Signal peptide prediction
