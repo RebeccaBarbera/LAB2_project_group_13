@@ -273,10 +273,10 @@ Extraction of all SP sequences, calculation of their amino acid frequencies, and
 #### Table of context
 | Analysis                          | Visualization |
 |-----------------------------------|---------------|
-| Distribution of Protein Lengths    | [View Protein Lengths distribution](data_analysis/Density_plot.png) |
-| Distribution of SP Position        | [View SPP distribution](data_analysis/SPPosition.png) |
-| Comparative Amino Acid Composition | [View AA Composition](data_analysis/AA_comparison.png) |
-| Taxonomic Classification           | [View Benchmark Classification](data_analysis/Kingdom_dist_bench.png) / [View Training Classification](data_analysis/Kingdom_dist_train.png) |
+| Distribution of Protein Lengths    | [View Protein Lengths distribution](4_data_analysis/Density_plot.png) |
+| Distribution of SP Position        | [View SPP distribution](4_data_analysis/SPPosition.png) |
+| Comparative Amino Acid Composition | [View AA Composition](4_data_analysis/AA_comparison.png) |
+| Taxonomic Classification           | [View Benchmark Classification](4_data_analysis/Kingdom_dist_bench.png) / [View Training Classification](4_data_analysis/Kingdom_dist_train.png) |
 
 ## The von Heijne Method
 The main idea is to use use a ***Position-Speciﬁc Weight Matrix (PSWM)*** in order to model amino acid distribution around known cleavage sites. The retrieved scores were first stored in a ***Position-Specific Probability Matrix (PSPM)*** and then a background model (Swiss-Prot database) was used as a reference amino acid distribution to compare our motifs against.
