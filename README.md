@@ -58,7 +58,6 @@ The aim of this project is to evaluate and compare different computational metho
 The first step is to retrieve both positive and negative dataset for evaluation. The database used for this purpose is [UniProt](https://www.uniprot.org).
 
 #### Common criteria for protein selection:
-##### Both positive and negative datasets:
 - protein length
 - protein evidence
 - protein annotation status
@@ -82,6 +81,9 @@ To ensure these proteins lacked signal peptides, proteins were chosen from exper
 Results from both positive and negative datasets where retrieved in JSON format. 
 
 ### Data filtering pipeline
+
+---
+
 The next step is to filter the dataset to meet common criteria (Positive and Negative):
 - No fragments
 - Select only eukaryotic proteins
@@ -229,14 +231,23 @@ The script used to generate the tsv file, `fold_tsv.ipynb` was written using pan
 
 ## 4. Data Analysis 
 #### Distribution of Protein Lengths
+
+---
+
 Protein length distributions were visualized in R Studio using density plots for the positive and negative sequences in both the training and benchmark sets. To avoid distortion from a small number of very long sequences, the density plots were constructed on a logarithmic scale. 
 
 
 #### Distrubution of SP position
+
+---
+
 The distribution of SP lengths were also visualized in R Studio using density plots for the positive sequences in both the training and benchmark sets. For each set, we plotted the distribution of SP lengths using density plots. The median SP length was calculated and displayed on the graph for both sets.
 
 
 #### Comparative Amino Acid Composition
+
+---
+
 Amino acid composition of Signal Peptides (SPs) were compared against the background distribution of amino acids in SwissProt (data from [Expasy](https://web.expasy.org/docs/relnotes/relstat.html)). 
 Extraction of all SP sequences, calculation of their amino acid frequencies, and plotting them against the SwissProt distribution were performed.
 
