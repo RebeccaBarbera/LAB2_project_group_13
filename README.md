@@ -48,10 +48,12 @@ The aim of this project is to evaluate and compare different computational metho
 
 ## Table of Contents
 
+| | |
+| :--- | :--- |
 | **1.** [Software and tools needed](#software-and-tools-needed) | **4.** [Data Splitting](#data-splitting) |
 | **2.** [Data Collection](#data-collection) | &nbsp;&nbsp;&nbsp; `4.1` [Data split overall results](#data-split-overall-results) |
 | &nbsp;&nbsp;&nbsp; `2.1` [Output files for data collection](#output-files-for-data-collection) | &nbsp;&nbsp;&nbsp; `4.2` [Five-fold Cross Validation](#five-fold-cross-validation) |
-| &nbsp;&nbsp;&nbsp; `2.2` [Dataset summary table](#dataset-summary-table) | **5.** [Data analysis](#data-analysis) |
+| &nbsp;&nbsp;&spsv; `2.2` [Dataset summary table](#dataset-summary-table) | **5.** [Data analysis](#data-analysis) |
 | **3.** [Data Filtering Pipeline](#data-filtering-pipeline) | &nbsp;&nbsp;&nbsp; `5.1` [Comparative Amino Acid Composition](#comparative-amino-acid-composition) |
 | &nbsp;&nbsp;&nbsp; `3.1` [Clustering](#clustering) | &nbsp;&nbsp;&nbsp; `5.2` [Taxonomic Classification](#taxonomic-classification) |
 | &nbsp;&nbsp;&nbsp; `3.2` [Filtering into a TSV file](#filtering-into-a-tsv-file) | **6.** [Von Heijen Model](#von-heijen-model) |
