@@ -190,40 +190,42 @@ For the negative dataset:
 
 ## 3. Data spliting
 The next step is to split the data into a 80/20 ratio, where **80%** belongs to the **training set** and the remaining **20%** belongs to the **benchmarking set**. This step is crucial for ensuring unbiased results and that the model learns generalizable patterns. 
-'''
-# Extract IDs from the representative Fasta files obtained from teh MMSeq run
-- `grep "^>" pos_cluster-results_rep_seq.fasta | sed 's/^>//' > pos_ids.txt`
-- `grep "^>" neg_cluster-results_rep_seq.fasta | sed 's/^>//' > neg_ids.txt`
+```
+#Extract IDs from the representative Fasta files obtained from teh MMSeq run
+grep "^>" pos_cluster-results_rep_seq.fasta | sed 's/^>//' > pos_ids.txt
+grep "^>" neg_cluster-results_rep_seq.fasta | sed 's/^>//' > neg_ids.txt
 
-# Shuffle IDs
-- `sort -R pos_ids.txt > pos_shuffled_ids.txt`
-- `sort -R neg_ids.txt > neg_shuffled_ids.txt`
+#Shuffle IDs
+sort -R pos_ids.txt > pos_shuffled_ids.txt
+sort -R neg_ids.txt > neg_shuffled_ids.txt
 
-**Calculate 80% split sizes**
-- `pos_total=$(wc -l < pos_shuffled_ids.txt)`
-- `pos_train_lines=$(( pos_total * 80 / 100 ))`
+#Calculate 80% split sizes
+##positive
+pos_total=$(wc -l < pos_shuffled_ids.txt)
+pos_train_lines=$(( pos_total * 80 / 100 ))
 
-- `neg_total=$(wc -l < neg_shuffled_ids.txt)`
-- `neg_train_lines=$(( neg_total * 80 / 100 ))`
+##negative
+neg_total=$(wc -l < neg_shuffled_ids.txt)
+neg_train_lines=$(( neg_total * 80 / 100 ))
 
-**Split into training / benchmarking ID lists**
-- `head -n $pos_train_lines pos_shuffled_ids.txt > pos_train_ids.txt`
-- `tail -n +$((pos_train_lines+1)) pos_shuffled_ids.txt > pos_benchmark_ids.txt`
+#Split into training / benchmarking ID lists
+head -n $pos_train_lines pos_shuffled_ids.txt > pos_train_ids.txt
+tail -n +$((pos_train_lines+1)) pos_shuffled_ids.txt > pos_benchmark_ids.txt
 
-- `head -n $neg_train_lines neg_shuffled_ids.txt > neg_train_ids.txt`
-- `tail -n +$((neg_train_lines+1)) neg_shuffled_ids.txt > neg_benchmark_ids.txt`
+head -n $neg_train_lines neg_shuffled_ids.txt > neg_train_ids.txt
+tail -n +$((neg_train_lines+1)) neg_shuffled_ids.txt > neg_benchmark_ids.txt
 
-**Extract FASTA sequences with Python script**
-- `python3 get_seq.py pos_train_ids.txt pos_cluster-results_rep_seq.fasta pos_train.fasta`
-- `python3 get_seq.py pos_benchmark_ids.txt pos_cluster-results_rep_seq.fasta pos_benchmark.fasta`
+#Extract FASTA sequences with Python script
+python3 get_seq.py pos_train_ids.txt pos_cluster-results_rep_seq.fasta pos_train.fasta
+python3 get_seq.py pos_benchmark_ids.txt pos_cluster-results_rep_seq.fasta pos_benchmark.fasta
 
-- `python3 get_seq.py neg_train_ids.txt neg_cluster-results_rep_seq.fasta neg_train.fasta`
-- `python3 get_seq.py neg_benchmark_ids.txt neg_cluster-results_rep_seq.fasta neg_benchmark.fasta`
+python3 get_seq.py neg_train_ids.txt neg_cluster-results_rep_seq.fasta neg_train.fasta
+python3 get_seq.py neg_benchmark_ids.txt neg_cluster-results_rep_seq.fasta neg_benchmark.fasta
 
-**Merge positives + negatives**
-- `cat pos_train.fasta neg_train.fasta > train.fasta`
-- `cat pos_benchmark.fasta neg_benchmark.fasta > benchmark.fasta`
-'''
+#Merge positives + negatives
+cat pos_train.fasta neg_train.fasta > train.fasta
+cat pos_benchmark.fasta neg_benchmark.fasta > benchmark.fasta
+```
 #### Data split overall results
 | Set       | Positive | Negative | Total |
 |-----------|----------|----------|-------|
@@ -232,26 +234,19 @@ The next step is to split the data into a 80/20 ratio, where **80%** belongs to 
 
 ### Five-fold Cross Validation 
 This step is to randomly split the training set into 5 different subsets, preserving the overall positive/negative ratio on each subset.
-
-**First, we extract the IDs from both the merged training.fasta dataset and benchmark.fasta dataset:**
-- grep "^>" train.fasta| sed 's/^>//' > train_ids.txt
-- grep "^>" benchmark.fasta| sed 's/^>//' > bench_ids.txt
+```
+#Extract the IDs from both the merged training.fasta dataset and benchmark.fasta dataset:
+grep "^>" train.fasta| sed 's/^>//' > train_ids.txt
+grep "^>" benchmark.fasta| sed 's/^>//' > bench_ids.txt
   
-**Then we randomly shuffle the IDs**
-- sort -R train_ids.txt > train_ids_shuffled.txt
-- sort -R bench_ids.txt > bench_ids_shuffled.txt
+#Randomly shuffle the IDs
+sort -R train_ids.txt > train_ids_shuffled.txt
+sort -R bench_ids.txt > bench_ids_shuffled.txt
 
-**Lastly we split the dataset into 5 roughly equal folds**
+#Split the dataset into 5 roughly equal folds
 - gsplit -n l/5 train_ids_shuffled.txt fold_
 - gsplit -n l/5 bench_ids_shuffled.txt fold_bench_
-
-#### Output files:
-**Training set:**
-- `fold_aa`
-- `fold_ab`
-- `fold_ac`
-- `fold_ad`
-- `fold_ae`
+```
 
 ### Final TSV
 The final TSV contained was organised in the following columns; the UniprotAccession code, Organism name ,Kingdom, Protein length, Signal Peptide Position, Positive/Negative set , and Fold Set.
