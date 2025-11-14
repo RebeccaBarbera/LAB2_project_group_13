@@ -47,24 +47,18 @@ Signal Peptide Prediction
 The aim of this project is to evaluate and compare different computational methods for detecting signal peptides as well as addressing the subproblem of subcellular localisation and protein function prediction. 
 
 ## Table of Contents
-- [Software and tools needed](#software-and-tools-needed)
-- [Data collection](#1-data-collection)
-- [Data filtering pipeline](#2-data-filtering-pipeline)
-  - [Output files for data collection](#output-files)
-  - [Dataset summary table](#dataset-summary)
-- [Data pre-processing](#data-pre-processing)
-   - [Clustering](#clustering)
-   - [Filtering into a TSV file](#filtering-into-a-TSV-file)
-   - [Data clustering table](#data-summary-table)
-   - [Data split](#data-split)
-     - [Data split overall results](#Data-split-overall-results)
-  - [Five-fold Cross validation](#five-fold-cross-validation)
-  - [Data Analysis](#4-data-Analysis)
-    - [Comparative Amino Acid Composition](#comparative-Amino-Acid-Composition)
-    - [Taxonomic Classification](#taxonimic-classificatio)
-  - [Von Heijen Model](#the-von-Heijne-Method)
-  - [SVM](#support-Vector-Machine)
-  - [Performance-Evaluation](#Performance-Evaluation)
+
+| Pipeline & Data | Analysis & Modeling |
+| :--- | :--- |
+| **[Software and tools needed](#software-and-tools-needed)** | **[Data Splitting](#data-splitting)** |
+| **[Data Collection](#data-collection)** | &nbsp;&nbsp;&nbsp;[Data split overall results](#data-split-overall-results) |
+| &nbsp;&nbsp;&nbsp;[Output files for data collection](#output-files-for-data-collection) | &nbsp;&nbsp;&nbsp;[Five-fold Cross Validation](#five-fold-cross-validation) |
+| &nbsp;&nbsp;&nbsp;[Dataset summary table](#dataset-summary-table) | **[Data analysis](#data-analysis)** |
+| **[Data Filtering Pipeline](#data-filtering-pipeline)** | &nbsp;&nbsp;&nbsp;[Comparative Amino Acid Composition](#comparative-amino-acid-composition) |
+| &nbsp;&nbsp;&nbsp;[Clustering](#clustering) | &nbsp;&nbsp;&nbsp;[Taxonomic Classification](#taxonomic-classification) |
+| &nbsp;&nbsp;&nbsp;[Filtering into a TSV file](#filtering-into-a-tsv-file) | **[Von Heijen Model](#von-heijen-model)** |
+| &nbsp;&nbsp;&nbsp;[Data clustering table](#data-clustering-table) | **[Support Vector Machine (SVM)](#support-vector-machine-svm)** |
+| | **[Performance Evaluation](#performance-evaluation)** |
 
 ## Software, packages and tools needed
 `Python 3` → main programming language for data processing.
