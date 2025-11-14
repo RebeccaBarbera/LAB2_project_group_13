@@ -153,31 +153,19 @@ The first step of data pre-processing consists in using clustering methods to re
 cross-validation experiments
   - the **`benchmark set`** (also known as the holdout set):  used to test the generalization performance of the different models
 
-#### Clustering
-Clustering is executed with a software suite called **`MMseq2`**, the fastest method available for clustering, due to the implementation of three distinct clustering modes: `Greedy set cover`, `Greedy incremental` and `Connected-component clustering`.
+**Clustering** is executed with a software suite called **`MMseq2`**, the fastest method available for clustering, due to the implementation of three distinct clustering modes: `Greedy set cover`, `Greedy incremental` and `Connected-component clustering`.
 
-**The following commands have been used to cluster both positive and negative datasets into 2 different clustered sets:**
+The following commands have been used to cluster both positive and negative datasets into 2 different clustered sets:
 
-For the positive datase:
+For positive:
 - `mmseqs easy-cluster positive_set.fasta pos_cluster-results tmp_pos --min-seq-id 0.3 -c 0.4 --cov-mode 0 --cluster-mode 1`
 
-For the negative dataset 
+For negative: 
 - `mmseqs easy-cluster negative_set.fasta neg_cluster-results tmp_neg --min-seq-id 0.3 -c 0.4 --cov-mode 0 --cluster-mode 1`
 
 These commands take all sequences in *_set.fasta, compare them to each other and group them into clusters of similar sequences with ≥30% identity and ≥40% coverage. They save the results in *_cluster-results, and use _tmp_*_ as a temporary working directory for the program.
 
 ###### **Please note**: Prior to clustering, we converted the FASTA files from DOS to Unix format using **`dos2unix`**. This step was necessary because the original files contained trailing spaces at the end of sequences due to Windows formatting.
-
-##### **Output files:**
-##### **Positive dataset:**(N=x)
-- `pos_cluster-results_all_seqs.fasta`
-- `pos_cluster-results_cluster.tsv`
-- **`pos_cluster-results_rep_seq.fasta`**
-
-##### **Negative dataset**(N=x):
-- `neg_cluster-results_all_seqs.fasta`
-- `neg_cluster-results_cluster.tsv`
-- **`neg_cluster-results_rep_seq.fasta`**
 
 #### Filtering into a TSV file
 Both `pos_cluster-results_rep_seq.fasta` and `neg_cluster-results_rep_seq.fasta` were used to retrieve **representative sequences** from both clusters and extract sequence information (Kingdom, Protein length, etc) from the original tsv file obtained from both the original `positive_set.tsv` and `negative_set.tsv`. 
@@ -185,14 +173,14 @@ Both `pos_cluster-results_rep_seq.fasta` and `neg_cluster-results_rep_seq.fasta`
 To obtain the desired results **bash shell scripting** was used accordingly:
 
 For the positive dataset:
-- `grep "^>" pos_cluster-results_rep_seq.fasta | sed 's/^>//; s/[[:space:]]*$//' > positive_ids.txt`
-- `head -n 1 positive_set.tsv > positive_info.tsv`
-- `grep -F -f positive_ids.txt positive_set.tsv >> positive_info.tsv`
+1. `grep "^>" pos_cluster-results_rep_seq.fasta | sed 's/^>//; s/[[:space:]]*$//' > positive_ids.txt`
+2. `head -n 1 positive_set.tsv > positive_info.tsv`
+3. `grep -F -f positive_ids.txt positive_set.tsv >> positive_info.tsv`
 
 For the negative dataset:
-- `grep "^>" neg_cluster-results_rep_seq.fasta | sed 's/^>//; s/[[:space:]]*$//' > negative_ids.txt`
-- `head -n 1 negative_set.tsv > neg_info.tsv`
-- `grep -F -f pnegative_ids.txt positive_set.tsv >> neg_info.tsv`
+1. `grep "^>" neg_cluster-results_rep_seq.fasta | sed 's/^>//; s/[[:space:]]*$//' > negative_ids.txt`
+2. `head -n 1 negative_set.tsv > neg_info.tsv`
+3. `grep -F -f pnegative_ids.txt positive_set.tsv >> neg_info.tsv`
 
 #### Data clustering summary table
 | Dataset  | Total | Metazoa | Fungi | Viridiplantae | Other | N-terminal TM helix |
