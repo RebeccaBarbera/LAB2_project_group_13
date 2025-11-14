@@ -70,23 +70,23 @@ The aim of this project is to evaluate and compare different computational metho
   - [Performance-Evaluation](#Performance-Evaluation)
 
 ## Software, packages and tools needed
-- `Python 3` → main programming language for data processing.
-- `Biopython (Bio.SeqIO)` → for handling FASTA input/output.
-- `Requests` → for making HTTP requests to UniProt REST API.
-- `GitHub` / `Git` → for version control and collaboration.
-- `MMSeqs2` → software suite used for clustering sequences.
-- `NumPy` → for efficient numerical operations and handling multi-dimensional arrays (e.g., PSWM calculations).
-- `Pandas` → for data manipulation, DataFrame management, and analyzing tabular data (TSV files).
-- `Matplotlib` → for creating static visualizations such as density plots, heatmaps, and confusion matrices.
-- `Biopython (Bio.SeqUtils.ProtParam)` → for extracting physicochemical features (e.g., Isoelectric Point, Molecular Weight, Hydrophobicity) from protein sequences.
-- `Scikit-learn` → comprehensive machine learning library used for:
-  - `RandomForestClassifier` → for feature selection and determining feature importance.
-  - `SVC` → Support Vector Classifier used to build the comparative predictive model.
-  - `StandardScaler` → for normalizing dataset features (Z-score normalization) to improve SVM performance.
-  - `metrics` → for evaluating model performance (Accuracy, F1-score, MCC, Confusion Matrix).
-- `Biopython` → Biological sequence analysis, FASTA parsing, and data handling for bioinformatics
-- `Counter` → Counting and summarizing occurrences of amino acids or sequence elements
-- `SeqIO` *(from Biopython)* → FASTA parsing and sequence extraction
+`Python 3` → main programming language for data processing.
+`Biopython (Bio.SeqIO)` → for handling FASTA input/output.
+`Requests` → for making HTTP requests to UniProt REST API.
+`GitHub` / `Git` → for version control and collaboration.
+`MMSeqs2` → software suite used for clustering sequences.
+`NumPy` → for efficient numerical operations and handling multi-dimensional arrays (e.g., PSWM calculations).
+`Pandas` → for data manipulation, DataFrame management, and analyzing tabular data (TSV files).
+`Matplotlib` → static visualizations (density plots, heatmaps, confusion matrices)
+`Biopython (ProtParam)` → extraction of physicochemical features (`pI`, `MW`, `hydrophobicity`)
+`Scikit-learn` → ML pipeline:
+- `RandomForestClassifier` → feature ranking
+- `SVC` → model training
+- `StandardScaler` → feature normalization
+`metrics` → evaluating model performance.
+`Biopython` → Biological sequence analysis, FASTA parsing, and data handling for bioinformatics
+`Counter` → Counting and summarizing occurrences of amino acids or sequence elements
+`SeqIO` *(from Biopython)* → FASTA parsing and sequence extraction
 
 ## 1. Data collection
 The first step is to retrieve both positive and negative dataset for evaluation. The database used for this purpose is [UniProt](https://www.uniprot.org)
