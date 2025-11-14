@@ -64,22 +64,23 @@ The aim of this project is to evaluate and compare different computational metho
   - [Performance-Evaluation](#Performance-Evaluation)
 
 #### Software, packages and tools needed
-- **`Python 3`** → main programming language for data processing.
-- **`Biopython (Bio.SeqIO)`** → for handling FASTA input/output.
-- **`Requests`** → for making HTTP requests to UniProt REST API.
-- **`GitHub`** / **`Git`** → for version control and collaboration.
-- **`MMSeqs2`** → software suite used for clustering sequences.
-- **`NumPy`** → for efficient numerical operations and handling multi-dimensional arrays (e.g., PSWM calculations).
-- **`Pandas`** → for data manipulation, DataFrame management, and analyzing tabular data (TSV files).
-- **`Matplotlib`** → for creating static visualizations such as density plots, heatmaps, and confusion matrices.
-- **`Biopython (Bio.SeqUtils.ProtParam)`** → for extracting physicochemical features (e.g., Isoelectric Point, Molecular Weight, Hydrophobicity) from protein sequences.
-- **`Scikit-learn`** → comprehensive machine learning library used for:
-  - **`RandomForestClassifier`** → for feature selection and determining feature importance.
-  - **`SVC`** → Support Vector Classifier used to build the comparative predictive model.
-  - **`StandardScaler`** → for normalizing dataset features (Z-score normalization) to improve SVM performance.
-  - **`metrics`** → for evaluating model performance (Accuracy, F1-score, MCC, Confusion Matrix).
--  **`Biopython`** → Biological sequence analysis, FASTA parsing, and data handling for bioinformatics  
-- **`Counter`** → Counting and summarizing occurrences of amino acids or sequence elements
+- `Python 3` → main programming language for data processing.
+- `Biopython (Bio.SeqIO)` → for handling FASTA input/output.
+- `Requests` → for making HTTP requests to UniProt REST API.
+- `GitHub` / `Git` → for version control and collaboration.
+- `MMSeqs2` → software suite used for clustering sequences.
+- `NumPy` → for efficient numerical operations and handling multi-dimensional arrays (e.g., PSWM calculations).
+- `Pandas` → for data manipulation, DataFrame management, and analyzing tabular data (TSV files).
+- `Matplotlib` → for creating static visualizations such as density plots, heatmaps, and confusion matrices.
+- `Biopython (Bio.SeqUtils.ProtParam)` → for extracting physicochemical features (e.g., Isoelectric Point, Molecular Weight, Hydrophobicity) from protein sequences.
+- `Scikit-learn` → comprehensive machine learning library used for:
+  - `RandomForestClassifier` → for feature selection and determining feature importance.
+  - `SVC` → Support Vector Classifier used to build the comparative predictive model.
+  - `StandardScaler` → for normalizing dataset features (Z-score normalization) to improve SVM performance.
+  - `metrics` → for evaluating model performance (Accuracy, F1-score, MCC, Confusion Matrix).
+- `Biopython` → Biological sequence analysis, FASTA parsing, and data handling for bioinformatics
+- `Counter` → Counting and summarizing occurrences of amino acids or sequence elements
+- `SeqIO` *(from Biopython)* → FASTA parsing and sequence extraction
 
 ## 1. Data collection
 The first step is to retrieve both positive and negative dataset for evaluation. The database used for this purpose is [UniProt](https://www.uniprot.org)
@@ -273,22 +274,15 @@ Extraction of all SP sequences, calculation of their amino acid frequencies, and
 #### Table of context
 | Analysis                          | Visualization |
 |-----------------------------------|---------------|
-| Distribution of Protein Lengths    | [View Protein Lengths distribution](4_data_analysis/Density_plot.png) |
-| Distribution of SP Position        | [View SPP distribution](4_data_analysis/SPPosition.png) |
-| Comparative Amino Acid Composition | [View AA Composition](4_data_analysis/AA_comparison.png) |
-| Taxonomic Classification           | [View Benchmark Classification](4_data_analysis/Kingdom_dist_bench.png) / [View Training Classification](4_data_analysis/Kingdom_dist_train.png) |
+| Distribution of Protein Lengths    | [Protein Lengths distribution](4_data_analysis/Density_plot.png) |
+| Distribution of SP Position        | [SPP distribution](4_data_analysis/SPPosition.png) |
+| Comparative Amino Acid Composition | [AA Composition](4_data_analysis/AA_comparison.png) |
+| Taxonomic Classification           | [Benchmark Classification](4_data_analysis/Kingdom_dist_bench.png) / [Training Classification](4_data_analysis/Kingdom_dist_train.png) |
 
-## The von Heijne Method
-The main idea is to use use a ***Position-Speciﬁc Weight Matrix (PSWM)*** in order to model amino acid distribution around known cleavage sites. The retrieved scores were first stored in a ***Position-Specific Probability Matrix (PSPM)*** and then a background model (Swiss-Prot database) was used as a reference amino acid distribution to compare our motifs against.
+## 5. The von Heijne Method
+The main idea is to use use a ***Position-Speciﬁc Weight Matrix (PSWM)*** in order to model amino acid distribution around known cleavage sites. The retrieved scores were first stored in a ***PSPM*** and then a background model (Swiss-Prot database) was used as a reference amino acid distribution to compare our motifs against.
 
-Detection of SP, coparison with Swiss-Prot and evaluation of the model were performed using the script [vonHejine.ipynb](vonHejine_model/vonHejine.ipynb)
-
-This Python script uses the following tools and libraries:
-
-- `NumPy` → Mathematical operations, array handling, logarithms, statistics, interpolation, and integration  
-- `SeqIO` *(from Biopython)* → FASTA parsing and sequence extraction  
-- `Matplotlib` → Plotting, figure customization, and saving images  
-
+Detection of SP, comparison with Swiss-Prot and evaluation of the model were performed using the script [vonHejine.ipynb](5_vonHejine_model/vonHejine.ipynb)
  
  | *Fold* | *Training Folds* | *Validation Fold* | *Testing Fold* | *Motifs* | *Optimal Threshold* | *F1* | *Precision* | *Recall* | *MCC* |
 | :------- | :----------------- | :------------------ | :--------------- | -----------: | --------------------: | -----: | ------------: | ---------: | ------: |
