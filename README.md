@@ -7,41 +7,18 @@ This project was executed and completed by: [Rebecca Barbera](https://github.com
 ---
 ## Project Pipeline Overview
 
-```text
-Signal Peptide Prediction
-├── Data Collection
-│   ├── Retrieve positive dataset from UniProt (SP evidence, cleavage site)
-│   ├── Retrieve negative dataset from UniProt (non-secretory compartments)
-│   └── Apply selection criteria: length, review status, taxonomy, evidence
-│
-├── Data Filtering Pipeline
-│   ├── Filter both datasets using custom Python scripts (data-gathering.py)
-│   ├── Remove fragments and unverified entries
-│   ├── Format JSON outputs into TSV and FASTA
-│   └── Generate summary tables
-│
-├── Data Pre-processing
-│   ├── Clustering with MMSeqs2 (30% identity, 40% coverage)
-│   ├── Generate representative sequences (rep_seq.fasta)
-│   ├── Extract info into TSV files using bash scripts
-│   ├── Split data (80/20 → Training / Benchmark)
-│   └── Five-Fold Cross Validation (fold_aa to fold_ae)
-│
-├── Data Analysis
-│   ├── Protein length distribution (density plots)
-│   ├── Signal peptide position analysis
-│   ├── Comparative amino acid composition (vs SwissProt)
-│   └── Taxonomic classification (pie charts)
-│
-├── Modeling
-│   ├── Von Heijne Method → PSWM, PSPM matrices vs Swiss-Prot background
-│   └── SVM → 31 physicochemical features, feature selection, grid search
-│
-└── Performance Evaluation
-    ├── Confusion matrices per fold
-    ├── MCC, F1, Precision, Recall summaries
-    └── Error distribution by taxonomic kingdom (donut plots)
-```
+graph TD
+    A(<b>Data Collection</b><br/>- Retrieve positive/negative datasets (UniProt)<br/>- Apply selection criteria)
+    -->
+    B(<b>Data Filtering Pipeline</b><br/>- Filter datasets (data-gathering.py)<br/>- Remove fragments/unverified<br/>- Format to TSV/FASTA)
+    -->
+    C(<b>Data Pre-processing</b><br/>- Clustering (MMSeqs2 30%)<br/>- Generate representative sequences<br/>- Split 80/20 & 5-Fold CV)
+    -->
+    D(<b>Data Analysis</b><br/>- Length distribution (density plots)<br/>- AA composition (vs SwissProt)<br/>- Taxonomic classification)
+    -->
+    E{<b>Modeling</b><br/>- Von Heijne Method (PSWM/PSPM)<br/>- SVM (31 features, feature selection)}
+    -->
+    F(<b>Performance Evaluation</b><br/>- Confusion matrices<br/>- MCC, F1, Precision summaries<br/>- Error distribution)
 
 ## Signal peptide prediction
 The aim of this project is to evaluate and compare different computational methods for detecting signal peptides as well as addressing the subproblem of subcellular localisation and protein function prediction. 
