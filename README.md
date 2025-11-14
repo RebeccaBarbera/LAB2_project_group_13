@@ -230,9 +230,6 @@ The final TSV contained was organised in the following columns; the UniprotAcces
 The script used to generate the tsv file, `fold_tsv.ipynb` was written using pandas.
 
 ## 4. Data Analysis 
-
----
-
 #### Distribution of Protein Lengths
 Protein length distributions were visualized in R Studio using density plots for the positive and negative sequences in both the training and benchmark sets. To avoid distortion from a small number of very long sequences, the density plots were constructed on a logarithmic scale. 
 
