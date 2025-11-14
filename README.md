@@ -100,46 +100,39 @@ The positive dataset was retrieved from UniProt using a query that selected non-
 - absence of SP sequence
 - experimental evidence for non SP-related compartments
 
-The negative dataset was retrieved by selecting non-fragment, reviewed proteins from Eukaryota (taxonomy ID 2759) with evidence at the protein level and a minimum sequence length of 40 amino acids. To ensure these proteins lacked signal peptides, proteins were chosen from experimentally validated subcellular localizations that are not routed through the secretory pathway, including: cytoplasm (SL-0091), nucleus (SL-0191), mitochondrion (SL-0173), plastid (SL-0209), chloroplast (SL-0204) and cytoskeleton (SL-0039):
+The negative dataset was retrieved by selecting non-fragment, reviewed proteins from Eukaryota (taxonomy ID 2759) with evidence at the protein level and a minimum sequence length of 40 amino acids. 
+
+To ensure these proteins lacked signal peptides, proteins were chosen from experimentally validated subcellular localizations that are not routed through the secretory pathway, including: cytoplasm (SL-0091), nucleus (SL-0191), mitochondrion (SL-0173), plastid (SL-0209), chloroplast (SL-0204) and cytoskeleton (SL-0039).
 
 Results from both positive and negative datasets where retrieved in JSON format. 
 
 ### Data filtering pipeline
-The next step is to filter the dataset to meet the following criteria:
-##### Common Criteria (Positive and Negative)
+The next step is to filter the dataset to meet common criteria (Positive and Negative):
 - No fragments
 - Select only eukaryotic proteins
 - Filter-out sequences shorter than 40 residues
 - Filter-out unreviewed proteins
 - Protein existence: evidence at protein level
-
+and specific criteria per datase:
 ##### Positive Dataset Criteria
 - Select only proteins with experimental SP evidence
 - Filter out proteins with SP shorter than 14 residues
 - Existence of the cleavage site
-
 ##### Negative Dataset Criteria
 - Filter-out sequences having SP (any evidence)
 - Select only proteins experimentally verified to be localized into: cytosol, nucleus, mitochondrion, plastid, peroxisome, cell membrane.
 
 To filter both dataset the custom python script `data-gathering.py` was used.
-##### Output files:
-- `positive_set.tsv`
-- `positive_set.fasta`
-- `negative_set.tsv`
-- `negative_set.fasta`
 
-The `positive_set.tsv` and `negative_set.tsv` files both contain the following common fields, with one key difference in their final column:
-
-**Common Fields (Columns 1-4):**
+`positive_set.tsv` and `negative_set.tsv` files was obtained, both containing these parameters:
 - The protein UniProt accession number
 - The organism's name
 - The Eukaryotic kingdom (Metazoa, Fungi, Plants, Other)
 - The protein length
 
-**Specific Fields (Column 5):**
-- For positive_set.tsv: The position of the signal peptide cleavage site.
-- For negative_set.tsv: Whether the protein has a transmembrane helix starting in the first 90 residues (true or false).
+A fifth parameter:
+- For `positive_set.tsv`: The position of the signal peptide cleavage site.
+- For `negative_set.tsv`: Whether the protein has a transmembrane helix starting in the first 90 residues (true or false).
 
 <a name="neg-note"></a>
 ###### **Please note:** that the negative dataset was directly retrieved from UniProt using the query criteria, without the need for further filtering of the JSON response. The script is used only to extract the required fields and to format the results into TSV and FASTA files.
