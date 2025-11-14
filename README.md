@@ -62,35 +62,53 @@ The aim of this project is to evaluate and compare different computational metho
 
 ## Software, packages and tools needed
 
-`Python 3` → main programming language for data processing.
+<dl>
+  <dt><code>Python 3</code></dt>
+  <dd>main programming language for data processing.</dd>
 
-`Biopython (Bio.SeqIO)` → for handling FASTA input/output.
-
-`Requests` → for making HTTP requests to UniProt REST API.
-
-`GitHub` / `Git` → for version control and collaboration.
-
-`MMSeqs2` → software suite used for clustering sequences.
-
-`NumPy` → for efficient numerical operations and handling multi-dimensional arrays (e.g., PSWM calculations).
-
-`Pandas` → for data manipulation, DataFrame management, and analyzing tabular data (TSV files).
-
-`Matplotlib` → static visualizations (density plots, heatmaps, confusion matrices).
-
-`Biopython (ProtParam)` → extraction of physicochemical features (`pI`, `MW`, `hydrophobicity`).
-
-`Scikit-learn` → ML pipeline:
-- `RandomForestClassifier` → feature ranking.
-- `SVC` → model training.
-- `StandardScaler` → feature normalization.
+  <dt><code>Biopython (Bio.SeqIO)</code></dt>
+  <dd>for handling FASTA input/output.</dd>
   
-`metrics` → evaluating model performance.
-`Biopython` → Biological sequence analysis, FASTA parsing, and data handling for bioinformatics
-
-`Counter` → Counting and summarizing occurrences of amino acids or sequence elements
-
-`SeqIO` *(from Biopython)* → FASTA parsing and sequence extraction
+  <dt><code>Requests</code></dt>
+  <dd>for making HTTP requests to UniProt REST API.</dd>
+  
+  <dt><code>GitHub</code> / <code>Git</code></dt>
+  <dd>for version control and collaboration.</dd>
+  
+  <dt><code>MMSeqs2</code></dt>
+  <dd>software suite used for clustering sequences.</dd>
+  
+  <dt><code>NumPy</code></dt>
+  <dd>for efficient numerical operations and handling multi-dimensional arrays (e.g., PSWM calculations).</dd>
+  
+  <dt><code>Pandas</code></dt>
+  <dd>for data manipulation, DataFrame management, and analyzing tabular data (TSV files).</dd>
+  
+  <dt><code>Matplotlib</code></dt>
+  <dd>static visualizations (density plots, heatmaps, confusion matrices).</dd>
+  
+  <dt><code>Biopython (ProtParam)</code></dt>
+  <dd>extraction of physicochemical features (<code>pI</code>, <code>MW</code>, <code>hydrophobicity</code>).</dd>
+  
+  <dt><code>Scikit-learn</code></dt>
+  <dd>ML pipeline:
+    <ul>
+      <li><code>RandomForestClassifier</code> → feature ranking.</li>
+      <li><code>SVC</code> → model training.</li>
+      <li><code>StandardScaler</code> → feature normalization.</li>
+      <li><code>metrics</code> → evaluating model performance.</li>
+    </ul>
+  </dd>
+  
+  <dt><code>Biopython</code></dt>
+  <dd>Biological sequence analysis, FASTA parsing, and data handling for bioinformatics.</dd>
+  
+  <dt><code>Counter</code></dt>
+  <dd>Counting and summarizing occurrences of amino acids or sequence elements.</dd>
+  
+  <dt><code>SeqIO</code> (from Biopython)</dt>
+  <dd>FASTA parsing and sequence extraction.</dd>
+</dl>
 
 ## 1. Data collection
 The first step is to retrieve both positive and negative dataset for evaluation. The database used for this purpose is [UniProt](https://www.uniprot.org)
