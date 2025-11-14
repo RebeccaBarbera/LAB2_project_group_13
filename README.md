@@ -1,11 +1,8 @@
 # Comparative Analysis of Eukaryotic Signal Peptide Predictors: Integrating the von Heijne PSWM and Support Vector Machines (SVM)
 
 This repository gathers all resources and analyses developed within the Laboratory of Bioinformatics 2 course, part of the Master’s Programme in Bioinformatics at the University of Bologna.
-Team members:
-- Rebecca Barbera
-- Aniello Di Vaio
-- Nina Talajic
-- Domenico Zianni
+
+This project was executed and completed by: [Rebecca Barbera](https://github.com/RebeccaBarbera), [Aniello Di Vaio](https://github.com/aniello-divaio), [Nina Talajic](https://github.com/nicnaaa), and [Domenico Zianni](https://github.com/mingo002).
 
 ---
 ## Project Pipeline Overview
