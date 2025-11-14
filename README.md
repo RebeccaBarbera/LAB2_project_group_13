@@ -155,7 +155,7 @@ cross-validation experiments
 
 **Clustering** is executed with a software suite called **`MMseq2`**, the fastest method available for clustering, due to the implementation of three distinct clustering modes: `Greedy set cover`, `Greedy incremental` and `Connected-component clustering`.
 
-The following commands have been used to cluster both positive and negative datasets into 2 different clustered sets:
+The following commands have been used to cluster both positive and negative datasets into two different clustered sets:
 
 For positive:
 - `mmseqs easy-cluster positive_set.fasta pos_cluster-results tmp_pos --min-seq-id 0.3 -c 0.4 --cov-mode 0 --cluster-mode 1`
@@ -190,12 +190,12 @@ For the negative dataset:
 
 ## 3. Data spliting
 The next step is to split the data into a 80/20 ratio, where **80%** belongs to the **training set** and the remaining **20%** belongs to the **benchmarking set**. This step is crucial for ensuring unbiased results and that the model learns generalizable patterns. 
-
-**Extract IDs from the representative Fasta files obtained from teh MMSeq run**
+'''
+# Extract IDs from the representative Fasta files obtained from teh MMSeq run
 - `grep "^>" pos_cluster-results_rep_seq.fasta | sed 's/^>//' > pos_ids.txt`
 - `grep "^>" neg_cluster-results_rep_seq.fasta | sed 's/^>//' > neg_ids.txt`
 
-**Shuffle IDs** 
+# Shuffle IDs
 - `sort -R pos_ids.txt > pos_shuffled_ids.txt`
 - `sort -R neg_ids.txt > neg_shuffled_ids.txt`
 
@@ -223,7 +223,7 @@ The next step is to split the data into a 80/20 ratio, where **80%** belongs to 
 **Merge positives + negatives**
 - `cat pos_train.fasta neg_train.fasta > train.fasta`
 - `cat pos_benchmark.fasta neg_benchmark.fasta > benchmark.fasta`
-
+'''
 #### Data split overall results
 | Set       | Positive | Negative | Total |
 |-----------|----------|----------|-------|
