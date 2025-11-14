@@ -230,24 +230,20 @@ The final TSV contained was organised in the following columns; the UniprotAcces
 The script used to generate the tsv file, `fold_tsv.ipynb` was written using pandas.
 
 ## 4. Data Analysis 
-#### Distribution of Protein Lengths
 
 ---
 
+#### Distribution of Protein Lengths
 Protein length distributions were visualized in R Studio using density plots for the positive and negative sequences in both the training and benchmark sets. To avoid distortion from a small number of very long sequences, the density plots were constructed on a logarithmic scale. 
 
+---
 
 #### Distrubution of SP position
-
----
-
 The distribution of SP lengths were also visualized in R Studio using density plots for the positive sequences in both the training and benchmark sets. For each set, we plotted the distribution of SP lengths using density plots. The median SP length was calculated and displayed on the graph for both sets.
 
-
-#### Comparative Amino Acid Composition
-
 ---
 
+#### Comparative Amino Acid Composition
 Amino acid composition of Signal Peptides (SPs) were compared against the background distribution of amino acids in SwissProt (data from [Expasy](https://web.expasy.org/docs/relnotes/relstat.html)). 
 Extraction of all SP sequences, calculation of their amino acid frequencies, and plotting them against the SwissProt distribution were performed.
 
