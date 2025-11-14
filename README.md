@@ -321,11 +321,10 @@ Detection of SP, comparison with Swiss-Prot and evaluation of the model were per
 </tr>
 </table>
 
-
-[Heatmap](vonHejine_model/pswm_heatmap.png) and [Presicion Recall Curve](vonHejine_model/prc.png) were retrieved. 
+[Heatmap](5_vonHejine_model/pswm_heatmap.png) and [Presicion Recall Curve](5_vonHejine_model/prc.png) were retrieved. 
 
 ## Support Vector Machine
-Building Support Vector Machine (SVM) models to enable a cross-model comparison between the Von Heijne method and machine learning–based prediction approaches. Extracting a comprehensive set of 31 physicochemical features from the N-terminal region of each protein sequence. These features include:
+Building SVM models to enable a cross-model comparison between the Von Heijne method and machine learning–based prediction approaches. Extracting a comprehensive set of 31 physicochemical features from the N-terminal region of each protein sequence.
 - **Amino Acid Composition** (20 features) computed over the first 22 residues (k=22).
 - **Hydrophobicity** (3 features: max, mean, and std dev) based on the Kyte-Doolittle scale (k=40).
 - **Secondary Structure** (3 features: helix, turn, and sheet fractions) predicted by ProteinAnalysis (k=40).
@@ -333,17 +332,19 @@ Building Support Vector Machine (SVM) models to enable a cross-model comparison 
 - **Transmembrane Tendency** (2 features: max and mean) using the Zhao & London scale (k=40).
 - **Refractivity** (2 features: max and mean) using the Jones D.D. scale (k=40).
   
-The model's performance is evaluated using a 5-fold cross-validation scheme, utilizing pre-defined fold splits. Within each CV fold, the training data (3 folds) is further split to create a validation set (1 fold). A feature selection pipeline is then executed using **Random Forest** Classifier, trained on the training subset to rank all 31 features by their Gini importance. The optimal number of features (**k**) is determined by plotting SVM accuracy against the number of top-k features used, with performance evaluated on the validation set. A final **Grid Search** for the SVM hyperparameters (C and gamma) is performed using only this optimal k feature subset, again using the validation set for scoring.
+The model is evaluated through 5-fold cross-validation using predefined splits.
+In each fold, 3 subsets are used for training and 1 for validation. A Random Forest ranks the 31 features by Gini importance, and SVM accuracy is assessed using increasing top-k feature sets to select the optimal number of features. Grid Search (C, gamma) is performed on this optimal feature subset using the validation fold for scoring.
+
 ### Results per Fold ###
 | Fold    |   Random Forest|   Accuracy |   Confusion Matrix |   Confusion Matrix Top Features |
 |:--------|-----:|-----:|-----:|-----:|
-| fold_1 |  [RF_Gini_fold1](7_SVM/RF_Gini_fold1.png)| [Accuracy_fold1](7_SVM/acc_vs_features_fold1.png) |   [CM_fold1](7_SVM/confusion_matrix_fold1_all.png) |   [CM_Top_fold1](7_SVM/confusion_matrix_fold1_Top22.png) |
-| fold_2 |  [RF_Gini_fold2](7_SVM/RF_Gini_fold2.png) |  [Accuracy_fold2](7_SVM/acc_vs_features_fold2.png) |   [CM_fold2](7_SVM/confusion_matrix_fold2_all.png) |   [CM_Top_fold2](7_SVM/confusion_matrix_fold1_Top19.png) |
-| fold_3 |  [RF_Gini_fold3](7_SVM/RF_Gini_fold3.png) |  [Accuracy_fold3](7_SVM/acc_vs_features_fold3.png) |   [CM_fold3](7_SVM/confusion_matrix_fold3_all.png) |   [CM_Top_fold3](7_SVM/confusion_matrix_fold1_Top29.png) |
-| fold_4 |  [RF_Gini_fold5](7_SVM/RF_Gini_fold4.png) |  [Accuracy_fold4](7_SVM/acc_vs_features_fold4.png) |   [CM_fold4](7_SVM/confusion_matrix_fold4_all.png) |   [CM_Top_fold4](7_SVM/confusion_matrix_fold1_Top24.png) |
-| fold_5 |  [RF_Gini_fold5](7_SVM/RF_Gini_fold5.png) |  [Accuracy_fold5](7_SVM/acc_vs_features_fold5.png) |   [CM_fold5](7_SVM/confusion_matrix_fold5_all.png) |   [CM_Top_fold5](7_SVM/confusion_matrix_fold1_Top24.png) |
+| fold_1 |  [RF_Gini_fold1](6_SVM/RF_Gini_fold1.png)| [Accuracy_fold1](6_SVM/acc_vs_features_fold1.png) |   [CM_fold1](6_SVM/confusion_matrix_fold1_all.png) |   [CM_Top_fold1](6_SVM/confusion_matrix_fold1_Top22.png) |
+| fold_2 |  [RF_Gini_fold2](6_SVM/RF_Gini_fold2.png) |  [Accuracy_fold2](6_SVM/acc_vs_features_fold2.png) |   [CM_fold2](6_SVM/confusion_matrix_fold2_all.png) |   [CM_Top_fold2](6_SVM/confusion_matrix_fold1_Top19.png) |
+| fold_3 |  [RF_Gini_fold3](6_SVM/RF_Gini_fold3.png) |  [Accuracy_fold3](6_SVM/acc_vs_features_fold3.png) |   [CM_fold3](6_SVM/confusion_matrix_fold3_all.png) |   [CM_Top_fold3](6_SVM/confusion_matrix_fold1_Top29.png) |
+| fold_4 |  [RF_Gini_fold5](6_SVM/RF_Gini_fold4.png) |  [Accuracy_fold4](6_SVM/acc_vs_features_fold4.png) |   [CM_fold4](6_SVM/confusion_matrix_fold4_all.png) |   [CM_Top_fold4](6_SVM/confusion_matrix_fold1_Top24.png) |
+| fold_5 |  [RF_Gini_fold5](6_SVM/RF_Gini_fold5.png) |  [Accuracy_fold5](7_SVM/acc_vs_features_fold5.png) |   [CM_fold5](6_SVM/confusion_matrix_fold5_all.png) |   [CM_Top_fold5](6_SVM/confusion_matrix_fold1_Top24.png) |
 
-The MCC results for the cross-validation folds are shown in [MCC_per_fold](7_SVM/mcc_per_fold.png). 
+The MCC results for the cross-validation folds are shown in [MCC_per_fold](6_SVM/mcc_per_fold.png). 
 
 ## Performance Evaluation
 
