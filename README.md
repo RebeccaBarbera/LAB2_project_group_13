@@ -322,9 +322,20 @@ In each fold, 3 subsets are used for training and 1 for validation. A Random For
 
 The MCC results for the cross-validation folds are shown in [MCC_per_fold](6_SVM/MCC_per_fold/MCC_PER_FOLD.png). 
 
-## 7. Performance Evaluation
+## 7. Performance Evaluation- The Vonhejine model
 
 The trained PSWM model was evaluated across four taxonomic kingdoms to assess lineage-specific performance. While the model demonstrates high specificity (low False Positive rate) across all groups, it exhibits a significant False Negative rate, particularly within *Metazoa*, indicating a conservative prediction threshold.
+
+| **Step**                             | **Description**                                                                                                                                                                                                                              |
+| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1. Load Inputs**                   | Load the 20×15 PSWM (positions –13 to +2) and parse the benchmark FASTA into a dictionary of sequences.                                                                                                                                      |
+| **2. Sliding-Window Scoring**        | Slide a 15-aa window over the first ~90 residues of each protein. For each window, sum the PSWM weights for all (aa, position) pairs. The highest-scoring window is stored as the predicted signal-peptide region and inferred –13 position. |
+| **3. Ground-Truth Labels**           | Import metadata from `all.tsv` and map each protein to a binary label (SP vs non-SP).                                                                                                                                                        |
+| **4. Threshold Classification**      | Apply a fixed cutoff (6.141) to convert model scores into predicted SP/non-SP classes. Generate TP, TN, FP, and FN counts.                                                                                                                   |
+| **5. Performance Metrics**           | Compute F1, precision, recall, MCC, and visualize the confusion matrix.                                                                                                                                                                      |
+| **6. Kingdom-Specific Analysis**     | Combine predictions with taxonomic metadata and compute TP/TN/FP/FN per kingdom. Visualize using full-outcome and error-only donut plots.                                                                                                    |
+| **7. False-Negative Motif Analysis** | For false negatives, extract the true (–13 to +2) window relative to the experimentally annotated cleavage site and export as FASTA for sequence-logo analysis.                                                                              |
+
 
 ### Confusion Matrix by Kingdom
 
@@ -336,9 +347,4 @@ The trained PSWM model was evaluated across four taxonomic kingdoms to assess li
 | **Viridiplantae** | 26 | 1537 | 57 | 77 |
 
 ### Error Distribution Plots
-<p align="center">
-<img src="7_performance_evaluation/VonHeijne/donutFungi.png" width="70%" />
-<img src="7_performance_evaluation/VonHeijne/donutMetazoa.png" width="70%" />
-<img src="7_performance_evaluation/VonHeijne/donutOther.png" width="70%" />
-<img src="7_performance_evaluation/VonHeijne/donutViridiplantae.png" width="70%" />
-</p>
+
