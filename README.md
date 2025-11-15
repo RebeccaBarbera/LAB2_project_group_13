@@ -324,7 +324,9 @@ The MCC results for the cross-validation folds are shown in [MCC_per_fold](6_SVM
 
 ## 7. Performance Evaluation- The Vonhejine model
 
-The trained PSWM model was evaluated across four taxonomic kingdoms to assess lineage-specific performance. While the model demonstrates high specificity (low False Positive rate) across all groups, it exhibits a significant False Negative rate, particularly within *Metazoa*, indicating a conservative prediction threshold.
+The VonHejine model performance was assessed using -, which implement the full benchmarking pipeline. 
+
+##### Methodology:
 
 | **Step**                             | **Description**                                                                                                                                                                                                                              |
 | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -336,15 +338,41 @@ The trained PSWM model was evaluated across four taxonomic kingdoms to assess li
 | **6. Kingdom-Specific Analysis**     | Combine predictions with taxonomic metadata and compute TP/TN/FP/FN per kingdom. Visualize using full-outcome and error-only donut plots.                                                                                                    |
 | **7. False-Negative Motif Analysis** | For false negatives, extract the true (–13 to +2) window relative to the experimentally annotated cleavage site and export as FASTA for sequence-logo analysis.                                                                              |
 
+#### The confusion matrix summarizing the model’s predictions is as follows:
 
-### Confusion Matrix by Kingdom
+- **True Negatives (TN)**: 1548
+- **False Positives (FP)**: 239
+- **False Negatives (FN)**: 8
+- **True Positives (TP**): 211
 
-| Kingdom | TP | TN | FP | FN |
-| :--- | :---: | :---: | :---: | :---: |
-| **Fungi** | 15 | 2450 | 25 | 80 |
-| **Metazoa** | 167 | 4545 | 152 | 699 |
-| **Other** | 3 | 163 | 5 | 25 |
-| **Viridiplantae** | 26 | 1537 | 57 | 77 |
+#### Based on this matrix, we obtain:
 
-### Error Distribution Plots
+- **F1-score** = 0.631
+- **Precision** = 0.469
+- **Recall** = 0.963
+- **MCC** = 0.620
+
+### Kingdom-Level Percentage Distribution
+To assess whether model performance varies across evolutionary groups, we computed per-kingdom TP, TN, FP, and FN statistics.
+The following table reports the percentage contribution of each outcome within each kingdom:
+
+| Kingdom        | TP (%) | TN (%) | FP (%) | FN (%) |
+|----------------|--------|--------|--------|--------|
+| Fungi          | 0.58   | 95.33  | 0.97   | 3.11   |
+| Metazoa        | 3.00   | 81.70  | 2.73   | 12.57  |
+| Other          | 1.53   | 83.16  | 2.55   | 12.76  |
+| Viridiplantae  | 1.53   | 90.57  | 3.36   | 4.54   |
+
+### Visualisation of outcome rates
+#### Donut Plots by Kingdom:
+
+**The table below provides links to the donut plots for each kingdom, allowing direct access to the full-outcome and FP/FN visualizations**
+| Kingdom        | Donut Plot |
+|----------------|------------|
+| Fungi          | [View Plot](donutFungi.png) |
+| Metazoa        | [View Plot](donutMetazoa.png) |
+| Other          | [View Plot](donutOther.png) |
+| Viridiplantae  | [View Plot](donutViridiplantae.png) |
+
+
 
