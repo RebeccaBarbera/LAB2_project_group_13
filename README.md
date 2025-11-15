@@ -318,7 +318,7 @@ In each fold, 3 subsets are used for training and 1 for validation. A Random For
 | fold_2 |  [RF_Gini_fold2](6_SVM/RF_Gini_fold2.png) |  [Accuracy_fold2](6_SVM/acc_vs_features_fold2.png) |   [CM_fold2](6_SVM/confusion_matrix_fold2_all.png) |   [CM_Top_fold2](6_SVM/confusion_matrix_fold1_Top19.png) |
 | fold_3 |  [RF_Gini_fold3](6_SVM/RF_Gini_fold3.png) |  [Accuracy_fold3](6_SVM/acc_vs_features_fold3.png) |   [CM_fold3](6_SVM/confusion_matrix_fold3_all.png) |   [CM_Top_fold3](6_SVM/confusion_matrix_fold1_Top29.png) |
 | fold_4 |  [RF_Gini_fold5](6_SVM/RF_Gini_fold4.png) |  [Accuracy_fold4](6_SVM/acc_vs_features_fold4.png) |   [CM_fold4](6_SVM/confusion_matrix_fold4_all.png) |   [CM_Top_fold4](6_SVM/confusion_matrix_fold1_Top24.png) |
-| fold_5 |  [RF_Gini_fold5](6_SVM/RF_Gini_fold5.png) |  [Accuracy_fold5](7_SVM/acc_vs_features_fold5.png) |   [CM_fold5](6_SVM/confusion_matrix_fold5_all.png) |   [CM_Top_fold5](6_SVM/confusion_matrix_fold1_Top24.png) |
+| fold_5 |  [RF_Gini_fold5](6_SVM/RF_Gini_fold5.png) |  [Accuracy_fold5](6_SVM/acc_vs_features_fold5.png) |   [CM_fold5](6_SVM/confusion_matrix_fold5_all.png) |   [CM_Top_fold5](6_SVM/confusion_matrix_fold1_Top24.png) |
 
 The MCC results for the cross-validation folds are shown in [MCC_per_fold](6_SVM/mcc_per_fold.png). 
 
