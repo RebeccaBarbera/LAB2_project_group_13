@@ -314,13 +314,13 @@ In each fold, 3 subsets are used for training and 1 for validation. A Random For
 ### Results per Fold ###
 | Fold    |   Random Forest|   Accuracy |   Confusion Matrix |   Confusion Matrix Top Features |
 |:--------|-----:|-----:|-----:|-----:|
-| fold_1 |  [RF_Gini_fold1](6_SVM/RF_Gini_fold1.png)| [Accuracy_fold1](6_SVM/acc_vs_features_fold1.png) |   [CM_fold1](6_SVM/confusion_matrix_fold1_all.png) |   [CM_Top_fold1](6_SVM/confusion_matrix_fold1_Top22.png) |
-| fold_2 |  [RF_Gini_fold2](6_SVM/RF_Gini_fold2.png) |  [Accuracy_fold2](6_SVM/acc_vs_features_fold2.png) |   [CM_fold2](6_SVM/confusion_matrix_fold2_all.png) |   [CM_Top_fold2](6_SVM/confusion_matrix_fold1_Top19.png) |
-| fold_3 |  [RF_Gini_fold3](6_SVM/RF_Gini_fold3.png) |  [Accuracy_fold3](6_SVM/acc_vs_features_fold3.png) |   [CM_fold3](6_SVM/confusion_matrix_fold3_all.png) |   [CM_Top_fold3](6_SVM/confusion_matrix_fold1_Top29.png) |
-| fold_4 |  [RF_Gini_fold5](6_SVM/RF_Gini_fold4.png) |  [Accuracy_fold4](6_SVM/acc_vs_features_fold4.png) |   [CM_fold4](6_SVM/confusion_matrix_fold4_all.png) |   [CM_Top_fold4](6_SVM/confusion_matrix_fold1_Top24.png) |
-| fold_5 |  [RF_Gini_fold5](6_SVM/RF_Gini_fold5.png) |  [Accuracy_fold5](6_SVM/acc_vs_features_fold5.png) |   [CM_fold5](6_SVM/confusion_matrix_fold5_all.png) |   [CM_Top_fold5](6_SVM/confusion_matrix_fold1_Top24.png) |
+| fold_1 |  [RF_Gini_fold1](6_SVM/RF_Gini_img/RF_Gini_fold1-2.png)| [Accuracy_fold1](6_SVM/ACC_plots/acc_vs_features_fold1.png) |   [CM_fold1](6_SVM/CMs_per_fold/CM_fold1_ALL.png) |   [CM_Top_fold1](6_SVM/CMs_per_fold/CM_fold_1_selected_feature.png) |
+| fold_2 |  [RF_Gini_fold2](6_SVM/RF_Gini_img/RF_Gini_fold2-2.png) |  [Accuracy_fold2](6_SVM/ACC_plots/acc_vs_features_fold2.png) |   [CM_fold2](6_SVM/CMs_per_fold/CM_fold2_ALL.png) |   [CM_Top_fold2](6_SVM/CMs_per_fold/CM_fold_2_selected_feature.png) |
+| fold_3 |  [RF_Gini_fold3](6_SVM/RF_Gini_img/RF_Gini_fold3-2.png) |  [Accuracy_fold3](6_SVM/ACC_plots/acc_vs_features_fold3.png) |   [CM_fold3](6_SVM/CMs_per_fold/CM_fold3_ALL.png) |   [CM_Top_fold3](6_SVM/CMs_per_fold/CM_fold_3_selected_feature.png) |
+| fold_4 |  [RF_Gini_fold4](6_SVM/RF_Gini_img/RF_Gini_fold4-2.png) |  [Accuracy_fold4](6_SVM/ACC_plots/acc_vs_features_fold4.png) |   [CM_fold4](6_SVM/CMs_per_fold/CM_fold4_ALL.png) |   [CM_Top_fold4](6_SVM/CMs_per_fold/CM_fold_4_selected_feature.png) |
+| fold_5 |  [RF_Gini_fold5](6_SVM/RF_Gini_img/RF_Gini_fold5-2.png) |  [Accuracy_fold5](6_SVM/ACC_plots/acc_vs_features_fold5.png) |   [CM_fold5](6_SVM/CMs_per_fold/CM_fold5_ALL.png) |   [CM_Top_fold5](6_SVM/CMs_per_fold/CM_fold_5_selected_feature.png) |
 
-The MCC results for the cross-validation folds are shown in [MCC_per_fold](6_SVM/mcc_per_fold.png). 
+The MCC results for the cross-validation folds are shown in [MCC_per_fold](6_SVM/MCC_per_fold/MCC_PER_FOLD.png). 
 
 ## 7. Performance Evaluation
 
