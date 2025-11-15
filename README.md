@@ -322,7 +322,8 @@ In each fold, 3 subsets are used for training and 1 for validation. A Random For
 
 The MCC results for the cross-validation folds are shown in [MCC_per_fold](6_SVM/MCC_per_fold/MCC_PER_FOLD.png). 
 
-## 7. Performance Evaluation- The Vonhejine model
+## 7. Performance Evaluation
+### The Vonhejine model
 
 The VonHejine model performance was assessed using the [VH_bench.ipynb](7_performance_evalutation/VonHejine_perf/script/VH_bench.ipynb) script, which implement the full benchmarking pipeline. 
 
@@ -374,4 +375,42 @@ The following table reports the percentage contribution of each outcome within e
 | Viridiplantae  | [View Plot](7_performance_evalutation/VonHejine_perf/donuts/donutViridiplantae.png) |
 
 In the final stage of the evaluation, we built a [Sequence Logo](7_performance_evalutation/VonHejine_perf/logo.png) from the `false-negative` set to explore the motif characteristics that led the model to classify them incorrectly
+
+### SVM
+We next evaluated our SVM-based model using the following training and validation workflow in the [svm_bench.ipynb](7_performance_evalutation/SVM/scripts/svm_bench.ipynb)
+
+### SVM Benchmarking Workflow
+
+| Step | Description |
+|------|-------------|
+| **1. Load trained SVM matrices** | Import the full training feature matrix (`training_features.npz`), including all engineered features, labels, and sequence IDs. Load the saved cross-validation results (`cv_results.npy`) containing best C, gamma, kernel, and top-k. |
+| **2. Import benchmark sequences** | Parse the `benchmark.fasta` file into a dictionary of IDs → sequences. Load the true labels from `all.tsv` and map them to the benchmark IDs. |
+| **3. Recreate feature extraction pipeline** | Recompute **identical features** used during training: (1) amino-acid composition, (2) hydrophobicity profiles, (3) secondary structure fractions, (4) pI and charge, (5) TM-tendency scale, (6) refractivity scale. Build a benchmark feature matrix with the same column order as the training matrix. |
+| **4. Standardize benchmark features** | Apply the exact `StandardScaler` fitted on the full training set to ensure identical scaling for comparisons. |
+| **5. Train final SVM models** | Train: (A) a baseline SVM using **all features**, and (B) the final SVM using only the **top-k features** determined by Random Forest Gini importance during training. |
+| **6. Predict benchmark labels** | Apply both SVM models to the benchmark feature matrix to generate predictions on previously unseen sequences. |
+| **7. Compute performance metrics** | Evaluate benchmark predictions using Accuracy, F1-score, MCC, and confusion matrices. Save confusion matrix images for both the all-feature and top-k models. |
+| **8. Evaluate model sensitivity across taxa** | Map each benchmark sequence to its organism and quantify TP, TN, FP, and FN counts per organism. Generate stacked barplots to visualize species-level error distribution. |
+| **9. Visualize global FP/FN distribution** | Produce whole-dataset pie charts for global FP/FN percentages. |
+| **10. Species-level FP and FN exploration** | Generate side-by-side pie charts + barplots showing which organisms contribute most to FN and FP. |
+| **11. Analyze false positives** | Test whether FP sequences disproportionately contain **N-terminal transmembrane helices** (via `TMHelixFirst90` metadata). Compute fraction and visualize which organisms contribute TM-driven false positives. |
+| **12. Analyze false negatives** | Investigate why FN sequences fail: (i) compare N-terminal AA composition (train vs TP vs FN), (ii) compare SP lengths, (iii) compare top-k feature distributions. |
+| **13. Export feature importance and diagnostic plots** | Save top-k selected features, MCC-vs-k curve, and all FN/FP species distributions for downstream interpretation. |
+
+### Performance Comparison: All features vs. selected features SVM models
+
+| Model                           | Accuracy | F1 Score | MCC   |
+|---------------------------------|----------|----------|-------|
+| **All Features Model**          | 0.974    | 0.884    | 0.870 |
+| **Selected Features (Top-k)**   | 0.974    | 0.882    | 0.867 |
+
+### Confusion matrix comparison: All features vs. selected features SVM models
+| Model                           | TP | TN | FP   | FN|
+|---------------------------------|----------|----------|-------|------|
+| **All Features Model**          | 199    | 1755    | 32 | 20 |
+| **Selected Features (Top-k)**   |198    | 1755    | 32 | 21 |
+
+
+
+
 
