@@ -415,7 +415,8 @@ To assess how consistently the SVM performs across different biological groups, 
 
 ![FP/FN sensitivity accross taxa](7_performance_evalutation/SVM_perf/Img_results/Species_dist_FP_FN.png)
 
-### visualise global and species specific FP/FN distribution
+### Visualise global and species specific FP/FN distribution
+
 ### analyse false positives
 ### analyse false negatives 
 
