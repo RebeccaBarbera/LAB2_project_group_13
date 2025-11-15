@@ -376,6 +376,10 @@ The following table reports the percentage contribution of each outcome within e
 
 In the final stage of the evaluation, we built a [Sequence Logo](7_performance_evalutation/VonHejine_perf/logo.png) from the `false-negative` set to explore the motif characteristics that led the model to classify them incorrectly
 
+![Sequence Logo](7_performance_evalutation/VonHejine_perf/logo.png)
+
+
+
 ### SVM
 We next evaluated our SVM-based model using the following training and validation workflow in the [svm_bench.ipynb](7_performance_evalutation/SVM_perf/scripts/svm_bench.ipynb)
 
@@ -394,7 +398,7 @@ We next evaluated our SVM-based model using the following training and validatio
 | **9. Visualize global FP/FN distribution** | Produce whole-dataset pie charts for global FP/FN percentages. |
 | **10. Species-level FP and FN exploration** | Generate side-by-side pie charts + barplots showing which organisms contribute most to FN and FP. |
 | **11. Analyze false positives** | Test whether FP sequences disproportionately contain **N-terminal transmembrane helices** (via `TMHelixFirst90` metadata). Compute fraction and visualize which organisms contribute TM-driven false positives. |
-| **12. Analyze false negatives** | Investigate why FN sequences fail: (i) compare N-terminal AA composition (train vs TP vs FN), (ii) compare SP lengths, (iii) compare top-k feature distributions. |
+| **12. Analyze false negatives** | Investigate why FN sequences fail: (1) compare N-terminal AA composition (train vs TP vs FN), (2) compare SP lengths, (3) compare top-k feature distributions. |
 | **13. Export feature importance and diagnostic plots** | Save top-k selected features, MCC-vs-k curve, and all FN/FP species distributions for downstream interpretation. |
 
 ### Performance Comparison: All features vs. selected features SVM models
@@ -415,10 +419,22 @@ To assess how consistently the SVM performs across different biological groups, 
 
 ![FP/FN sensitivity accross taxa](7_performance_evalutation/SVM_perf/Img_results/Species_dist_FP_FN.png)
 
-### Visualise global and species specific FP/FN distribution
+### Visualise species specific FP/FN distribution
 
-### analyse false positives
-### analyse false negatives 
+- **Species specific FP distribution**
+![globalFP/FN](7_performance_evalutation/SVM_perf/Img_results/FP_analysis_results/pie_bar_FP_species.png)
 
+- **Species specific FN distribution**
+![globalFP/FN](7_performance_evalutation/SVM_perf/Img_results/FN_analysis_results/pie_bar_FN_species.png)
 
+### Analyse FP/FN for bilogical interpretation
+
+| Analysis Step | Description | Visualization |
+|---------------|-------------|--------------|
+| **1. N-terminal composition differences** | Compare amino-acid frequencies (first *K* residues) between training positives, benchmark TPs, and FNs to assess whether FN sequences have atypical N-terminal composition | [View Plot](7_performance_evalutation/SVM_perf/Img_results/FN_analysis_results/bar_AAcomp_Train_TP_FN.png) |
+| **2. Signal peptide length distribution** | Compare SP length distributions for training positives, benchmark TPs, and FNs to test whether FNs have longer or shorter SPs than expected. | [View Plot](7_performance_evalutation/SVM_perf/Img_results/FN_analysis_results/SP_len_train_TP_FN.png)|
+| **3. Feature distribution shifts** | Examine whether FN sequences diverge from TP/training sequences in key physicochemical features (hydrophobicity, TM tendency, pI, charge, etc.) among the top-k selected features. | [View Plot](7_performance_evalutation/SVM_perf/Img_results/FN_analysis_results/top_k_feature_train_TP_FN.png) |
+
+**Of all the analysed features, SP length provides the clearest explanation for misclassification. As shown in the plot below, false negatives tend to have different SP lengths relative to the training positives and correctly classified benchmark sequences:**
+![View Plot](7_performance_evalutation/SVM_perf/Img_results/FN_analysis_results/SP_len_train_TP_FN.png)
 
