@@ -366,7 +366,6 @@ The following table reports the percentage contribution of each outcome within e
 ### Visualisation of outcome rates
 #### Donut Plots by Kingdom:
 
-**The table below provides links to the donut plots for each kingdom, allowing direct access to the full-outcome and FP/FN visualizations**
 | Kingdom        | Donut Plot |
 |----------------|------------|
 | Fungi          | [View Plot](donutFungi.png) |
