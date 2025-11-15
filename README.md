@@ -373,5 +373,5 @@ The following table reports the percentage contribution of each outcome within e
 | Other          | [View Plot](donutOther.png) |
 | Viridiplantae  | [View Plot](donutViridiplantae.png) |
 
-In the final stage of the evaluation, we built a [Sequence Logo](logo.png) from the `false-negative` set to explore the motif characteristics that led the model to classify them incorrectly
+In the final stage of the evaluation, we built a [Sequence Logo](7_performance_evaluation/VonHejine_perf/logo.png) from the `false-negative` set to explore the motif characteristics that led the model to classify them incorrectly
 
