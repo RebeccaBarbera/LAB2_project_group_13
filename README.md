@@ -410,7 +410,10 @@ We next evaluated our SVM-based model using the following training and validatio
 | **All Features Model**          | 199    | 1755    | 32 | 20 |
 | **Selected Features (Top-k)**   |198    | 1755    | 32 | 21 |
 
-### evaluation of model sensitivity accross taxa
+### Evaluation of model sensitivity accross taxa
+To assess how consistently the SVM performs across different biological groups, we analyzed model sensitivity across taxa. The plots highlighted below show the distribution of TP, TN, FP, and FN predictions for each organism
+
+![FP/FN sensitivity accross taxa](7_performance_evalutation/SVM_perf/Img_results/Species_dist_FP_FN.png)
 
 ### visualise global and species specific FP/FN distribution
 ### analyse false positives
