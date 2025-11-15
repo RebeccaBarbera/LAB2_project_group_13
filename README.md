@@ -377,7 +377,7 @@ The following table reports the percentage contribution of each outcome within e
 In the final stage of the evaluation, we built a [Sequence Logo](7_performance_evalutation/VonHejine_perf/logo.png) from the `false-negative` set to explore the motif characteristics that led the model to classify them incorrectly
 
 ### SVM
-We next evaluated our SVM-based model using the following training and validation workflow in the [svm_bench.ipynb](7_performance_evalutation/SVM/scripts/svm_bench.ipynb)
+We next evaluated our SVM-based model using the following training and validation workflow in the [svm_bench.ipynb](7_performance_evalutation/SVM_perf/scripts/svm_bench.ipynb)
 
 ### SVM Benchmarking Workflow
 
