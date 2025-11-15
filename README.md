@@ -324,7 +324,7 @@ The MCC results for the cross-validation folds are shown in [MCC_per_fold](6_SVM
 
 ## 7. Performance Evaluation- The Vonhejine model
 
-The VonHejine model performance was assessed using -, which implement the full benchmarking pipeline. 
+The VonHejine model performance was assessed using the [VH_bench.ipynb](7_performance_evalutation/VonHejine_perf/script/VH_bench.ipynb) script, which implement the full benchmarking pipeline. 
 
 ##### Methodology:
 
@@ -368,10 +368,10 @@ The following table reports the percentage contribution of each outcome within e
 
 | Kingdom        | Donut Plot |
 |----------------|------------|
-| Fungi          | [View Plot](donutFungi.png) |
-| Metazoa        | [View Plot](donutMetazoa.png) |
-| Other          | [View Plot](donutOther.png) |
-| Viridiplantae  | [View Plot](donutViridiplantae.png) |
+| Fungi          | [View Plot](7_performance_evalutation/VonHejine_perf/donuts/donutFungi.png) |
+| Metazoa        | [View Plot](7_performance_evalutation/VonHejine_perf/donuts/donutMetazoa.png) |
+| Other          | [View Plot](7_performance_evalutation/VonHejine_perf/donuts/donutOther.png) |
+| Viridiplantae  | [View Plot](7_performance_evalutation/VonHejine_perf/donuts/donutViridiplantae.png) |
 
 In the final stage of the evaluation, we built a [Sequence Logo](7_performance_evalutation/VonHejine_perf/logo.png) from the `false-negative` set to explore the motif characteristics that led the model to classify them incorrectly
 
