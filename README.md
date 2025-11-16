@@ -13,15 +13,15 @@ The aim of this project is to evaluate and compare different computational metho
 
 |                                                            |                                                           |
 | :--------------------------------------------------------- | :-------------------------------------------------------- |
-| [Software, Packages and Tools Needed](#software-packages-and-tools-needed) | `4.` [Data Analysis](#data-analysis)                    |
+| [Software, Packages and Tools Needed](#software-packages-and-tools-needed) | `4.` [Data Analysis](#4-data-analysis)                    |
 | `1.` [Data Collection](#1-data-collection)               | &nbsp;&nbsp;&nbsp; `4.1` [Table of context](#table-of-context) |
-| &nbsp;&nbsp;&nbsp; `1.1` [Data Filtering Pipeline](#data-filtering-pipeline) | `5` [The von Heijne Method](#the-von-heijne-method)   |
-| &nbsp;&nbsp;&nbsp; `1.2` [Dataset Summary Table](#dataset-summary) | `6.` [Support Vector Machine (SVM)](#support-vector-machine-svm) |
-| `2` [Data Pre-processing](#data-pre-processing-and-data-clustering) | &nbsp;&nbsp;&nbsp; [6.1 Results per Fold](#results-per-fold) |
-| &nbsp;&nbsp;&nbsp; `2.1` [Clustering](#clustering)           | `7` [Performance Evaluation](#performance-evaluation) |
-| &nbsp;&nbsp;&nbsp; `2.2` [Filtering into a TSV file](#filtering-into-a-tsv-file) | &nbsp;&nbsp;&nbsp; `7.1` [The Von Heijne model](#the-von-heijne-model) |
+| &nbsp;&nbsp;&nbsp; `1.1` [Data Filtering Pipeline](#data-filtering-pipeline) | `5` [The von Heijne Method](#5-the-von-heijne-method)   |
+| &nbsp;&nbsp;&nbsp; `1.2` [Dataset Summary Table](#dataset-summary) | `6.` [Support Vector Machine (SVM)](#6-support-vector-machine-svm) |
+| `2` [Data Pre-processing](#2-data-pre-processing-and-data-clustering) | &nbsp;&nbsp;&nbsp; [6.1 Results per Fold](#results-per-fold) |
+| &nbsp;&nbsp;&nbsp; `2.1` [Clustering](#clustering)           | `7` [Performance Evaluation](#7-performance-evaluation) |
+| &nbsp;&nbsp;&nbsp; `2.2` [Filtering into a TSV file](#filtering-into-a-tsv-file) | &nbsp;&nbsp;&nbsp; `7.1` [The Von Heijne model](#the-vonhejine-model) |
 | &nbsp;&nbsp;&nbsp; `2.3` [Data clustering summary table](#data-clustering-summary-table) | &nbsp;&nbsp;&nbsp; `7.2` [SVM](#svm)                       |
-| `3` [Data Splitting](#data-spliting)                    |                                                           |
+| `3` [Data Splitting](#3-data-spliting)                    |                                                           |
 | &nbsp;&nbsp;&nbsp; `3.1` [Five-fold Cross Validation](#five-fold-cross-validation) |                                                           |
 | &nbsp;&nbsp;&nbsp; `3.2` [Final TSV](#final-tsv)             |                                                           |
 
