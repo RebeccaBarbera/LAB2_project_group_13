@@ -14,7 +14,7 @@ The aim of this project is to evaluate and compare different computational metho
 |                                                            |                                                           |
 | :--------------------------------------------------------- | :-------------------------------------------------------- |
 | [Software, Packages and Tools Needed](#software-packages-and-tools-needed) | `4.` [Data Analysis](#data-analysis)                    |
-| `1.` [Data Collection](#Data-collection)               | &nbsp;&nbsp;&nbsp; `4.1` [Table of context](#table-of-context) |
+| `1.` [Data Collection](#1-.-Data-collection)               | &nbsp;&nbsp;&nbsp; `4.1` [Table of context](#table-of-context) |
 | &nbsp;&nbsp;&nbsp; `1.1` [Data Filtering Pipeline](#data-filtering-pipeline) | `5` [The von Heijne Method](#the-von-heijne-method)   |
 | &nbsp;&nbsp;&nbsp; `1.2` [Dataset Summary Table](#dataset-summary) | `6.` [Support Vector Machine (SVM)](#support-vector-machine-svm) |
 | `2` [Data Pre-processing](#data-pre-processing-and-data-clustering) | &nbsp;&nbsp;&nbsp; [6.1 Results per Fold](#results-per-fold) |
