@@ -320,6 +320,7 @@ Detection of SP, comparison with Swiss-Prot and evaluation of the model were per
 
 </div>
 
+
 [Heatmap](5_vonHejine_model/pswm_heatmap.png) and [Presicion Recall Curve](5_vonHejine_model/prc.png) were retrieved. 
 
 ## 6. Support Vector Machine- SVM
