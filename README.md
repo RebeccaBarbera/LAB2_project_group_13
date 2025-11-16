@@ -13,7 +13,7 @@ The aim of this project is to evaluate and compare different computational metho
 
 | | |
 | :--- | :--- |
-| **1.** [Software and tools needed](#software-and-tools-needed) | **4.** [Data Splitting](#data-splitting) |
+| **1.** [Software and tools needed](#software,-packages-and-tools-needed) | **4.** [Data Splitting](#data-splitting) |
 | **2.** [Data Collection](#data-collection) | &nbsp;&nbsp;&nbsp; `4.1` [Data split overall results](#data-split-overall-results) |
 | &nbsp;&nbsp;&nbsp; `2.1` [Output files for data collection](#output-files-for-data-collection) | &nbsp;&nbsp;&nbsp; `4.2` [Five-fold Cross Validation](#five-fold-cross-validation) |
 | &nbsp;&nbsp;&nbsp; `2.2` [Dataset summary table](#dataset-summary-table) | **5.** [Data analysis](#data-analysis) |
@@ -227,7 +227,7 @@ gsplit -n l/5 bench_ids_shuffled.txt fold_bench_
 
 ### Final TSV
 The final TSV contained was organised in the following columns; the UniprotAccession code, Organism name ,Kingdom, Protein length, Signal Peptide Position, Positive/Negative set , and Fold Set.
-The script used to generate the tsv file, `fold_tsv.ipynb` was written using pandas.
+The script used to generate the tsv file: [fold_tsv.ipynb](3_data_splitting/cross_folds/fold_tsv.ipynb) was written using pandas.
 
 ## 4. Data Analysis 
 #### Distribution of Protein Lengths
@@ -267,36 +267,11 @@ Detection of SP, comparison with Swiss-Prot and evaluation of the model were per
 | 3        | aa, ab, ae         | ad                  | ac               |          519 |                 6.212 |  0.722 |         0.716 |      0.728 |   0.686 |
 | 4        | aa, ab, ac         | ae                  | ad               |          522 |                 6.303 |  0.718 |         0.712 |      0.724 |   0.683 |
 | 5        | ab, ac, ad         | aa                  | ae               |          519 |                 5.735 |  0.730 |         0.670 |      0.802 |   0.697 |
- 
-<table>
-<tr>
-<td>
 
-<table>
-<tr><th>Metric</th><th>Mean ± SE</th></tr>
-<tr><td>F1 Score</td><td>0.714 ± 0.006</td></tr>
-<tr><td>Accuray</td><td>0.935 ± 0.001</td></tr>
-<tr><td>Precision</td><td>0.687 ± 0.012</td></tr>
-<tr><td>Recall</td><td>0.745 ± 0.018</td></tr>
-<tr><td>MCC</td><td>0.679 ± 0.007</td></tr>
-<tr><td>Average Threshold</td><td>6.141 ± 0.121</td></tr>
-</table>
-
-</td>
-<td>
-
-<table>
-<tr><th>Fold</th><th>TP</th><th>TN</th><th>FP</th><th>FN</th></tr>
-<tr><td>fold_aa</td><td>122</td><td>1375</td><td>54</td><td>55</td></tr>
-<tr><td>fold_ab</td><td>129</td><td>1370</td><td>71</td><td>36</td></tr>
-<tr><td>fold_ac</td><td>131</td><td>1372</td><td>52</td><td>49</td></tr>
-<tr><td>fold_ad</td><td>126</td><td>1380</td><td>51</td><td>48</td></tr>
-<tr><td>fold_ae</td><td>142</td><td>1352</td><td>70</td><td>35</td></tr>
-</table>
-
-</td>
-</tr>
-</table>
+Averaged cross-validation performance metrics for the von Heijne classifier:
+<table> <tr><th>Metric</th><th>Mean ± SE</th></tr> <tr><td>F1 Score</td><td>0.714 ± 0.006</td></tr> <tr><td>Accuracy</td><td>0.935 ± 0.001</td></tr> <tr><td>Precision</td><td>0.687 ± 0.012</td></tr> <tr><td>Recall</td><td>0.745 ± 0.018</td></tr> <tr><td>MCC</td><td>0.679 ± 0.007</td></tr> <tr><td>Average Threshold</td><td>6.141 ± 0.121</td></tr> </table>
+Confusion matrices for each fold used in cross-validation:
+<table> <tr><th>Fold</th><th>TP</th><th>TN</th><th>FP</th><th>FN</th></tr> <tr><td>fold_aa</td><td>122</td><td>1375</td><td>54</td><td>55</td></tr> <tr><td>fold_ab</td><td>129</td><td>1370</td><td>71</td><td>36</td></tr> <tr><td>fold_ac</td><td>131</td><td>1372</td><td>52</td><td>49</td></tr> <tr><td>fold_ad</td><td>126</td><td>1380</td><td>51</td><td>48</td></tr> <tr><td>fold_ae</td><td>142</td><td>1352</td><td>70</td><td>35</td></tr> </table>
 
 [Heatmap](5_vonHejine_model/pswm_heatmap.png) and [Presicion Recall Curve](5_vonHejine_model/prc.png) were retrieved. 
 
