@@ -275,6 +275,7 @@ Detection of SP, comparison with Swiss-Prot and evaluation of the model were per
 <table>
 <tr><th>Metric</th><th>Mean ± SE</th></tr>
 <tr><td>F1 Score</td><td>0.714 ± 0.006</td></tr>
+<tr><td>Accuray</td><td>0.935 ± 0.001</td></tr>
 <tr><td>Precision</td><td>0.687 ± 0.012</td></tr>
 <tr><td>Recall</td><td>0.745 ± 0.018</td></tr>
 <tr><td>MCC</td><td>0.679 ± 0.007</td></tr>
@@ -299,7 +300,7 @@ Detection of SP, comparison with Swiss-Prot and evaluation of the model were per
 
 [Heatmap](5_vonHejine_model/pswm_heatmap.png) and [Presicion Recall Curve](5_vonHejine_model/prc.png) were retrieved. 
 
-## 6. Support Vector Machine
+## 6. Support Vector Machine- SVM
 Building SVM models to enable a cross-model comparison between the Von Heijne method and machine learning–based prediction approaches. Extracting a comprehensive set of 31 physicochemical features from the N-terminal region of each protein sequence.
 - **Amino Acid Composition** (20 features) computed over the first 22 residues (k=22).
 - **Hydrophobicity** (3 features: max, mean, and std dev) based on the Kyte-Doolittle scale (k=40).
@@ -319,6 +320,13 @@ In each fold, 3 subsets are used for training and 1 for validation. A Random For
 | fold_3 |  [RF_Gini_fold3](6_SVM/RF_Gini_img/RF_Gini_fold3-2.png) |  [Accuracy_fold3](6_SVM/ACC_plots/acc_vs_features_fold3.png) |   [CM_fold3](6_SVM/CMs_per_fold/CM_fold3_ALL.png) |   [CM_Top_fold3](6_SVM/CMs_per_fold/CM_fold_3_selected_feature.png) |
 | fold_4 |  [RF_Gini_fold4](6_SVM/RF_Gini_img/RF_Gini_fold4-2.png) |  [Accuracy_fold4](6_SVM/ACC_plots/acc_vs_features_fold4.png) |   [CM_fold4](6_SVM/CMs_per_fold/CM_fold4_ALL.png) |   [CM_Top_fold4](6_SVM/CMs_per_fold/CM_fold_4_selected_feature.png) |
 | fold_5 |  [RF_Gini_fold5](6_SVM/RF_Gini_img/RF_Gini_fold5-2.png) |  [Accuracy_fold5](6_SVM/ACC_plots/acc_vs_features_fold5.png) |   [CM_fold5](6_SVM/CMs_per_fold/CM_fold5_ALL.png) |   [CM_Top_fold5](6_SVM/CMs_per_fold/CM_fold_5_selected_feature.png) |
+
+| **Metric**   | **All Features** | **Selected Features** |
+| ------------ | ---------------- | --------------------- |
+| **Accuracy** | **0.9529**       | **0.9585**            |
+| **F1 Score** | **0.7834**       | **0.8073**            |
+| **MCC**      | **0.7573**       | **0.7842**            |
+
 
 The MCC results for the cross-validation folds are shown in [MCC_per_fold](6_SVM/MCC_per_fold/MCC_PER_FOLD.png). 
 
@@ -349,6 +357,7 @@ The VonHejine model performance was assessed using the [VH_bench.ipynb](7_perfor
 #### Based on this matrix, we obtain:
 
 - **F1-score** = 0.631
+- **Accuracy** = 0.877
 - **Precision** = 0.469
 - **Recall** = 0.963
 - **MCC** = 0.620
