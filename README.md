@@ -11,17 +11,20 @@ The aim of this project is to evaluate and compare different computational metho
 
 ## Table of Contents
 
-| | |
-| :--- | :--- |
-| **1.** [Software and tools needed](#Software-packages-and-tools-needed) | **4.** [Data Splitting](#data-splitting) |
-| **2.** [Data Collection](#data-collection) | &nbsp;&nbsp;&nbsp; `4.1` [Data split overall results](#data-split-overall-results) |
-| &nbsp;&nbsp;&nbsp; `2.1` [Output files for data collection](#output-files-for-data-collection) | &nbsp;&nbsp;&nbsp; `4.2` [Five-fold Cross Validation](#five-fold-cross-validation) |
-| &nbsp;&nbsp;&nbsp; `2.2` [Dataset summary table](#dataset-summary-table) | **5.** [Data analysis](#data-analysis) |
-| **3.** [Data Filtering Pipeline](#data-filtering-pipeline) | &nbsp;&nbsp;&nbsp; `5.1` [Comparative Amino Acid Composition](#comparative-amino-acid-composition) |
-| &nbsp;&nbsp;&nbsp; `3.1` [Clustering](#clustering) | &nbsp;&nbsp;&nbsp; `5.2` [Taxonomic Classification](#taxonomic-classification) |
-| &nbsp;&nbsp;&nbsp; `3.2` [Filtering into a TSV file](#filtering-into-a-tsv-file) | **6.** [Von Heijen Model](#von-heijen-model) |
-| &nbsp;&nbsp;&nbsp; `3.3` [Data clustering table](#data-clustering-table) | **7.** [Support Vector Machine (SVM)](#support-vector-machine-svm) |
-| | **8.** [Performance Evaluation](#performance-evaluation) |
+|                                    |                                           |
+| :--------------------------------- | :---------------------------------------- |
+| [Software and tools needed](#software-packages-and-tools-needed) | **3. Data Splitting** |
+| **1. Data Collection** | &nbsp;&nbsp;&nbsp; `3.1` Five-fold Cross Validation |
+| &nbsp;&nbsp;&nbsp; `1.1` Data Filtering Pipeline | &nbsp;&nbsp;&nbsp; `3.2` Final TSV |
+| &nbsp;&nbsp;&nbsp; `1.2` Dataset summary table | **4. Data Analysis** |
+| **2. Data Pre-processing** | &nbsp;&nbsp;&nbsp; `4.1` Table of context |
+| &nbsp;&nbsp;&nbsp; `2.1` Clustering | **5. The von Heijne Method** |
+| &nbsp;&nbsp;&nbsp; `2.2` Filtering into a TSV file | **6. Support Vector Machine (SVM)** |
+| &nbsp;&nbsp;&nbsp; `2.3` Data clustering summary table | &nbsp;&nbsp;&nbsp; `6.1` Results per Fold |
+|                                     | **7. Performance Evaluation** |
+|                                     | &nbsp;&nbsp;&nbsp; `7.1` The Von Heijne model |
+|                                     | &nbsp;&nbsp;&nbsp; `7.2` SVM |
+
 ## Software, packages and tools needed
 
 > `Python 3` → main programming language for data processing.
