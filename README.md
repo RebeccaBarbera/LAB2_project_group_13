@@ -315,21 +315,23 @@ In each fold, 3 subsets are used for training and 1 for validation. A Random For
 
 - The following table reports the **summarised performance of the SVM classifier during 5-fold cross-validation**, showing hyperparameters selected per fold together with accuracy and F1 scores computed using all features vs. selected features:
 
-| **Fold** | **k** | **C** | **Gamma** | **Kernel** | **Accuracy (All)** | **Accuracy (Selected)** | **F1 (All)** | **F1 (Selected)** |
-| :------: | :---: | :---: | :-------: | :--------: | :----------------: | :---------------------: | :----------: | :---------------: |
-|   **1**  |   23  |  1.0  |   scale   |     rbf    |      0.943960      |         0.954545        |   0.739884   |      0.788406     |
-|   **2**  |   25  |  1.0  |   scale   |     rbf    |      0.954545      |         0.957036        |   0.780781   |      0.791541     |
-|   **3**  |   25  |  1.0  |    0.01   |     rbf    |      0.964464      |         0.966958        |   0.841226   |      0.852368     |
-|   **4**  |   25  |  1.0  |   scale   |     rbf    |      0.954517      |         0.960748        |   0.798898   |      0.821530     |
-|   **5**  |   31  |  1.0  |   scale   |     rbf    |      0.946842      |         0.953096        |   0.756447   |      0.782609     |
+| *Fold* | *k* | *C* | *Gamma* | *Kernel* | *Accuracy (All)* | *Accuracy (Selected)* | *F1 (All)* | *F1 (Selected)* | *MCC (All)* | *MCC (Selected)* | *Precision (All)* | *Precision (Selected)* | *Recall (All)* | *Recall (Selected)* |
+| :------: | :---: | :---: | :-------: | :--------: | :----------------: | :---------------------: | :----------: | :---------------: | :------------: | :------------------: | :------------------: | :------------------------: | :--------------: | :--------------------: |
+| *1* | 23 | 1.0 | scale | rbf | 0.943960 | 0.954545 | 0.739884 | 0.788406 | 0.708739 | 0.763289 | 0.757396 | 0.809524 | 0.723164 | 0.768362 |
+| *2* | 25 | 1.0 | scale | rbf | 0.954545 | 0.957036 | 0.780781 | 0.791541 | 0.755465 | 0.767595 | 0.773810 | 0.789157 | 0.787879 | 0.793939 |
+| *3* | 25 | 1.0 | 0.01  | rbf | 0.964464 | 0.966958 | 0.841226 | 0.852368 | 0.821223 | 0.833769 | 0.843575 | 0.854749 | 0.838889 | 0.850000 |
+| *4* | 25 | 1.0 | scale | rbf | 0.954517 | 0.960748 | 0.798898 | 0.821530 | 0.774147 | 0.799585 | 0.767196 | 0.810056 | 0.833333 | 0.833333 |
+| *5* | 31 | 1.0 | scale | rbf | 0.946842 | 0.953096 | 0.756447 | 0.782609 | 0.726713 | 0.756664 | 0.767442 | 0.803571 | 0.745763 | 0.762712 |
 
 - The table below summarises **the overall average performance across all cross-validation folds**, comparing SVM models trained on all features versus those trained on selected features
 
-| **Metric**   | **All Features** | **Selected Features** |
-| ------------ | ---------------- | --------------------- |
-| **Accuracy** | **0.9529**       | **0.9585**            |
-| **F1 Score** | **0.7834**       | **0.8073**            |
-| **MCC**      | **0.7573**       | **0.7842**            |
+| *Metric*     | *All Features*        | *Selected Features*     |
+| -------------- | ----------------------- | -------------------------- |
+| *Accuracy*   | 0.9529                  | 0.9585                     |
+| *F1 Score*   | 0.7834                  | 0.8073                     |
+| *MCC*        | 0.7573                  | 0.7842                     |
+| *Precision*  | 0.7815 ± 0.0155         | 0.8130 ± 0.0115            |
+| *Recall*     | 0.7858 ± 0.0180         | 0.8013 ± 0.0168            |
 
 The MCC results for the cross-validation folds are shown in [MCC_per_fold](6_SVM/MCC_per_fold/MCC_PER_FOLD.png). 
 
