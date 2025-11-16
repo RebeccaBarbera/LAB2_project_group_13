@@ -134,7 +134,7 @@ The first step of data pre-processing consists in using clustering methods to re
 cross-validation experiments
   - the **`benchmark set`** (also known as the holdout set):  used to test the generalization performance of the different models
 
-### Clustering
+#### Clustering
 **Clustering** is executed with a software suite called **`MMseq2`**, the fastest method available for clustering, due to the implementation of three distinct clustering modes: `Greedy set cover`, `Greedy incremental` and `Connected-component clustering`.
 
 The following commands have been used to cluster both positive and negative datasets into two different clustered sets:
