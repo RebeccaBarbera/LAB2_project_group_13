@@ -244,6 +244,16 @@ The distribution of SP lengths were also visualized in R Studio using density pl
 Amino acid composition of Signal Peptides (SPs) were compared against the background distribution of amino acids in SwissProt (data from [Expasy](https://web.expasy.org/docs/relnotes/relstat.html)). 
 Extraction of all SP sequences, calculation of their amino acid frequencies, and plotting them against the SwissProt distribution were performed.
 
+---
+
+#### Sequence Logo analysis
+Sequence logos were generated for both the training and benchmark sets by extracting a fixed window around the annotated cleavage site. The logos display the amino-acid frequencies around the SP C-terminal region and show a consistent hydrophobic pattern across both sets, confirming that the cleavage-site characteristics are preserved after the dataset split.
+
+---
+
+#### Organism distribution
+The organism distribution was examined by counting the species represented in each dataset. Bar plots highlight that most sequences originate from well-studied eukaryotes such as Homo sapiens, Mus musculus, Saccharomyces cerevisiae, and Arabidopsis thaliana, alongside a broad range of other metazoan, fungal, and plant species.
+
 ###### Taxonomic classification of the proteins was performed at both the kingdom and organism levels. The relative abundances of taxa in each dataset were visualized using pie charts.
 
 
@@ -254,6 +264,8 @@ Extraction of all SP sequences, calculation of their amino acid frequencies, and
 | Distribution of SP Position        | [SPP distribution](4_data_analysis/SPPosition.png) |
 | Comparative Amino Acid Composition | [AA Composition](4_data_analysis/AA_comparison.png) |
 | Taxonomic Classification           | [Benchmark Classification](4_data_analysis/Kingdom_dist_bench.png) / [Training Classification](4_data_analysis/Kingdom_dist_train.png) |
+| Organisms distribution | [Benchmark Org Classification](4_data_analysis/organism_dist_bench.png) / [Training Org Classification](4_data_analysis/organism_dist_train.png) |
+| Sequence Logos | [Benchmark Logo](4_data_analysis/seq_logo_bh.png) / [Training Logo](4_data_analysis/seq_logo_tr.png) |
 
 ## 5. The von Heijne Method
 The main idea is to use use a ***Position-Speciﬁc Weight Matrix (PSWM)*** in order to model amino acid distribution around known cleavage sites. The retrieved scores were first stored in a ***PSPM*** and then a background model (Swiss-Prot database) was used as a reference amino acid distribution to compare our motifs against.
