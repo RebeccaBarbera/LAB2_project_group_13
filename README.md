@@ -13,7 +13,7 @@ The aim of this project is to evaluate and compare different computational metho
 
 | | |
 | :--- | :--- |
-| **1.** [Software and tools needed](#software,-packages-and-tools-needed) | **4.** [Data Splitting](#data-splitting) |
+| **1.** [Software and tools needed](#Software,-packages-and-tools-needed) | **4.** [Data Splitting](#data-splitting) |
 | **2.** [Data Collection](#data-collection) | &nbsp;&nbsp;&nbsp; `4.1` [Data split overall results](#data-split-overall-results) |
 | &nbsp;&nbsp;&nbsp; `2.1` [Output files for data collection](#output-files-for-data-collection) | &nbsp;&nbsp;&nbsp; `4.2` [Five-fold Cross Validation](#five-fold-cross-validation) |
 | &nbsp;&nbsp;&nbsp; `2.2` [Dataset summary table](#dataset-summary-table) | **5.** [Data analysis](#data-analysis) |
