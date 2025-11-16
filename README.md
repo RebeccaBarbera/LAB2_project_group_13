@@ -99,9 +99,9 @@ and specific criteria per datase:
 - Filter-out sequences having SP (any evidence)
 - Select only proteins experimentally verified to be localized into: cytosol, nucleus, mitochondrion, plastid, peroxisome, cell membrane.
 
-To filter both dataset the custom python script `data-gathering.py` was used.
+To filter both dataset the custom python script [data-gathering.py](data_collection/data-gathering.py) was used.
 
-`positive_set.tsv` and `negative_set.tsv` files was obtained, both containing these parameters:
+`positive_set.tsv` and `negative_set.tsv` files were obtained, containing these parameters:
 - The protein UniProt accession number
 - The organism's name
 - The Eukaryotic kingdom (Metazoa, Fungi, Plants, Other)
@@ -226,8 +226,8 @@ gsplit -n l/5 bench_ids_shuffled.txt fold_bench_
 ```
 
 ### Final TSV
-The final TSV contained was organised in the following columns; the UniprotAccession code, Organism name ,Kingdom, Protein length, Signal Peptide Position, Positive/Negative set , and Fold Set.
-The script used to generate the tsv file: [fold_tsv.ipynb](3_data_splitting/cross_folds/fold_tsv.ipynb) was written using pandas.
+The final TSV was organised in the following columns: (1) UniprotAccession number, (2) Organism name , (3) Kingdom, (4) Protein length, (5) Signal Peptide Position, (6) Positive/Negative set , (7) and Fold Set.
+The script used to generate the tsv file: [fold_tsv.ipynb](3_data_spliting/cross_folds/fold_tsv.ipynb) was written using pandas.
 
 ## 4. Data Analysis 
 #### Distribution of Protein Lengths
