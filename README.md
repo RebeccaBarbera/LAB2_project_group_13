@@ -354,7 +354,7 @@ The VonHejine model performance was assessed using the [VH_bench.ipynb](7_perfor
 
 #### The confusion matrix summarizing the model’s predictions is as follows:
 
-[CM-VH-performance](7_performance_evalutation/VonHejine_perf/CM_VH_performance.png)
+![CM-VH-performance](7_performance_evalutation/VonHejine_perf/CM_VH_performance.png)
 
 #### Based on this matrix, we obtain:
 
