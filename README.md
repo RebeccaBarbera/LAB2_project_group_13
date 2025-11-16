@@ -13,15 +13,15 @@ The aim of this project is to evaluate and compare different computational metho
 
 |                                                            |                                                           |
 | :--------------------------------------------------------- | :-------------------------------------------------------- |
-| [Software and tools needed](#software-packages-and-tools-needed) | **4. Data Analysis**                                      |
-| **1. Data Collection**                                     | &nbsp;&nbsp;&nbsp; [4.1 Table of context](#table-of-context) |
-| &nbsp;&nbsp;&nbsp; [1.1 Data filtering](#data-filtering-pipeline) | **5. The von Heijne Method**                             |
-| &nbsp;&nbsp;&nbsp; [1.2 Dataset summary table](#dataset-summary) | **6. Support Vector Machine (SVM)**                      |
-| **2. Data Pre-processing**                                 | &nbsp;&nbsp;&nbsp; [6.1 Results per Fold](#results-per-fold) |
-| &nbsp;&nbsp;&nbsp; [2.1 Clustering](#clustering)           | **7. Performance Evaluation**                            |
+| [Software and tools needed](#software-packages-and-tools-needed) | **4.** [Data Analysis](#Data-Analysis)                                      |
+| **1.** [Data Collection](#Data-colletion)                                     | &nbsp;&nbsp;&nbsp; [4.1 Table of context](#table-of-context) |
+| &nbsp;&nbsp;&nbsp; [1.1 Data filtering](#data-filtering-pipeline) | **5.** [The von Heijne Method](#The-von-Heijne-method)                             |
+| &nbsp;&nbsp;&nbsp; [1.2 Dataset summary table](#dataset-summary) | **6.** [Support Vector Machine (SVM)](#Support-vector-machine-SVM)                      |
+| **2.** [Data Pre-processing](Data-pre-processing-and-Data-clustering)                                 | &nbsp;&nbsp;&nbsp; [6.1 Results per Fold](#results-per-fold) |
+| &nbsp;&nbsp;&nbsp; [2.1 Clustering](#Clustering)           | **7.** [Performance Evaluation](#Performance-evaluation)                            |
 | &nbsp;&nbsp;&nbsp; [2.2 Filtering into a TSV file](#filtering-into-a-tsv-file) | &nbsp;&nbsp;&nbsp; [7.1 The Von Heijne model](#the-von-heijne-model) |
 | &nbsp;&nbsp;&nbsp; [2.3 Data clustering summary table](#data-clustering-summary-table) | &nbsp;&nbsp;&nbsp; [7.2 SVM](#svm)                       |
-| **3. Data Splitting**                                      |                                                           |
+| **3.** [Data Splitting](#Data-spliting)                                      |                                                           |
 | &nbsp;&nbsp;&nbsp; [3.1 Five-fold Cross Validation](#five-fold-cross-validation) |                                                           |
 | &nbsp;&nbsp;&nbsp; [3.2 Final TSV](#final-tsv)             |                                                           |
 
