@@ -354,10 +354,7 @@ The VonHejine model performance was assessed using the [VH_bench.ipynb](7_perfor
 
 #### The confusion matrix summarizing the model’s predictions is as follows:
 
-- **True Negatives (TN)**: 1548
-- **False Positives (FP)**: 239
-- **False Negatives (FN)**: 8
-- **True Positives (TP**): 211
+[CM-VH-performance](7_performance_evalutation/VonHejine_perf/CM_VH_performance.png)
 
 #### Based on this matrix, we obtain:
 
