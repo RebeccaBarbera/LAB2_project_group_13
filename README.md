@@ -321,12 +321,23 @@ In each fold, 3 subsets are used for training and 1 for validation. A Random For
 | fold_4 |  [RF_Gini_fold4](6_SVM/RF_Gini_img/RF_Gini_fold4-2.png) |  [Accuracy_fold4](6_SVM/ACC_plots/acc_vs_features_fold4.png) |   [CM_fold4](6_SVM/CMs_per_fold/CM_fold4_ALL.png) |   [CM_Top_fold4](6_SVM/CMs_per_fold/CM_fold_4_selected_feature.png) |
 | fold_5 |  [RF_Gini_fold5](6_SVM/RF_Gini_img/RF_Gini_fold5-2.png) |  [Accuracy_fold5](6_SVM/ACC_plots/acc_vs_features_fold5.png) |   [CM_fold5](6_SVM/CMs_per_fold/CM_fold5_ALL.png) |   [CM_Top_fold5](6_SVM/CMs_per_fold/CM_fold_5_selected_feature.png) |
 
+- The following table reports the **summarised performance of the SVM classifier during 5-fold cross-validation**, showing hyperparameters selected per fold together with accuracy and F1 scores computed using all features vs. selected features:
+
+| **Fold** | **k** | **C** | **Gamma** | **Kernel** | **Accuracy (All)** | **Accuracy (Selected)** | **F1 (All)** | **F1 (Selected)** |
+| :------: | :---: | :---: | :-------: | :--------: | :----------------: | :---------------------: | :----------: | :---------------: |
+|   **1**  |   23  |  1.0  |   scale   |     rbf    |      0.943960      |         0.954545        |   0.739884   |      0.788406     |
+|   **2**  |   25  |  1.0  |   scale   |     rbf    |      0.954545      |         0.957036        |   0.780781   |      0.791541     |
+|   **3**  |   25  |  1.0  |    0.01   |     rbf    |      0.964464      |         0.966958        |   0.841226   |      0.852368     |
+|   **4**  |   25  |  1.0  |   scale   |     rbf    |      0.954517      |         0.960748        |   0.798898   |      0.821530     |
+|   **5**  |   31  |  1.0  |   scale   |     rbf    |      0.946842      |         0.953096        |   0.756447   |      0.782609     |
+
+- The table below summarises **the overall average performance across all cross-validation folds**, comparing SVM models trained on all features versus those trained on selected features
+
 | **Metric**   | **All Features** | **Selected Features** |
 | ------------ | ---------------- | --------------------- |
 | **Accuracy** | **0.9529**       | **0.9585**            |
 | **F1 Score** | **0.7834**       | **0.8073**            |
 | **MCC**      | **0.7573**       | **0.7842**            |
-
 
 The MCC results for the cross-validation folds are shown in [MCC_per_fold](6_SVM/MCC_per_fold/MCC_PER_FOLD.png). 
 
