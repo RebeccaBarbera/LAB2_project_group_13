@@ -16,7 +16,7 @@ The aim of this project is to evaluate and compare different computational metho
 | [Software, Packages and Tools Needed](#software-packages-and-tools-needed) | `4.` [Data Analysis](#4-data-analysis)                    |
 | `1.` [Data Collection](#1-data-collection)               | &nbsp;&nbsp;&nbsp; `4.1` [Table of context](#table-of-context) |
 | &nbsp;&nbsp;&nbsp; `1.1` [Data Filtering Pipeline](#data-filtering-pipeline) | `5` [The von Heijne Method](#5-the-von-heijne-method)   |
-| &nbsp;&nbsp;&nbsp; `1.2` [Dataset Summary Table](#dataset-summary) | `6.` [Support Vector Machine (SVM)](#6-support-vector-machine-svm) |
+| &nbsp;&nbsp;&nbsp; `1.2` [Dataset Summary Table](#dataset-summary) | `6.` [Support Vector Machine (SVM)](##6-support-vector-machine--svm) |
 | `2` [Data Pre-processing](#2-data-pre-processing-and-data-clustering) | &nbsp;&nbsp;&nbsp; [6.1 Results per Fold](#results-per-fold) |
 | &nbsp;&nbsp;&nbsp; `2.1` [Clustering](#clustering)           | `7` [Performance Evaluation](#7-performance-evaluation) |
 | &nbsp;&nbsp;&nbsp; `2.2` [Filtering into a TSV file](#filtering-into-a-tsv-file) | &nbsp;&nbsp;&nbsp; `7.1` [The Von Heijne model](#the-vonhejine-model) |
@@ -134,6 +134,7 @@ The first step of data pre-processing consists in using clustering methods to re
 cross-validation experiments
   - the **`benchmark set`** (also known as the holdout set):  used to test the generalization performance of the different models
 
+### Clustering
 **Clustering** is executed with a software suite called **`MMseq2`**, the fastest method available for clustering, due to the implementation of three distinct clustering modes: `Greedy set cover`, `Greedy incremental` and `Connected-component clustering`.
 
 The following commands have been used to cluster both positive and negative datasets into two different clustered sets:
