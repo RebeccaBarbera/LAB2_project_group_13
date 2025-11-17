@@ -261,7 +261,7 @@ The organism distribution was examined by counting the species represented in ea
 
 ---
 
-#### The data analysis script is can he found [here](4_data_analysis/data_analysis.ipynb)
+#### The data analysis script can be found [here](4_data_analysis/data_analysis.ipynb)
 
 ###### Taxonomic classification of the proteins was performed at both the kingdom and organism levels. The relative abundances of taxa in each dataset were visualized using pie charts.
 
@@ -279,7 +279,7 @@ The organism distribution was examined by counting the species represented in ea
 ## 5. The von Heijne Method
 The main idea is to use use a ***Position-Speciﬁc Weight Matrix (PSWM)*** in order to model amino acid distribution around known cleavage sites. The retrieved scores were first stored in a ***PSPM*** and then a background model (Swiss-Prot database) was used as a reference amino acid distribution to compare our motifs against.
 
-Detection of SP, comparison with Swiss-Prot and evaluation of the model were performed using the script [vonHejine.ipynb](5_vonHejine_model/vonHejine.ipynb)
+Detection of SP, comparison with Swiss-Prot and evaluation of the model were performed using the script [vonHejine.ipynb](5_vonHejine_model/script/vonHejine.ipynb).
  
  | *Fold* | *Training Folds* | *Validation Fold* | *Testing Fold* | *Motifs* | *Optimal Threshold* | *F1* | *Precision* | *Recall* | *MCC* |
 | :------- | :----------------- | :------------------ | :--------------- | -----------: | --------------------: | -----: | ------------: | ---------: | ------: |
@@ -300,7 +300,6 @@ Confusion matrix summarising overall cross-validation results:
 ![CM](5_vonHejine_model/images/VH_overall_CM.png)
 
 [Heatmap](5_vonHejine_model/images/pswm_heatmap.png) and [Presicion Recall Curve](5_vonHejine_model/images/prc.png) were also retrieved. 
-##### For further details please refer to our vonHejine pipeline script [here](5_vonHejine_model/script/vonHejine.ipynb).
 
 ## 6. Support Vector Machine- SVM
 Building SVM models to enable a cross-model comparison between the Von Heijne method and machine learning–based prediction approaches. Extracting a comprehensive set of 31 physicochemical features from the N-terminal region of each protein sequence.
