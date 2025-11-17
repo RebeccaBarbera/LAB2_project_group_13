@@ -466,3 +466,9 @@ To assess how consistently the SVM performs across different biological groups, 
 **Of all the analysed features, SP length provides the clearest explanation for misclassification. As shown in the plot below, false negatives tend to have different SP length distribution relative to the training positives and correctly classified benchmark sequences:**
 ![View Plot](7_performance_evalutation/SVM_perf/Img_results/FN_analysis_results/SP_len_train_TP_FN.png)
 
+## vonHejine and SVM overall performance results
+| Model       | Accuracy | Precision | Recall | F1    | MCC   |
+|-------------|----------|-----------|--------|-------|-------|
+| von Heijne  | 0.938    | 0.677     | 0.822  | 0.742 | 0.712 |
+| SVM         | 0.974    | 0.861     | 0.904  | 0.882 | 0.867 |
+
