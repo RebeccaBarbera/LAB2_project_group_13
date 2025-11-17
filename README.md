@@ -361,11 +361,11 @@ The VonHejine model performance was assessed using the [VH_bench.ipynb](7_perfor
 
 #### Based on this matrix, we obtain:
 
-- **F1-score** = 0.631
-- **Accuracy** = 0.877
-- **Precision** = 0.469
-- **Recall** = 0.963
-- **MCC** = 0.620
+- **F1-score** = 0.742
+- **Accuracy** = 0.938
+- **Precision** = 0.677
+- **Recall** = 0.822
+- **MCC** = 0.712
 
 ### Kingdom-Level Percentage Distribution
 To assess whether model performance varies across evolutionary groups, we computed per-kingdom TP, TN, FP, and FN statistics.
@@ -373,10 +373,14 @@ The following table reports the percentage contribution of each outcome within e
 
 | Kingdom        | TP (%) | TN (%) | FP (%) | FN (%) |
 |----------------|--------|--------|--------|--------|
-| Fungi          | 0.58   | 95.33  | 0.97   | 3.11   |
-| Metazoa        | 3.00   | 81.70  | 2.73   | 12.57  |
-| Other          | 1.53   | 83.16  | 2.55   | 12.76  |
-| Viridiplantae  | 1.53   | 90.57  | 3.36   | 4.54   |
+| Fungi          | 2.85   | 95.93  | 0.81   | 0.41   |
+| Metazoa        | 12.40  | 79.48  | 5.26   | 2.85   |
+| Other          | 5.41   | 83.78  | 8.11   | 2.70   |
+| Viridiplantae  | 7.00   | 86.27  | 5.60   | 1.12   |
+
+### FP/FN rates calculation
+- **FP rate:** 4.81%
+- **FN rate:** 17.81%
 
 ### Visualisation of outcome rates
 #### Donut Plots by Kingdom:
@@ -390,8 +394,8 @@ The following table reports the percentage contribution of each outcome within e
 
 In the final stage of the evaluation, we built a [Sequence Logo](7_performance_evalutation/VonHejine_perf/logo.png) from the `false-negative` set to explore the motif characteristics that led the model to classify them incorrectly
 
-![Sequence Logo](7_performance_evalutation/VonHejine_perf/logo.png)
 
+![Sequence Logo](7_performance_evalutation/VonHejine_perf/logo.png)
 
 
 ### SVM
@@ -428,6 +432,10 @@ We next evaluated our SVM-based model using the following training and validatio
 | **All Features Model**          | 199    | 1755    | 32 | 20 |
 | **Selected Features (Top-k)**   |198    | 1755    | 32 | 21 |
 
+### FP/FN rates calculation
+- **FP rate:** 1.79%
+- **FN rate:** 9.13%
+
 ### Evaluation of model sensitivity accross taxa
 To assess how consistently the SVM performs across different biological groups, we analyzed model sensitivity across taxa. The plots highlighted below show the distribution of TP, TN, FP, and FN predictions for each organism
 
@@ -449,6 +457,6 @@ To assess how consistently the SVM performs across different biological groups, 
 | **2. Signal peptide length distribution** | Compare SP length distributions for training positives, benchmark TPs, and FNs to test whether FNs have longer or shorter SPs than expected. | [View Plot](7_performance_evalutation/SVM_perf/Img_results/FN_analysis_results/SP_len_train_TP_FN.png)|
 | **3. Feature distribution shifts** | Examine whether FN sequences diverge from TP/training sequences in key physicochemical features (hydrophobicity, TM tendency, pI, charge, etc.) among the top-k selected features. | [View Plot](7_performance_evalutation/SVM_perf/Img_results/FN_analysis_results/top_k_feature_train_TP_FN.png) |
 
-**Of all the analysed features, SP length provides the clearest explanation for misclassification. As shown in the plot below, false negatives tend to have different SP lengths relative to the training positives and correctly classified benchmark sequences:**
+**Of all the analysed features, SP length provides the clearest explanation for misclassification. As shown in the plot below, false negatives tend to have different SP length distribution relative to the training positives and correctly classified benchmark sequences:**
 ![View Plot](7_performance_evalutation/SVM_perf/Img_results/FN_analysis_results/SP_len_train_TP_FN.png)
 
