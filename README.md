@@ -259,7 +259,9 @@ Sequence logos were generated for both the training and benchmark sets by extrac
 #### Organism distribution
 The organism distribution was examined by counting the species represented in each dataset. Bar plots highlight that most sequences originate from well-studied eukaryotes such as Homo sapiens, Mus musculus, Saccharomyces cerevisiae, and Arabidopsis thaliana, alongside a broad range of other metazoan, fungal, and plant species.
 
-- the data analysis script is can he found [here](4_data_analysis/data_analysis.ipynb)
+---
+
+#### The data analysis script is can he found [here](4_data_analysis/data_analysis.ipynb)
 
 ###### Taxonomic classification of the proteins was performed at both the kingdom and organism levels. The relative abundances of taxa in each dataset were visualized using pie charts.
 
