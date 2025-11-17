@@ -290,12 +290,15 @@ Detection of SP, comparison with Swiss-Prot and evaluation of the model were per
 Averaged cross-validation performance metrics for the von Heijne classifier:
 <table> <tr><th>Metric</th><th>Mean ± SE</th></tr> <tr><td>F1 Score</td><td>0.714 ± 0.006</td></tr> <tr><td>Accuracy</td><td>0.935 ± 0.001</td></tr> <tr><td>Precision</td><td>0.687 ± 0.012</td></tr> <tr><td>Recall</td><td>0.745 ± 0.018</td></tr> <tr><td>MCC</td><td>0.679 ± 0.007</td></tr> <tr><td>Average Threshold</td><td>6.141 ± 0.121</td></tr> </table>
 
-Confusion matrices for each fold used in cross-validation:
+Cross-validation results of TP/TNFP/FN for each fold used:
 
 <table> <tr><th>Fold</th><th>TP</th><th>TN</th><th>FP</th><th>FN</th></tr> <tr><td>fold_aa</td><td>122</td><td>1375</td><td>54</td><td>55</td></tr> <tr><td>fold_ab</td><td>129</td><td>1370</td><td>71</td><td>36</td></tr> <tr><td>fold_ac</td><td>131</td><td>1372</td><td>52</td><td>49</td></tr> <tr><td>fold_ad</td><td>126</td><td>1380</td><td>51</td><td>48</td></tr> <tr><td>fold_ae</td><td>142</td><td>1352</td><td>70</td><td>35</td></tr> </table>
 
+Confusion matrix summarising overall cross-validation results:
+![CM](5_vonHejine_model/images/VH_overall_CM.png)
 
-[Heatmap](5_vonHejine_model/pswm_heatmap.png) and [Presicion Recall Curve](5_vonHejine_model/prc.png) were retrieved. 
+[Heatmap](5_vonHejine_model/images/pswm_heatmap.png) and [Presicion Recall Curve](5_vonHejine_model/images/prc.png) were also retrieved. 
+##### For further details please refer to our vonHejine pipeline script [here](5_vonHejine_model/script/vonHejine.ipynb).
 
 ## 6. Support Vector Machine- SVM
 Building SVM models to enable a cross-model comparison between the Von Heijne method and machine learning–based prediction approaches. Extracting a comprehensive set of 31 physicochemical features from the N-terminal region of each protein sequence.
