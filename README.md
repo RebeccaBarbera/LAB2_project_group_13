@@ -235,7 +235,6 @@ The final TSV was organised in the following columns: (1) UniprotAccession numbe
 The script used to generate the tsv file: [fold_tsv.ipynb](3_data_spliting/cross_folds/fold_tsv.ipynb) was written using pandas.
 
 ## 4. Data Analysis 
-- the data analysis script is can he found [here](4_data_analysis/data-analysis.ipynb)
 #### Distribution of Protein Lengths
 Protein length distributions were visualized in R Studio using density plots for the positive and negative sequences in both the training and benchmark sets. To avoid distortion from a small number of very long sequences, the density plots were constructed on a logarithmic scale. 
 
@@ -259,6 +258,8 @@ Sequence logos were generated for both the training and benchmark sets by extrac
 
 #### Organism distribution
 The organism distribution was examined by counting the species represented in each dataset. Bar plots highlight that most sequences originate from well-studied eukaryotes such as Homo sapiens, Mus musculus, Saccharomyces cerevisiae, and Arabidopsis thaliana, alongside a broad range of other metazoan, fungal, and plant species.
+
+- the data analysis script is can he found [here](4_data_analysis/data_analysis.ipynb)
 
 ###### Taxonomic classification of the proteins was performed at both the kingdom and organism levels. The relative abundances of taxa in each dataset were visualized using pie charts.
 
