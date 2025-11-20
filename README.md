@@ -94,7 +94,7 @@ The next step is to filter the dataset to meet common criteria (Positive and Neg
 - Filter-out sequences shorter than 40 residues
 - Filter-out unreviewed proteins
 - Protein existence: evidence at protein level
-and specific criteria per datase:
+and specific criteria per dataset:
 ##### Positive Dataset Criteria
 - Select only proteins with experimental SP evidence
 - Filter out proteins with SP shorter than 14 residues
@@ -103,7 +103,7 @@ and specific criteria per datase:
 - Filter-out sequences having SP (any evidence)
 - Select only proteins experimentally verified to be localized into: cytosol, nucleus, mitochondrion, plastid, peroxisome, cell membrane.
 
-To filter both dataset the custom python script [data-gathering.py](data_collection/data-gathering.py) was used.
+To filter both dataset the custom python script [data-gathering.py](1_data_collection/data-gathering.py) was used.
 
 `positive_set.tsv` and `negative_set.tsv` files were obtained, containing these parameters:
 - The protein UniProt accession number
@@ -129,7 +129,7 @@ A fifth parameter:
 
 
 ## 2. Data pre-processing and Data Clustering
-The first step of data pre-processing consists in using clustering methods to remove non-reduntant sequences from the dataset. Clustered data will be further split into two sets:
+The first step of data pre-processing consists in using clustering methods to remove reduntant sequences from the dataset. Clustered data will be further split into two sets:
   - the **`training set`**: used to train the methods, optimize model hyperparameters and perform
 cross-validation experiments
   - the **`benchmark set`** (also known as the holdout set):  used to test the generalization performance of the different models
@@ -246,8 +246,8 @@ The distribution of SP lengths were also visualized in R Studio using density pl
 ---
 
 #### Comparative Amino Acid Composition
-Amino acid composition of Signal Peptides (SPs) were compared against the background distribution of amino acids in SwissProt (data from [Expasy](https://web.expasy.org/docs/relnotes/relstat.html)). 
-Extraction of all SP sequences, calculation of their amino acid frequencies, and plotting them against the SwissProt distribution were performed.
+Amino acid composition of Signal Peptides (SPs) was compared against the background distribution of amino acids in SwissProt (data from [Expasy](https://web.expasy.org/docs/relnotes/relstat.html)). 
+Extraction of all SP sequences, calculation of their amino acid frequencies, and plotting against the SwissProt distribution were performed.
 
 ---
 
@@ -274,7 +274,7 @@ The organism distribution was examined by counting the species represented in ea
 | Comparative Amino Acid Composition | [AA Composition](4_data_analysis/AA_comparison.png) |
 | Taxonomic Classification           | [Benchmark Classification](4_data_analysis/Kingdom_dist_bench.png) / [Training Classification](4_data_analysis/Kingdom_dist_train.png) |
 | Organisms distribution | [Benchmark Org Classification](4_data_analysis/organism_dist_bench.png) / [Training Org Classification](4_data_analysis/organism_dist_train.png) |
-| Sequence Logos | [Benchmark Logo](4_data_analysis/seq_logo_bh.png) / [Training Logo](4_data_analysis/seq_logo_tr.png) |
+| Sequence Logos | [Benchmark Logo](4_data_analysis/seq_logo_bh_set.png) / [Training Logo](4_data_analysis/seq_logo_tr_set.png) |
 
 ## 5. The von Heijne Method
 The main idea is to use use a ***Position-Speciﬁc Weight Matrix (PSWM)*** in order to model amino acid distribution around known cleavage sites. The retrieved scores were first stored in a ***PSPM*** and then a background model (Swiss-Prot database) was used as a reference amino acid distribution to compare our motifs against.
