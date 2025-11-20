@@ -345,9 +345,9 @@ In each fold, 3 subsets are used for training and 1 for validation. A Random For
 The MCC results for the cross-validation folds are shown in [MCC_per_fold](6_SVM/MCC_per_fold/MCC_PER_FOLD.png). 
 
 ## 7. Performance Evaluation
-### The Vonhejine model
+### The von Heijne model
 
-The VonHejine model performance was assessed using the [VH_bench.ipynb](7_performance_evalutation/VonHejine_perf/script/VH_bench.ipynb) script, which implement the full benchmarking pipeline. 
+The von Heijne model performance was assessed using the [VH_bench.ipynb](7_performance_evalutation/VonHejine_perf/script/VH_bench.ipynb) script, which implement the full benchmarking pipeline. 
 
 ##### Methodology:
 
